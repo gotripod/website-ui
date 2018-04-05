@@ -8,7 +8,6 @@ import Services from "../components/Services.js";
 import Footer from "../components/Footer.js";
 
 const Index = ({ carousel, services, posts }) => {
-  console.log(carousel, services, posts);
   return (
     <Layout>
       <header className="head">
@@ -178,7 +177,6 @@ Index.getInitialProps = async function() {
   serviceResults.forEach((result, idx) => {
     acfData.serviceBuilder[idx].serviceImage = humps.camelizeKeys(result.data);
   });
-  //console.log(acfData.carouselSlides);
 
   return {
     carousel: acfData.carouselSlides,
