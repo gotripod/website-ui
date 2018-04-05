@@ -87,6 +87,8 @@ Index.getInitialProps = async function() {
     axios.get(`https://gotripod.com//wp-json/wp/v2/media/${x.serviceImage}`)
   );
 
+  /* This is needed to fetch the URLs of media items. if we continue with this approach we could
+  create a WP filter to bring this information down with the initial query */
   const carouselResults = await Promise.all(carouselImages);
 
   carouselResults.forEach((result, idx) => {
