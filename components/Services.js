@@ -5,7 +5,7 @@ export default ({ data }) => (
         <div className="service">
           <div className="service__image">
             <img
-              data-src={`https://www.gotripod.com/${service.serviceImage.sourceUrl}`}
+              data-src={`${service.serviceImage.sourceUrl}`}
               alt=""
             />{" "}
             <noscript>

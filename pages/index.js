@@ -11,7 +11,7 @@ const Index = ({ carousel, services, posts }) => {
   console.log(carousel, services, posts);
   return (
     <Layout>
-      <header className="header">
+      <header className="head">
         <div className="head__mobile">
           <div className="button--mobile hamburger hamburger--htla">
             <span />
