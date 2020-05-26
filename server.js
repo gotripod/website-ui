@@ -1,31 +1,21 @@
-const express = require("express");
+const { createServer } = require("http");
+const { parse } = require("url");
 const next = require("next");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app
-  .prepare()
-  .then(() => {
-    const server = express();
-
-    server.get("/p/:id", (req, res) => {
-      const actualPage = "/post";
-      const queryParams = { id: req.params.id };
-      app.render(req, res, actualPage, queryParams);
-    })
-    
-    server.get("*", (req, res) => {
-      return handle(req, res);
-    });
-
-    server.listen(3000, err => {
-      if (err) throw err;
-      console.log("> Ready on http://localhost:3000");
-    });
-  })
-  .catch(ex => {
-    console.error(ex.stack);
-    process.exit(1);
+// https://github.com/zeit/next.js/issues/5214#issuecomment-612788329
+app.prepare().then(() => {
+  createServer((req, res) => {
+    if (req.url !== "/" && req.url.endsWith("/")) {
+      app.render(req, res, req.url.slice(0, -1));
+    } else {
+      handle(req, res, parse(req.url, true));
+    }
+  }).listen(3000, (err) => {
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${3000}`);
   });
+});

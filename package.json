@@ -2,23 +2,29 @@
   "name": "hello-next",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server.js",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "next build"
+    "build": "next build",
+    "deploy": "next deploy",
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "express": "^4.15.2",
+    "@icons-pack/react-simple-icons": "^3.1.0",
+    "@types/styled-components": "^5.1.0",
+    "axios": "^0.19.2",
     "humps": "^2.0.1",
-    "isomorphic-unfetch": "^2.0.0",
-    "next": "^4.2.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "next": "^9.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.35",
+    "babel-plugin-styled-components": "^1.10.7",
+    "typescript": "^3.9.3"
   }
 }
