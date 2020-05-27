@@ -1,6 +1,7 @@
 export default {
   colours: {
     linkBlue: "#62bead",
+    headingBlue: "#4291ce",
   },
   gutter: 13,
   fontSize: {

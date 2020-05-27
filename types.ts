@@ -28,3 +28,8 @@ export interface Project {
   title: string;
   blocks: any[];
 }
+
+export interface GalleryImage {
+  alt: string;
+  url: string;
+}
