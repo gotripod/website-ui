@@ -2,14 +2,14 @@ import axios from "axios";
 import humps from "humps";
 import { GetStaticProps } from "next";
 import { getTestimonial } from "../api";
-import Column from "../components/components/column";
-import Articles from "../components/components/home/articles";
-import ServiceList from "../components/components/home/service-list";
-import Layout from "../components/components/layout";
+import Column from "../components/column";
+import Articles from "../components/home/articles";
+import ServiceList from "../components/home/service-list";
+import Layout from "../components/layout";
 
-const Index = ({ services, posts, testimonial }) => {
+const Index = ({ services, posts, testimonial, heroHtml }) => {
   return (
-    <Layout testimonial={testimonial}>
+    <Layout testimonial={testimonial} heroHtml={heroHtml}>
       <Column>
         <ServiceList services={services} />
         <Articles articles={posts} />
@@ -29,8 +29,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const testimonial = await getTestimonial();
 
+  const imageResponse = await fetch(
+    "https://gotripod.com/wp-json/wp/v2/media/197?_fields=description"
+  );
+
+  const image = await imageResponse.json();
+
   return {
     props: {
+      heroHtml: image.description.rendered,
       carousel: [], //acfData.carouselSlides,
       services: acfData.serviceBuilder.map((s: any) => ({
         imageUrl: s.serviceImage,

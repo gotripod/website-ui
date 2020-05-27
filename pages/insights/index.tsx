@@ -1,9 +1,9 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
 import { getTestimonial } from "../../api";
-import Column from "../../components/components/column";
-import Layout from "../../components/components/layout";
-import List from "../../components/components/posts/list";
+import Column from "../../components/column";
+import Layout from "../../components/layout";
+import List from "../../components/posts/list";
 
 const Index = ({ posts, testimonial }) => {
   return (

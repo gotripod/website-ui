@@ -17,3 +17,14 @@ export interface Service {
   title: string;
   imageUrl: string;
 }
+
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+}
+
+export interface Project {
+  title: string;
+  blocks: any[];
+}
