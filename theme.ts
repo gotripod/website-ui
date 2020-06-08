@@ -27,6 +27,14 @@ export default {
   `,
 };
 
+const breakpoints = {
+  small: 576,
+  medium: 768,
+  large: 992,
+  jumbo: 1200
+}
+
 export {
+  breakpoints,
   px2rem
 }

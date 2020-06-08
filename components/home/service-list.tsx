@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem } from "../../theme";
+import Theme, { px2rem, breakpoints } from "../../theme";
 import { Service } from "../../types";
 import BaseCard from "./base-card";
 import Enquire from "./enquire";
@@ -52,6 +52,9 @@ const StyledService = {
     padding: ${px2rem(52)};
   `,
   Image: styled.img`
+    @media screen and (max-width: ${breakpoints.medium}px) {
+      display: none;
+    }
     width: 60%;
     position: absolute;
     bottom: 0;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem } from "../../theme";
+import Theme, { px2rem, breakpoints } from "../../theme";
 import Column from "../column";
 import Nav from "../nav";
 
@@ -69,6 +69,10 @@ const S = {
       font-size: ${px2rem(44)};
       font-weight: bold;
       width: ${px2rem(650)};
+      @media screen and (max-width:${breakpoints.medium}px) {
+        width: auto;
+      }
+      
       margin: 0 auto 0 auto;
     }
   `,
@@ -103,7 +107,7 @@ const Header = ({ heroHtml }: Props) => {
         />
         <source
           srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-768x320.jpg"
-          media="(max-width: 800px)"
+          media="(max-width: 800)"
         />
         <img src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-300x125.jpg" />
       </S.Hero>
