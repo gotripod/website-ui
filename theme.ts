@@ -7,8 +7,10 @@ export default {
   },
   gutter: 13,
   fontSize: {
+    base: 18,
     h2: 36,
   },
+  lineHeight: 26,
   cardFlare: `
     &:before {
       content: "";
@@ -27,14 +29,19 @@ export default {
   `,
 };
 
-const breakpoints = {
-  small: 576,
-  medium: 768,
-  large: 992,
-  jumbo: 1200
+const mqLess = (bp: Breakpoint) => `@media screen and (max-width:${bp}px)`
+const mqMore = (bp: Breakpoint) => `@media screen and (min-width:${bp}px)`
+
+enum Breakpoint {
+  small = 576,
+  medium = 768,
+  large = 992,
+  jumbo = 1200
 }
 
 export {
-  breakpoints,
-  px2rem
+  Breakpoint as breakpoints,
+  px2rem,
+  mqLess,
+  mqMore
 }

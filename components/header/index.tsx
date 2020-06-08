@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem, breakpoints } from "../../theme";
+import Theme, { px2rem, breakpoints, mqLess } from "../../theme";
 import Column from "../column";
 import Nav from "../nav";
 
@@ -8,6 +8,12 @@ const S = {
   LogoLink: styled.a`
     height: ${px2rem(52)};
     display: inline-block;
+
+    ${mqLess(breakpoints.medium)} {
+      height: 30px;
+      float: right;
+      padding: ${px2rem(13)};
+    }
   `,
   LogoImage: styled.img`
     height: 100%;
@@ -26,16 +32,16 @@ const S = {
     padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0;
     z-index: -1;
 
-    clip-path: polygon(
-      0 100%,
-      25.44% 100%,
-      25.44% 75.7%,
-      74.42% 76.17%,
-      74.64% 97.64%,
-      100% 99%,
-      100% 0%,
-      0% 0%
-    );
+    ${mqLess(breakpoints.medium)} {
+      height: 52px;
+      background: linear-gradient(
+        to right,
+        rgba(98, 190, 173, 0.9),
+        rgba(66, 145, 206, 0.9)
+      );
+      padding: 0;
+      float: right;
+    }
   `,
   Hero: styled.picture`
     position: absolute;
@@ -69,10 +75,11 @@ const S = {
       font-size: ${px2rem(44)};
       font-weight: bold;
       width: ${px2rem(650)};
-      @media screen and (max-width:${breakpoints.medium}px) {
+      ${mqLess(breakpoints.medium)} {
         width: auto;
+        font-size: ${px2rem(33)};
       }
-      
+
       margin: 0 auto 0 auto;
     }
   `,
