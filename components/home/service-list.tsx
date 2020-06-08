@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem, breakpoints } from "../../theme";
+import Theme, { px2rem, breakpoints, mqLess } from "../../theme";
 import { Service } from "../../types";
 import BaseCard from "./base-card";
 import Enquire from "./enquire";
@@ -11,73 +11,95 @@ interface Props {
 
 const ServiceList = ({ services }: Props) => {
   return (
-    <StyledService.List>
+    <StyledServiceList>
       {services.map((service, idx) => (
-        <StyledService.ItemWrapper key={idx}>
-          <StyledService.Item>
-            <StyledService.Content>
+        <li key={idx}>
+          <Item>
+            <div className="contentWrap">
               {idx === 0 && <h1>We are Go Tripod.</h1>}
-              <StyledService.Subtitle>{service.title}</StyledService.Subtitle>
-              <StyledService.Body
+              <h2>{service.title}</h2>
+              <div
+                className="body"
                 dangerouslySetInnerHTML={{ __html: service.body }}
               />
               <Enquire link="/contact">Enquire</Enquire>
-            </StyledService.Content>
-            <StyledService.Image src={service.imageUrl} />
-          </StyledService.Item>
-        </StyledService.ItemWrapper>
+            </div>
+
+            <img src={service.imageUrl} />
+          </Item>
+        </li>
       ))}
-    </StyledService.List>
+    </StyledServiceList>
   );
 };
 
 export default ServiceList;
 
-const StyledService = {
-  List: styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: -${px2rem(Theme.gutter * 4)};
-    z-index: 100;
-    position: relative;
-  `,
-  ItemWrapper: styled.li`
-    margin-bottom: ${px2rem(52)};
-  `,
-  Item: styled(BaseCard)`
-    ${Theme.cardFlare}
-    overflow: hidden;
-    position: relative;
-    padding: ${px2rem(52)};
-  `,
-  Image: styled.img`
-    @media screen and (max-width: ${breakpoints.medium}px) {
-      display: none;
-    }
+const StyledServiceList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: -${px2rem(Theme.gutter * 4)};
+  z-index: 100;
+  position: relative;
+`;
+
+const Item = styled(BaseCard)`
+  ${Theme.cardFlare}
+  overflow: hidden;
+  position: relative;
+  padding: ${px2rem(52)};
+  margin-bottom: ${px2rem(52)};
+
+  .contentWrap {
+    width: 70%;
+  }
+
+  img {
     width: 60%;
     position: absolute;
     bottom: 0;
     right: 0;
-  `,
-  Content: styled.div`
-    width: 70%;
+  }
 
-    h1 {
-      color: ${Theme.colours.headingBlue};
-    }
-  `,
-  Title: styled.h1``,
-  Subtitle: styled.h2`
+  h1 {
+    color: ${Theme.colours.headingBlue};
+  }
+
+  h2 {
     position: relative;
     width: 70%;
     z-index: 10;
     font-size: ${Theme.fontSize.h2}px;
-  `,
-  Body: styled.div`
+  }
+
+  .body {
     color: #999;
     width: 60%;
     line-height: 150%;
     margin-bottom: ${Theme.gutter * 4}px;
-  `,
-};
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    margin-bottom: 0;
+    padding: ${px2rem(Theme.gutter * 2)};
+    img {
+      display: none;
+    }
+
+    .contentWrap,
+    .body,
+    h2 {
+      width: 100%;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+    }
+
+    .body {
+      margin-bottom: ${Theme.gutter * 0}px;
+    }
+  }
+`;

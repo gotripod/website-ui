@@ -1,4 +1,7 @@
-const px2rem = (px: number): string | number => Number(px) ? `${Number(px) / 18}rem` : 0;
+import { css } from "styled-components";
+
+const px2rem = (px: number): string | number =>
+  Number(px) ? `${Number(px) / 18}rem` : 0;
 
 export default {
   colours: {
@@ -11,7 +14,7 @@ export default {
     h2: 36,
   },
   lineHeight: 26,
-  cardFlare: `
+  cardFlare: css`
     &:before {
       content: "";
       background: linear-gradient(
@@ -19,7 +22,7 @@ export default {
         rgba(98, 190, 173, 0.9),
         rgba(66, 145, 206, 0.9)
       );
-      width: ${px2rem(13)};
+      width: ${px2rem(3)};
       height: 100%;
       display: block;
       position: absolute;
@@ -29,19 +32,14 @@ export default {
   `,
 };
 
-const mqLess = (bp: Breakpoint) => `@media screen and (max-width:${bp}px)`
-const mqMore = (bp: Breakpoint) => `@media screen and (min-width:${bp}px)`
+const mqLess = (bp: Breakpoint) => `@media screen and (max-width:${bp}px)`;
+const mqMore = (bp: Breakpoint) => `@media screen and (min-width:${bp}px)`;
 
 enum Breakpoint {
   small = 576,
   medium = 768,
   large = 992,
-  jumbo = 1200
+  jumbo = 1200,
 }
 
-export {
-  Breakpoint as breakpoints,
-  px2rem,
-  mqLess,
-  mqMore
-}
+export { Breakpoint as breakpoints, px2rem, mqLess, mqMore };

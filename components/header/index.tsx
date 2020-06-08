@@ -37,7 +37,7 @@ const Header = ({ heroHtml }: Props) => (
       <div className="gradient">
         <Nav />
         {typeof window !== "undefined" && window.location.pathname == "/" && (
-          <p>Your website should inspire confidence in your customers</p>
+          <h2>Your website should inspire confidence in your customers</h2>
         )}
       </div>
     </Column>
@@ -78,7 +78,7 @@ const StyledHeader = styled.header`
       rgba(66, 145, 206, 0.9)
     );
 
-    p {
+    h2 {
       padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 12)} 0;
       color: #ededed;
       font-size: ${px2rem(44)};
@@ -112,7 +112,7 @@ const StyledHeader = styled.header`
       margin-left: ${px2rem(Theme.gutter * 2)};
       margin-right: ${px2rem(Theme.gutter * 2)};
 
-      p {
+      h2 {
         width: auto;
         font-size: ${px2rem(33)};
         padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)}

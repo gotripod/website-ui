@@ -10,6 +10,12 @@ textarea {
 html {
   font-size: 16px;
 }
+
+h1,
+h2 {
+  font-family: "Cabin";
+}
+
 body {
   margin: 0;
 }
