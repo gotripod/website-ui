@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Theme from "../../theme";
+import Theme, { px2rem } from "../../theme";
 import Column from "../column";
 import Nav from "../nav";
 
 const S = {
   LogoLink: styled.a`
-    height: 52px;
+    height: ${px2rem(52)};
     display: inline-block;
   `,
   LogoImage: styled.img`
@@ -16,14 +16,14 @@ const S = {
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding-bottom: ${Theme.gutter * 8}px;
+    padding-bottom: ${px2rem(Theme.gutter * 8)};
     z-index: 10;
   `,
   LogoBackground: styled.div`
     position: absolute;
     width: 100%;
     background: rgba(0, 0, 0, 0.5);
-    padding: ${Theme.gutter * 4}px 0 ${Theme.gutter * 8}px 0;
+    padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0;
     z-index: -1;
 
     clip-path: polygon(
@@ -56,7 +56,7 @@ const S = {
     }
   `,
   Gradient: styled.div`
-    margin-top: 160px;
+    margin-top: ${px2rem(160)};
     background: linear-gradient(
       to right,
       rgba(98, 190, 173, 0.9),
@@ -64,11 +64,11 @@ const S = {
     );
 
     p {
-      padding: ${Theme.gutter * 4}px 0 ${Theme.gutter * 12}px 0;
+      padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 12)} 0;
       color: #ededed;
-      font-size: 44px;
+      font-size: ${px2rem(44)};
       font-weight: bold;
-      width: 650px;
+      width: ${px2rem(650)};
       margin: 0 auto 0 auto;
     }
   `,

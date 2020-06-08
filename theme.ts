@@ -1,3 +1,5 @@
+const px2rem = (px: number): string | number => Number(px) ? `${Number(px) / 18}rem` : 0;
+
 export default {
   colours: {
     linkBlue: "#62bead",
@@ -15,7 +17,7 @@ export default {
         rgba(98, 190, 173, 0.9),
         rgba(66, 145, 206, 0.9)
       );
-      width: 13px;
+      width: ${px2rem(13)};
       height: 100%;
       display: block;
       position: absolute;
@@ -24,3 +26,7 @@ export default {
     }
   `,
 };
+
+export {
+  px2rem
+}

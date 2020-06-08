@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Article } from "../../types";
 import Column from "../column";
+import { px2rem } from "../../theme";
 
 interface Props {
   articles: Article[];
@@ -51,8 +52,8 @@ const StyledArticle = {
   List: styled.div`
     background: white;
     text-align: center;
-    margin: 52px 0;
-    padding: 52px;
+    margin: ${px2rem(52)} 0;
+    padding: ${px2rem(52)};
   `,
   ListInner: styled.div`
     display: flex;
@@ -63,13 +64,13 @@ const StyledArticle = {
   `,
   Item: styled.article`
     flex: ${1 / 3};
-    padding: 0 30px;
+    padding: 0 ${px2rem(30)};
   `,
   Date: styled.div`
     color: #999;
   `,
   Text: styled.h2`
-    font-size: 20px;
+    font-size: ${px2rem(20)};
   `,
   Link: styled.a`
     color: #62bead;

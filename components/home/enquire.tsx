@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "../link";
+import { px2rem } from "../../theme";
 
 const Enquire = styled(Link)`
   display: inline-block;
@@ -22,9 +23,7 @@ const Enquire = styled(Link)`
 
   transition: background-color 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  padding: 6.5px 30px;
-
-  padding: 0.3611111111rem 1.6666666667rem;
+  padding: ${px2rem(6.5)} ${px2rem(30)};
 
   color: #fff !important;
 

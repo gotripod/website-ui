@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme from "../../theme";
+import Theme, { px2rem } from "../../theme";
 import { Service } from "../../types";
 import BaseCard from "./base-card";
 import Enquire from "./enquire";
@@ -38,18 +38,18 @@ const StyledService = {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-top: -${Theme.gutter * 4}px;
+    margin-top: -${px2rem(Theme.gutter * 4)};
     z-index: 100;
     position: relative;
   `,
   ItemWrapper: styled.li`
-    margin-bottom: 52px;
+    margin-bottom: ${px2rem(52)};
   `,
   Item: styled(BaseCard)`
     ${Theme.cardFlare}
     overflow: hidden;
     position: relative;
-    padding: 52px;
+    padding: ${px2rem(52)};
   `,
   Image: styled.img`
     width: 60%;
