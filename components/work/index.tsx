@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import theme from "../../theme";
+import theme, { mqLess, breakpoints } from "../../theme";
 import Link from "../link";
 import PageTitle from "../page-title";
 
@@ -41,6 +41,15 @@ const Wrapper = styled.section`
     box-sizing: border-box;
     flex-basis: 33.333333%;
     max-width: 33.333333%;
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    display: block;
+
+    div {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
   }
 `;
 

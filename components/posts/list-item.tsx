@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Theme from "../../theme";
+import Theme, { mqLess, breakpoints, px2rem } from "../../theme";
 import Link from "../link";
+import theme from "../../theme";
 
 /**
  * Item Component
@@ -44,6 +45,12 @@ const Li = styled.li`
   list-style: none;
   max-width: 33.3333333333%;
   box-sizing: border-box;
+
+  ${mqLess(breakpoints.medium)} {
+    flex-basis: 1;
+    max-width: 100%;
+    margin: 0 ${px2rem(theme.gutter)};
+  }
 `;
 
 const Article = styled.article`

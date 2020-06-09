@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Theme from "../theme";
+import Theme, { mqLess, breakpoints, px2rem } from "../theme";
+import theme from "../theme";
 const S = {
   Wrapper: styled.header<{ slim: boolean }>`
     position: relative;
@@ -8,13 +9,15 @@ const S = {
     border-bottom: 5px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding: 30px 0;
-    z-index: 100;
+    padding: ${px2rem(theme.gutter * 2)} 0;
+    z-index: 1;
     margin: -${Theme.gutter * 4}px ${(props) =>
         props.slim ? Theme.gutter * 6 : 0}px ${Theme.gutter * 4}px ${(props) => (props.slim ? Theme.gutter * 6 : 0)}px;
     ${Theme.cardFlare}
 
-    h2 {
+    ${mqLess(breakpoints.medium)} {
+      margin-left: ${px2rem(theme.gutter)};
+      margin-right: ${px2rem(theme.gutter)};
     }
   `,
 };

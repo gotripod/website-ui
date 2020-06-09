@@ -4,6 +4,7 @@ import Column from "../column";
 import PageTitle from "../page-title";
 import Item from "./list-item";
 import Pagination from "./pagination";
+import { mqLess, breakpoints } from "../../theme";
 
 const List = ({ posts }) => {
   return (
@@ -36,6 +37,10 @@ const Container = styled.ul`
   flex-flow: row wrap;
   padding: 0;
   margin: -13px;
+
+  ${mqLess(breakpoints.medium)} {
+    display: block;
+  }
 `;
 
 const Header = styled.h3`
