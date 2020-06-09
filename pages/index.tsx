@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         id: post.id,
         date: post.date,
         title: post.title.rendered,
-        link: post.link,
+        link: `/insights/${post.slug}/`,
       })),
       testimonial,
     },

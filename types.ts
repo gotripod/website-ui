@@ -1,8 +1,6 @@
 export interface Testimonial {
   body: string;
-  title: {
-    rendered: string;
-  };
+  title: string;
 }
 
 export interface Article {

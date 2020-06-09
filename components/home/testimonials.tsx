@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Testimonial } from "../../types";
-import { px2rem } from "../../theme";
+import { px2rem, mqLess, breakpoints } from "../../theme";
 
 interface Props {
   testimonial: Testimonial;
@@ -10,7 +10,7 @@ interface Props {
 const Testimonials = ({ testimonial, className }: Props) => (
   <Wrapper className={className}>
     <blockquote>{testimonial.body}</blockquote>
-    <p>&mdash; {testimonial.title.rendered}</p>
+    <p>&mdash; {testimonial.title}</p>
   </Wrapper>
 );
 
@@ -20,7 +20,6 @@ const Wrapper = styled.section`
   background: white;
   border-bottom: 5px solid rgba(0, 0, 0, 0.3);
   text-align: center;
-  padding: ${px2rem(50)} ${px2rem(200)};
 
   quote {
     font-style: italic;
@@ -31,5 +30,9 @@ const Wrapper = styled.section`
 
   p {
     color: #999;
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    padding: 0;
   }
 `;

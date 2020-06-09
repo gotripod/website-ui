@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Theme from "../theme";
+import Theme, { mqLess, breakpoints, px2rem } from "../theme";
 import { Button } from "./button";
 import Column from "./column";
 
@@ -78,7 +78,7 @@ const Wrapper = styled.section`
   color: #ededed;
   text-align: center;
   background: linear-gradient(to right, #4291ce, #6ba9d9);
-  padding: ${Theme.gutter * 4}px 60px;
+  padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 8)};
   margin-bottom: ${Theme.gutter * 4}px;
 
   h1 {
@@ -89,11 +89,19 @@ const Wrapper = styled.section`
   fieldset {
     border: 0;
   }
+
+  ${mqLess(breakpoints.medium)} {
+    padding: ${Theme.gutter * 4}px ${px2rem(Theme.gutter)};
+  }
 `;
 
 const Col = styled.div`
-  padding: ${Theme.gutter}px ${Theme.gutter * 2}px;
+  padding: ${px2rem(Theme.gutter)} ${px2rem(Theme.gutter * 2)};
   flex: 1;
+
+  ${mqLess(breakpoints.medium)} {
+    padding: 0 0;
+  }
 `;
 const Field = styled.div`
   text-align: left;
@@ -149,6 +157,10 @@ const Field = styled.div`
 `;
 const Row = styled.div`
   display: flex;
+
+  ${mqLess(breakpoints.medium)} {
+    display: block;
+  }
 `;
 
 const InputStyle = css`

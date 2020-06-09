@@ -1,7 +1,8 @@
 // import { Facebook, Linkedin, Twitter } from "@icons-pack/react-simple-icons";
 import React from "react";
 import styled from "styled-components";
-import Theme from "../theme";
+import Theme, { px2rem, breakpoints, mqLess } from "../theme";
+import theme from "../theme";
 
 const Footer = () => (
   <Foot>
@@ -144,6 +145,11 @@ const ContactDetails = styled.div`
     font-size: 30px;
     font-weight: bold;
   }
+
+  ${mqLess(breakpoints.medium)} {
+    display: block;
+    text-align: center;
+  }
 `;
 
 const Foot = styled.footer`
@@ -172,7 +178,13 @@ const Nav = styled.nav`
   }
 
   li {
-    padding: 13px 26px;
+    padding: ${px2rem(theme.gutter)} ${px2rem(theme.gutter * 2)};
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    ul {
+      flex-wrap: wrap;
+    }
   }
 `;
 
