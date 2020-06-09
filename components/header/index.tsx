@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme, { px2rem, breakpoints, mqLess } from "../../theme";
 import Column from "../column";
-import Nav from "../nav";
+import LargeNav from "../nav/large";
 
 interface Props {
   heroHtml?: string;
@@ -35,7 +35,7 @@ const Header = ({ heroHtml }: Props) => (
     </div>
     <Column>
       <div className="gradient">
-        <Nav />
+        <LargeNav />
         {typeof window !== "undefined" && window.location.pathname == "/" && (
           <h2>Your website should inspire confidence in your customers</h2>
         )}
@@ -49,14 +49,14 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
-  z-index: 10;
+  z-index: 1;
 
   picture {
     position: absolute;
     left: 0;
     right: 0;
     width: 100%;
-    z-index: -10;
+    z-index: -1;
     object-fit: cover;
 
     img,

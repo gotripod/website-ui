@@ -40,7 +40,7 @@ const StyledServiceList = styled.ul`
   padding: 0;
   margin: 0;
   margin-top: -${px2rem(Theme.gutter * 4)};
-  z-index: 100;
+  z-index: 1;
   position: relative;
 `;
 
@@ -81,7 +81,7 @@ const Item = styled(BaseCard)`
   }
 
   ${mqLess(breakpoints.medium)} {
-    margin-bottom: 0;
+    margin: ${px2rem(Theme.gutter * 2)} 0;
     padding: ${px2rem(Theme.gutter * 2)};
     img {
       display: none;
@@ -99,7 +99,7 @@ const Item = styled(BaseCard)`
     }
 
     .body {
-      margin-bottom: ${Theme.gutter * 0}px;
+      margin-bottom: ${Theme.gutter * 2}px;
     }
   }
 `;

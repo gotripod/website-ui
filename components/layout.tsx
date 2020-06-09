@@ -8,6 +8,7 @@ import Contact from "./contact";
 import Footer from "./footer";
 import Header from "./header";
 import Testimonials from "./home/testimonials";
+import SmallNav from "./nav/small";
 
 interface Props {
   testimonial?: Testimonial;
@@ -24,6 +25,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
         rel="stylesheet"
       />
     </Head>
+    <SmallNav />
     <Header heroHtml={heroHtml} />
     <MainContainer>
       {children}

@@ -3,6 +3,16 @@ import { css } from "styled-components";
 const px2rem = (px: number): string | number =>
   Number(px) ? `${Number(px) / 18}rem` : 0;
 
+const mqLess = (bp: Breakpoint) => `@media screen and (max-width:${bp}px)`;
+const mqMore = (bp: Breakpoint) => `@media screen and (min-width:${bp}px)`;
+
+enum Breakpoint {
+  small = 576,
+  medium = 768,
+  large = 992,
+  jumbo = 1200,
+}
+
 export default {
   colours: {
     linkBlue: "#62bead",
@@ -22,7 +32,13 @@ export default {
         rgba(98, 190, 173, 0.9),
         rgba(66, 145, 206, 0.9)
       );
-      width: ${px2rem(3)};
+      ${mqLess(Breakpoint.medium)} {
+        width: ${px2rem(5)};
+      }
+
+      ${mqMore(Breakpoint.medium)} {
+        width: ${px2rem(13)};
+      }
       height: 100%;
       display: block;
       position: absolute;
@@ -31,15 +47,5 @@ export default {
     }
   `,
 };
-
-const mqLess = (bp: Breakpoint) => `@media screen and (max-width:${bp}px)`;
-const mqMore = (bp: Breakpoint) => `@media screen and (min-width:${bp}px)`;
-
-enum Breakpoint {
-  small = 576,
-  medium = 768,
-  large = 992,
-  jumbo = 1200,
-}
 
 export { Breakpoint as breakpoints, px2rem, mqLess, mqMore };
