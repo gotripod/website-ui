@@ -12,7 +12,7 @@ const GalleryBlock = ({ caption, images }: Props) => {
     <>
       <Gallery>
         {images.map((image) => {
-          return <Img alt={image.alt} src={image.url} />;
+          return <Img key={image.url} alt={image.alt} src={image.url} />;
         })}
       </Gallery>
       <Caption>{caption}</Caption>
@@ -20,7 +20,7 @@ const GalleryBlock = ({ caption, images }: Props) => {
   );
 };
 
-const Caption = styled.caption`
+const Caption = styled.p`
   width: 100%;
   text-align: left;
 `;

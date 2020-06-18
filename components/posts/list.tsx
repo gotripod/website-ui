@@ -19,7 +19,7 @@ const List = ({ posts }) => {
         <Container>
           {/* Iterate over the items of the list. */}
           {posts.map((post) => {
-            // Render one Item component for each one.
+            console.log(post);
             return <Item key={post.id} post={post} />;
           })}
         </Container>

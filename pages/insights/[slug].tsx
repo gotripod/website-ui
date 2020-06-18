@@ -12,7 +12,6 @@ interface Props {
 }
 
 const SinglePostPage = ({ post }: Props) => {
-  console.log(post);
   return (
     <Layout>
       <Column slim>
@@ -37,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 
   const post = response.data[0];
-  console.log(post);
+
   return {
     props: {
       post: {

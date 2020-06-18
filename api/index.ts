@@ -15,4 +15,12 @@ const getTestimonial = async () => {
   };
 };
 
-export { getTestimonial };
+const getMediaById = async (mediaId: number) => {
+  const mediaResponse = await axios.get(
+    `https://gotripod.com/wp-json/wp/v2/media/${mediaId}`
+  );
+
+  return mediaResponse.data;
+};
+
+export { getTestimonial, getMediaById };
