@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import theme, { breakpoints, mqLess, px2rem } from "../../theme";
 import { Article } from "../../types";
 import Column from "../column";
-import theme, { px2rem, mqLess, breakpoints } from "../../theme";
 import Link from "../link";
 
 interface Props {
@@ -27,16 +27,16 @@ const Articles = ({ articles }: Props) => {
     <Column>
       <StyledArticleList>
         <h1>Here's what we've been up to recently...</h1>
-        <div>
+        <div className="articles">
           {articles.map((article: Article) => {
             return (
-              <div className="item" key={`article-${article.id}`}>
+              <article key={`article-${article.id}`}>
                 <div className="date">{formatDate(article.date)}</div>
                 <h2>{article.title}</h2>
                 <Slink href="/insights/[slug]" link={`${article.link}`}>
                   Read More
                 </Slink>
-              </div>
+              </article>
             );
           })}
         </div>
@@ -67,11 +67,10 @@ const StyledArticleList = styled.section`
   margin: ${px2rem(52)} 0;
   padding: ${px2rem(52)};
 
-  .item {
+  .articles {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    width: 75%;
     margin: 0 auto;
   }
 
@@ -90,6 +89,19 @@ const StyledArticleList = styled.section`
   ${mqLess(breakpoints.medium)} {
     margin: ${px2rem(theme.gutter * 2)} 0;
     padding: ${px2rem(theme.gutter * 2)};
+
+    .articles {
+      display: block;
+    }
+
+    article {
+      border-bottom: 1px solid #ededed;
+      margin-bottom: ${px2rem(theme.gutter * 2)};
+    }
+
+    article:last-child {
+      border-bottom: 1px solid white;
+    }
 
     h2 {
       margin-top: 0;
