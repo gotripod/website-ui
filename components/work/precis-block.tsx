@@ -1,6 +1,6 @@
 import React from "react";
-import Column from "../column";
 import styled from "styled-components";
+import Column from "../column";
 
 interface Props {
   technologies: any[];
@@ -12,7 +12,11 @@ const PrecisBlock = ({ technologies, services }: Props) => {
     <SColumn>
       <div>
         <p>Our involvement in this project included the following:</p>
-        <ul></ul>
+        <ul>
+          {services.map((t, i) => (
+            <li key={i}>{t.itemBody}</li>
+          ))}
+        </ul>
       </div>
 
       <div>
@@ -24,7 +28,7 @@ const PrecisBlock = ({ technologies, services }: Props) => {
         </ul>
       </div>
 
-      <div className="col-lg-3 col-md-10 offset-md-1">
+      <div className={"next"}>
         <p>So, what would you like to do next?</p>
         <ul className="list">
           <li>
@@ -42,5 +46,34 @@ const PrecisBlock = ({ technologies, services }: Props) => {
   );
 };
 
-const SColumn = styled(Column)``;
+const SColumn = styled(Column)`
+  display: flex;
+
+  li {
+  }
+
+  li:before {
+    top: 8px;
+    left: 0;
+    position: relative;
+    content: "⋆";
+    color: orange;
+    font-size: 50px;
+    line-height: 0;
+  }
+
+  div {
+    flex: 1;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .next ul {
+    padding: 0;
+    list-style: none;
+  }
+`;
 export default PrecisBlock;

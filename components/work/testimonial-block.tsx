@@ -6,7 +6,8 @@ interface Props {
 }
 
 const TestimonialBlock = ({ testimonial }: Props) => {
-  return <div>TEST{testimonial.body}</div>;
+  console.log("testimonial", testimonial);
+  return <div>TESTIMONIAL PLACEHOLDER{testimonial.body}</div>;
 };
 
 export default TestimonialBlock;
