@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { breakpoints, mqLess } from "../../theme";
 import Column from "../column";
 import PageTitle from "../page-title";
 import Item from "./list-item";
 import Pagination from "./pagination";
-import { mqLess, breakpoints } from "../../theme";
 
 const List = ({ posts }) => {
   return (
@@ -19,7 +19,6 @@ const List = ({ posts }) => {
         <Container>
           {/* Iterate over the items of the list. */}
           {posts.map((post) => {
-            console.log(post);
             return <Item key={post.id} post={post} />;
           })}
         </Container>

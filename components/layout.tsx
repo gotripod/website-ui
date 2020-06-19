@@ -57,7 +57,7 @@ const MainContainer = styled.main`
     content: "";
     background-image: url(https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-stripes.svg);
     background-repeat: no-repeat;
-    background-position: -3px 16px;
+    background-position: -3px -20px;
     height: 1500px;
     display: block;
     position: absolute;

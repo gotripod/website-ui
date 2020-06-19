@@ -3,11 +3,10 @@ import humps from "humps";
 import { GetStaticPaths } from "next";
 import React from "react";
 import styled from "styled-components";
-import { getMediaById } from "../../api";
+import { getMediaById, getTestimonialById } from "../../api";
 import Column from "../../components/column";
 import Layout from "../../components/layout";
 import MediaImage from "../../components/media-image";
-import PageTitle from "../../components/page-title";
 import GalleryBlock from "../../components/work/gallery-block";
 import IntroBlock from "../../components/work/intro.block";
 import PrecisBlock from "../../components/work/precis-block";
@@ -52,11 +51,9 @@ const renderBlock = (block, i) => {
 };
 
 const SinglePostPage = ({ project }: Props) => {
-  console.log(project);
   return (
     <Layout>
-      <Column slim>
-        <PageTitle title={project.title} />
+      <Column>
         <StyledMediaImage media={project.heroMedia} />
         <Content>{project.blocks.map(renderBlock)}</Content>
       </Column>
@@ -68,6 +65,10 @@ export default SinglePostPage;
 
 const StyledMediaImage = styled(MediaImage)`
   width: 100%;
+  margin: -${px2rem(theme.gutter * 4)} 0 0 0;
+  position: relative;
+  z-index: 1;
+  display: block;
 `;
 
 const Content = styled.div`
@@ -88,6 +89,21 @@ export const getStaticProps = async (context) => {
   const post = response.data[0];
 
   const heroMedia = await getMediaById(post.acf.project_hero);
+
+  // fetch testimonial body
+  const shallowTestimonialIndex = post.acf.project_blocks.findIndex(
+    (b) => b.acf_fc_layout === "testimonial_block"
+  );
+
+  const shallowTestimonialBlockId =
+    post.acf.project_blocks[shallowTestimonialIndex].testimonial.ID;
+
+  const testimonial = await getTestimonialById(shallowTestimonialBlockId);
+
+  console.log("testimonial", testimonial);
+
+  post.acf.project_blocks[shallowTestimonialIndex].testimonial.body =
+    testimonial.body;
 
   return {
     props: {

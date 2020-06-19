@@ -1,13 +1,17 @@
 import React from "react";
-import { Testimonial } from "../../types";
 
 interface Props {
-  testimonial: Testimonial;
+  testimonial: any;
 }
 
 const TestimonialBlock = ({ testimonial }: Props) => {
-  console.log("testimonial", testimonial);
-  return <div>TESTIMONIAL PLACEHOLDER{testimonial.body}</div>;
+  return (
+    <blockquote>
+      <p>{testimonial.body}</p>
+
+      <footer>― {testimonial.postTitle}</footer>
+    </blockquote>
+  );
 };
 
 export default TestimonialBlock;

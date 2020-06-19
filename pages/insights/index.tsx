@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
-import { getTestimonial } from "../../api";
+import { getTestimonials } from "../../api";
 import Column from "../../components/column";
 import Layout from "../../components/layout";
 import List from "../../components/posts/list";
@@ -16,7 +16,7 @@ const Index = ({ posts, testimonial }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const testimonial = await getTestimonial();
+  const testimonial = await getTestimonials();
 
   const response = await axios.get(
     "https://gotripod.com/wp-json/wp/v2/posts?per_page=9"

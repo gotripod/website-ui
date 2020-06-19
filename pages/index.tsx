@@ -1,7 +1,7 @@
 import axios from "axios";
 import humps from "humps";
 import { GetStaticProps } from "next";
-import { getTestimonial } from "../api";
+import { getTestimonials } from "../api";
 import Column from "../components/column";
 import Articles from "../components/home/articles";
 import ServiceList from "../components/home/service-list";
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   acfData = humps.camelizeKeys(acfData.acf);
 
-  const testimonial = await getTestimonial();
+  const testimonial = await getTestimonials();
 
   const imageResponse = await fetch(
     "https://gotripod.com/wp-json/wp/v2/media/197?_fields=description"
