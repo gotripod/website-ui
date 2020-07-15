@@ -1,19 +1,22 @@
 import axios from "axios";
+import { Testimonial } from "../types";
 
-const getTestimonials = async () => {
+const getTestimonials = async (): Promise<Testimonial> => {
   const testimonials = (
     await axios.get("https://gotripod.com/wp-json/wp/v2/testimonial?per_page=1")
   ).data;
 
-  const testimonial = testimonials[0].acf;
+  const testimonial = testimonials[0];
 
   return {
-    body: testimonial.testimonial_body,
-    title: testimonial.title.rendered,
+    quote: testimonial.acf.testimonial_body,
+    quoteAuthor: testimonial.title.rendered,
   };
 };
 
-const getTestimonialById = async (testimonialId: number) => {
+const getTestimonialById = async (
+  testimonialId: number
+): Promise<Testimonial> => {
   const testimonial = (
     await axios.get(
       `https://gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`
@@ -21,8 +24,8 @@ const getTestimonialById = async (testimonialId: number) => {
   ).data;
 
   return {
-    body: testimonial.acf.testimonial_body,
-    title: testimonial.title.rendered,
+    quote: testimonial.acf.testimonial_body,
+    quoteAuthor: testimonial.title.rendered,
   };
 };
 

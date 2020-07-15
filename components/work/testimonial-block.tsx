@@ -1,15 +1,16 @@
 import React from "react";
+import { Testimonial } from "../../types";
 
 interface Props {
-  testimonial: any;
+  testimonial: Testimonial;
 }
 
 const TestimonialBlock = ({ testimonial }: Props) => {
   return (
     <blockquote>
-      <p>{testimonial.body}</p>
+      <p>{testimonial.quote}</p>
 
-      <footer>― {testimonial.postTitle}</footer>
+      <footer>― {testimonial.quoteAuthor}</footer>
     </blockquote>
   );
 };

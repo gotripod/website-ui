@@ -102,8 +102,7 @@ export const getStaticProps = async (context) => {
 
   console.log("testimonial", testimonial);
 
-  post.acf.project_blocks[shallowTestimonialIndex].testimonial.body =
-    testimonial.body;
+  post.acf.project_blocks[shallowTestimonialIndex].testimonial = testimonial;
 
   return {
     props: {

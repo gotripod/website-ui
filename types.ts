@@ -1,6 +1,6 @@
 export interface Testimonial {
-  body: string;
-  title: string;
+  quote: string;
+  quoteAuthor: string;
 }
 
 export interface Article {

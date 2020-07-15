@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { breakpoints, mqLess, px2rem } from "../../theme";
 import { Testimonial } from "../../types";
-import { px2rem, mqLess, breakpoints } from "../../theme";
 
 interface Props {
   testimonial: Testimonial;
@@ -9,8 +9,8 @@ interface Props {
 
 const Testimonials = ({ testimonial, className }: Props) => (
   <Wrapper className={className}>
-    <blockquote>{testimonial.body}</blockquote>
-    <p>&mdash; {testimonial.title}</p>
+    <blockquote>{testimonial.quote}</blockquote>
+    <p>&mdash; {testimonial.quoteAuthor}</p>
   </Wrapper>
 );
 
