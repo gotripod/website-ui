@@ -21,7 +21,7 @@ export default {
   gutter: 13,
   fontSize: {
     base: 18,
-    h2: 36,
+    h2: 40,
   },
   lineHeight: 26,
   cardFlare: css`

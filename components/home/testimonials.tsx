@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, mqLess, px2rem } from "../../theme";
+import theme, { px2rem } from "../../theme";
 import { Testimonial } from "../../types";
 
 interface Props {
@@ -20,8 +20,10 @@ const Wrapper = styled.section`
   background: white;
   border-bottom: 5px solid rgba(0, 0, 0, 0.3);
   text-align: center;
+  padding: ${px2rem(theme.gutter * 3)} ${px2rem(theme.gutter * 2)}
+    ${px2rem(theme.gutter * 4)} ${px2rem(theme.gutter * 2)};
 
-  quote {
+  blockquote {
     font-style: italic;
     font-size: ${px2rem(22)};
     color: #333;
@@ -30,9 +32,5 @@ const Wrapper = styled.section`
 
   p {
     color: #999;
-  }
-
-  ${mqLess(breakpoints.medium)} {
-    padding: 0;
   }
 `;

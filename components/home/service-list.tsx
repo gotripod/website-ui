@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem, breakpoints, mqLess } from "../../theme";
+import Theme, { breakpoints, mqLess, px2rem } from "../../theme";
 import { Service } from "../../types";
 import BaseCard from "./base-card";
 import Enquire from "./enquire";
@@ -64,9 +64,12 @@ const Item = styled(BaseCard)`
 
   h1 {
     color: ${Theme.colours.headingBlue};
+    font-size: ${px2rem(40)};
+    margin: 0;
   }
 
   h2 {
+    margin-top: 0;
     position: relative;
     width: 70%;
     z-index: 10;
@@ -96,6 +99,7 @@ const Item = styled(BaseCard)`
     h1,
     h2 {
       text-align: center;
+      font-size: ${36}px;
     }
 
     .body {

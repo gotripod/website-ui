@@ -1,6 +1,7 @@
 import axios from "axios";
 import humps from "humps";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import { getTestimonials } from "../api";
 import Column from "../components/column";
 import Articles from "../components/home/articles";
@@ -10,6 +11,10 @@ import Layout from "../components/layout";
 const Index = ({ services, posts, testimonial, heroHtml }) => {
   return (
     <Layout testimonial={testimonial} heroHtml={heroHtml}>
+      <Head>
+        <title>My page title</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <Column>
         <ServiceList services={services} />
         <Articles articles={posts} />
