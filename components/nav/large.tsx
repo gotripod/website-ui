@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import menu from "../../menu";
+import { breakpoints, mqLess } from "../../theme";
 import Link from "../link";
-import { mqLess, breakpoints, mqMore } from "../../theme";
 
 interface Props {
   className?: string;
@@ -15,9 +15,7 @@ const LargeNav = ({ className }: Props) => (
         const isCurrentPage = false;
         return (
           <li key={link}>
-            <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-              {text}
-            </Link>
+            <Link link={link}>{text}</Link>
           </li>
         );
       })}
@@ -43,19 +41,36 @@ const NavContainer = styled.nav`
   }
 
   li {
-    padding: 0;
-    margin: 52px;
+    padding: 0 52px;
+    margin: 52px 0;
     font-size: 1em;
     color: #f7f7f7;
+    font-family: "Cabin";
 
     & > a {
+      position: relative;
       display: inline-block;
       line-height: 2em;
       border-bottom: 2px solid;
       border-bottom-color: transparent;
-      &[aria-current="page"] {
-        border-bottom-color: #fff;
-      }
+    }
+
+    & > a:after {
+      content: "";
+      background-color: #f7f7f7;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      margin: auto;
+      transition: width 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    & > a[aria-current="page"]:after,
+    & > a:hover:after {
+      width: 100%;
     }
   }
 

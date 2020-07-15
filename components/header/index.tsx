@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Theme, { px2rem, breakpoints, mqLess } from "../../theme";
+import Theme, { breakpoints, mqLess, mqMore, px2rem } from "../../theme";
 import Column from "../column";
 import LargeNav from "../nav/large";
 
@@ -26,18 +26,24 @@ const Header = ({ heroHtml }: Props) => (
       <img src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-300x125.jpg" />
     </picture>
     <div className="background">
-      <a href="/">
-        <img
-          src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
-          alt="Go Tripod"
-        />
-      </a>
+      <div></div>
+      <div>
+        <a href="/">
+          <img
+            src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
+            alt="Go Tripod"
+          />
+        </a>
+      </div>
+      <div></div>
     </div>
     <Column>
       <div className="gradient">
         <LargeNav />
         {typeof window !== "undefined" && window.location.pathname == "/" && (
-          <h2>Your website should inspire confidence in your customers</h2>
+          <h2>
+            Your website should inspire confidence amoungst your customers
+          </h2>
         )}
       </div>
     </Column>
@@ -79,26 +85,60 @@ const StyledHeader = styled.header`
     );
 
     h2 {
-      padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 12)} 0;
+      padding: ${px2rem(Theme.gutter * 2)} 0 ${px2rem(Theme.gutter * 12)} 0;
       color: #ededed;
       font-size: ${px2rem(44)};
       font-weight: bold;
-      width: ${px2rem(650)};
+      width: ${px2rem(750)};
 
       margin: 0 auto 0 auto;
     }
   }
 
   .background {
-    position: absolute;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0;
+    img {
+      height: 100%;
+    }
+  }
+
+  ${mqMore(breakpoints.medium)} {
+
+  .background {
+    width: 100%;
+    position: absolute;
+    /* padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0; */
+
+    height: 255px;
     z-index: -1;
+    display: flex;
+    align-items: stretch;
+
+    div {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    div:nth-child(1) {
+      flex: 1;
+    }
+
+    div:nth-child(2) {
+      width: 1140px;
+      height: 160px;
+      display: flex;
+align-items: center;
+justify-content: center;
+    }
+
+    div:nth-child(3) {
+      flex: 1;
+    }
 
     img {
       height: 100%;
     }
+  }
+
   }
 
   a {
@@ -134,6 +174,7 @@ const StyledHeader = styled.header`
       );
       padding: 0;
       float: right;
+      
     }
 
     picture,

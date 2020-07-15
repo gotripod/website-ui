@@ -1,4 +1,5 @@
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const Link = ({ href, link, className, children }: Props) => {
+  const router = useRouter();
+  const isCurrentPage = router.pathname === link;
   // const onClick = (event) => {
   //   // Do nothing if it's an external link
   //   if (link.startsWith("http")) return;
@@ -28,7 +31,11 @@ const Link = ({ href, link, className, children }: Props) => {
 
   return (
     <NextLink href={href ? href : link} as={href ? link : null}>
-      <a onClick={() => {}} className={className}>
+      <a
+        onClick={() => {}}
+        aria-current={isCurrentPage ? "page" : undefined}
+        className={className}
+      >
         {children}
       </a>
     </NextLink>

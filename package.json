@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,7 @@
     "@types/styled-components": "^5.1.0",
     "axios": "^0.19.2",
     "humps": "^2.0.1",
-    "next": "^9.4",
+    "next": "^9.4.5-canary.34",
     "npm-check-updates": "^7.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

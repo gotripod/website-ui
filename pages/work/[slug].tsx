@@ -95,14 +95,16 @@ export const getStaticProps = async (context) => {
     (b) => b.acf_fc_layout === "testimonial_block"
   );
 
-  const shallowTestimonialBlockId =
-    post.acf.project_blocks[shallowTestimonialIndex].testimonial.ID;
+  if (shallowTestimonialIndex !== -1) {
+    const shallowTestimonialBlockId =
+      post.acf.project_blocks[shallowTestimonialIndex].testimonial.ID;
 
-  const testimonial = await getTestimonialById(shallowTestimonialBlockId);
+    const testimonial = await getTestimonialById(shallowTestimonialBlockId);
 
-  console.log("testimonial", testimonial);
+    console.log("testimonial", testimonial);
 
-  post.acf.project_blocks[shallowTestimonialIndex].testimonial = testimonial;
+    post.acf.project_blocks[shallowTestimonialIndex].testimonial = testimonial;
+  }
 
   return {
     props: {
