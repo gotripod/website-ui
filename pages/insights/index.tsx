@@ -23,6 +23,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
 
   return {
+    unstable_revalidate: 1,
     props: {
       testimonial,
       posts: response.data,
@@ -31,10 +32,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         pages: response.headers["x-wp-totalpages"],
       },
     },
-  };
-
-  return {
-    props: {},
   };
 };
 
