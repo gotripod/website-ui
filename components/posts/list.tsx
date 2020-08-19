@@ -1,34 +1,34 @@
-import React from "react";
-import styled from "styled-components";
-import { breakpoints, mqLess } from "../../theme";
-import Column from "../column";
-import PageTitle from "../page-title";
-import Item from "./list-item";
-import Pagination from "./pagination";
+import React, { ReactElement } from 'react'
+import styled from 'styled-components'
+import { breakpoints, mqLess } from '../../theme'
+import Column from '../column'
+import PageTitle from '../page-title'
+import Item from './list-item'
+import Pagination from './pagination'
 
-const List = ({ posts }) => {
+interface Props {
+  posts: any
+}
+
+const List = ({ posts }: Props): ReactElement => {
   return (
     <>
       <Column slim>
-        <PageTitle
-          title="Insights"
-          subTitle="Nuggets from the Go Tripod hive mind"
-        />
+        <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />
       </Column>
       <Column>
         <Container>
-          {/* Iterate over the items of the list. */}
           {posts.map((post) => {
-            return <Item key={post.id} post={post} />;
+            return <Item key={post.id} post={post} />
           })}
         </Container>
         <Pagination />
       </Column>
     </>
-  );
-};
+  )
+}
 
-export default List;
+export default List
 
 const Container = styled.ul`
   display: flex;
@@ -40,10 +40,4 @@ const Container = styled.ul`
   ${mqLess(breakpoints.medium)} {
     display: block;
   }
-`;
-
-const Header = styled.h3`
-  font-weight: 300;
-  text-transform: capitalize;
-  color: rgba(12, 17, 43, 0.9);
-`;
+`

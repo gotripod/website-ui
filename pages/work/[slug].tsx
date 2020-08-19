@@ -1,56 +1,38 @@
-import axios from 'axios'
-import humps from 'humps'
-import { GetStaticPaths } from 'next'
-import React, { ReactNode } from 'react'
+//#region imports
+import { GetStaticPaths, GetStaticProps } from 'next'
+import React from 'react'
 import styled from 'styled-components'
-import { getMediaById, getTestimonialById } from 'api'
-import Column from 'components/column'
-import Layout from 'components/layout'
+import { getProjectBySlug, getProjects } from 'api'
 import MediaImage from 'components/media-image'
-import GalleryBlock from 'components/work/gallery-block'
-import IntroBlock from 'components/work/intro.block'
-import PrecisBlock from 'components/work/precis-block'
-import TestimonialBlock from 'components/work/testimonial-block'
-import TitleBlock from 'components/work/title-block'
 import theme, { breakpoints, mqLess, px2rem } from 'theme'
 import { Project } from 'types'
+import Renderer from 'components/blocks/renderer'
+import Layout from 'components/layout'
+import Column from 'components/column'
+//#endregion
 
+//#region component
 interface Props {
   project: Project
 }
 
-const renderBlock = (block, i) => {
-  switch (block.acfFcLayout) {
-    case 'intro_block':
-      return <IntroBlock key={i} body={block.blockBody} />
-    case 'title_block':
-      return <TitleBlock key={i} title={block.blockTitle} body={block.blockBody} />
-    case 'precis_block':
-      return (
-        <PrecisBlock key={i} services={block.serviceList} technologies={block.technologyList} />
-      )
-    case 'gallery_block':
-      return <GalleryBlock key={i} images={block.blockGallery} caption={block.blockNote} />
-    case 'testimonial_block':
-      return <TestimonialBlock key={i} testimonial={block.testimonial} />
-    default:
-      return null
-  }
-}
-
-const SinglePostPage = ({ project }: Props): ReactNode => {
-  return (
-    <Layout>
-      <Column>
-        <StyledMediaImage media={project.heroMedia} />
-        <Content>{project.blocks.map(renderBlock)}</Content>
-      </Column>
-    </Layout>
-  )
-}
+const SinglePostPage = ({ project }: Props): React.ReactElement => (
+  <Layout>
+    <Column>
+      <StyledMediaImage media={project.heroMedia} />
+      <Content>
+        {project.blocks.map((block, i) => (
+          <Renderer key={i} block={block} />
+        ))}
+      </Content>
+    </Column>
+  </Layout>
+)
 
 export default SinglePostPage
+//#endregion
 
+//#region styles
 const StyledMediaImage = styled(MediaImage)`
   width: 100%;
   margin: -${px2rem(theme.gutter * 4)} 0 0 0;
@@ -69,53 +51,33 @@ const Content = styled.div`
   }
 `
 
-export const getStaticProps = async (context) => {
-  const response = await axios.get(
-    `https://gotripod.com/wp-json/wp/v2/project?slug=${context.params.slug}`
+//#endregion
+
+//#region data
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const project = await getProjectBySlug(
+    Array.isArray(context.params.slug) ? context.params.slug[0] : context.params.slug
   )
-
-  const post = response.data[0]
-
-  const heroMedia = await getMediaById(post.acf.project_hero)
-
-  // fetch testimonial body
-  const shallowTestimonialIndex = post.acf.project_blocks.findIndex(
-    (b) => b.acf_fc_layout === 'testimonial_block'
-  )
-
-  if (shallowTestimonialIndex !== -1) {
-    const shallowTestimonialBlockId =
-      post.acf.project_blocks[shallowTestimonialIndex].testimonial.ID
-
-    const testimonial = await getTestimonialById(shallowTestimonialBlockId)
-
-    post.acf.project_blocks[shallowTestimonialIndex].testimonial = testimonial
-  }
-
   return {
     props: {
-      project: {
-        id: post.id,
-        title: post.title.rendered,
-        blocks: humps.camelizeKeys(post.acf.project_blocks),
-        heroMedia
-      }
+      project
     }
   }
 }
 
-// This function gets called at build time
+// This function gets called at BUILD time
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Call an external API endpoint to get posts
-  const res = await fetch('https://gotripod.com/wp-json/wp/v2/project?_fields=slug')
-  const posts = await res.json()
+  const projects = await getProjects()
 
-  // Get the paths we want to pre-render based on posts
-  const paths = posts.map((post) => ({
-    params: { slug: post.slug }
+  // Get the paths we want to pre-render
+  const paths = projects.map((post) => ({
+    params: { slug: post.link }
   }))
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false }
 }
+
+//#endregion

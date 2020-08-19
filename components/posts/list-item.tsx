@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Theme, { mqLess, breakpoints, px2rem } from "../../theme";
-import Link from "../link";
-import theme from "../../theme";
+import React from 'react'
+import styled from 'styled-components'
+import Theme, { mqLess, breakpoints, px2rem } from '../../theme'
+import Link from '../link'
+import theme from '../../theme'
 
 /**
  * Item Component
@@ -13,7 +13,7 @@ import theme from "../../theme";
  * - FeaturedMedia: the featured image/video of the post
  */
 const Item = ({ post }) => {
-  const date = new Date(post.date);
+  const date = new Date(post.date)
 
   return (
     <Li>
@@ -22,14 +22,14 @@ const Item = ({ post }) => {
 
         <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
 
-        <Slink link={post.slug}>Read More</Slink>
+        <Slink link={'insights/' + post.slug}>Read More</Slink>
       </Article>
     </Li>
-  );
-};
+  )
+}
 
 // Connect the Item to gain access to `state` as a prop
-export default Item;
+export default Item
 
 const Slink = styled(Link)`
   color: ${Theme.colours.linkBlue};
@@ -37,7 +37,7 @@ const Slink = styled(Link)`
   &:visited {
     color: ${Theme.colours.linkBlue};
   }
-`;
+`
 
 const Li = styled.li`
   flex-basis: 33.3333333333%;
@@ -51,7 +51,7 @@ const Li = styled.li`
     max-width: 100%;
     margin: 0 ${px2rem(theme.gutter)};
   }
-`;
+`
 
 const Article = styled.article`
   background-color: #fff;
@@ -64,15 +64,15 @@ const Article = styled.article`
   border-bottom: 5px solid rgba(0, 0, 0, 0.3);
 
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-`;
+`
 
 const Title = styled.h1`
   font-size: 1.1111111111rem;
   line-height: 26px;
   line-height: 1.4444444444rem;
-`;
+`
 
 const PublishDate = styled.span`
   color: rgba(12, 17, 43, 0.9);
   font-size: 0.9em;
-`;
+`
