@@ -25,7 +25,7 @@ const ServiceList = ({ services }: Props) => {
               <Enquire link="/contact">Enquire</Enquire>
             </div>
 
-            <img src={service.imageUrl} />
+            <img src={service.imageUrl} loading="lazy" />
           </Item>
         </li>
       ))}

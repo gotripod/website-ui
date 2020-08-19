@@ -12,18 +12,21 @@ const Header = ({ heroHtml }: Props) => (
   <StyledHeader>
     <picture>
       <source
-        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg"
+        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
         media="(min-width: 1101px)"
       />
       <source
-        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-1024x427.jpg"
+        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-1024x427.jpg.webp"
         media="(max-width: 1100px)"
       />
       <source
-        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-768x320.jpg"
+        srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-768x320.jpg.webp"
         media="(max-width: 800)"
       />
-      <img src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-300x125.jpg" />
+      <img
+        src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-300x125.jpg.webp"
+        loading="lazy"
+      />
     </picture>
     <div className="background">
       <div></div>

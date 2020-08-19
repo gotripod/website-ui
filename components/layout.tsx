@@ -20,11 +20,21 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
   <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap"
-        rel="stylesheet"
-      />
     </Head>
+    <style jsx global>
+      {`
+        @font-face {
+          font-family: "Cabin";
+          src: url("https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff2")
+              format("woff2"),
+            url("https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff")
+              format("woff");
+          font-weight: bold;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}
+    </style>
     <SmallNav />
     <Header heroHtml={heroHtml} />
     <MainContainer>

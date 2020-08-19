@@ -7,7 +7,8 @@ const Map = () => (
       scrolling="no"
       marginHeight={0}
       marginWidth={0}
-      src="https://www.openstreetmap.org/export/embed.html?bbox=-8.893432617187502%2C51.244724592848236%2C3.7957763671875004%2C55.466399363938194&amp;layer=mapnik"
+      style={{ border: "1px solid #aaa" }}
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-5.133667588233948%2C50.16933947367061%2C-5.122541785240174%2C50.173740813862786&amp;layer=mapnik&amp;marker=50.17154019444076%2C-5.1281046867370605"
     ></iframe>
   </>
 );

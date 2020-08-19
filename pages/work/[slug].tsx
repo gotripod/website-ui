@@ -74,7 +74,7 @@ const StyledMediaImage = styled(MediaImage)`
 const Content = styled.div`
   background-color: #fff;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-  padding: ${px2rem(theme.gutter * 2)} ${px2rem(theme.gutter * 4)};
+  padding: ${px2rem(theme.gutter * 6)} ${px2rem(theme.gutter * 8)};
 
   ${mqLess(breakpoints.medium)} {
     padding: ${px2rem(theme.gutter)} ${px2rem(theme.gutter * 2)};
