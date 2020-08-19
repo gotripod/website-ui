@@ -17,11 +17,13 @@ interface Props {
 }
 
 const Index = ({ services, posts, testimonial, heroHtml }: Props): React.ReactElement => {
+  const title =
+    'Go Tripod: Website, web app & software development, Falmouth Cornwall, South West United Kingdom'
   return (
     <Layout testimonial={testimonial} heroHtml={heroHtml}>
       <Head>
-        <title>My page title</title>
-        <meta property="og:title" content="My page title" key="title" />
+        <title>{title}</title>
+        <meta property="og:title" content={title} key="title" />
       </Head>
       <Column>
         <ServiceList services={services} />
