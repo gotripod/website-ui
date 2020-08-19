@@ -12,20 +12,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@icons-pack/react-simple-icons": "^3.4.0",
-    "@types/styled-components": "^5.1.0",
+    "@icons-pack/react-simple-icons": "^3.9.0",
+    "@types/styled-components": "^5.1.2",
     "axios": "^0.19.2",
     "humps": "^2.0.1",
-    "next": "^9.4.5-canary.34",
-    "npm-check-updates": "^7.0.1",
+    "next": "^9.5.2",
+    "npm-check-updates": "^7.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
-    "@types/node": "^14.0.13",
-    "@types/react": "^16.9.38",
-    "babel-plugin-styled-components": "^1.10.7",
-    "typescript": "^3.9.5"
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "babel-plugin-styled-components": "^1.11.1",
+    "typescript": "^3.9.7"
   }
 }

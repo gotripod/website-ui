@@ -3,13 +3,15 @@ import styled from "styled-components";
 import Theme, { breakpoints, mqLess, mqMore, px2rem } from "../../theme";
 import Column from "../column";
 import LargeNav from "../nav/large";
+import { useRouter } from "next/router";
 
 interface Props {
   heroHtml?: string;
 }
 
-const Header = ({ heroHtml }: Props) => (
-  <StyledHeader>
+const Header = ({ heroHtml }: Props) => {
+  const router = useRouter()
+  return <StyledHeader>
     <picture>
       <source
         srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
@@ -43,7 +45,7 @@ const Header = ({ heroHtml }: Props) => (
     <Column>
       <div className="gradient">
         <LargeNav />
-        {typeof window !== "undefined" && window.location.pathname == "/" && (
+        {router.pathname == "/" && (
           <h2>
             Your website should inspire confidence amoungst your customers
           </h2>
@@ -51,7 +53,7 @@ const Header = ({ heroHtml }: Props) => (
       </div>
     </Column>
   </StyledHeader>
-);
+};
 
 const StyledHeader = styled.header`
   text-align: center;

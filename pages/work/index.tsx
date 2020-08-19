@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async () => {
   );
 
   return {
-    unstable_revalidate: 1,
+    revalidate: 1,
     props: {
       testimonial,
       projects: response.data.map((p) => ({

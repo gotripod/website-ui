@@ -10,9 +10,8 @@ const Work = ({ projects }) => {
       <Wrapper>
         {projects.map((project) => {
           return (
-            <div>
+            <div key={project.id}>
               <Slink
-                key={project.id}
                 href="/work/[slug]"
                 link={`/work/${project.link}`}
                 img={project.logoUrl}
@@ -53,7 +52,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const Slink = styled(Link)<{ img: string }>`
+const Slink = styled(Link) <{ img: string }>`
   background: url(${(props) => props.img});
   height: 270px;
   display: block;
