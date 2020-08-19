@@ -29,6 +29,12 @@ export interface Project {
   logoUrl: string;
 }
 
+export interface ProjectListItem {
+  id: string,
+  logoUrl: string,
+  link: string,
+}
+
 export interface GalleryImage {
   alt: string;
   url: string;

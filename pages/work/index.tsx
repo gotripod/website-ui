@@ -1,38 +1,48 @@
-import axios from "axios";
-import { GetStaticProps } from "next";
-import { getTestimonials } from "../../api";
-import Column from "../../components/column";
-import Layout from "../../components/layout";
-import Work from "../../components/work";
+import { GetStaticProps } from 'next'
+import { getTestimonials, getProjects } from '../../api'
+import Column from '../../components/column'
+import Layout from '../../components/layout'
+import { ProjectListItem, Testimonial } from '../../types'
+import PageTitle from '../../components/page-title'
+import { ProjectItemLink, Wrapper } from './index.styles'
 
-const Index = ({ projects, testimonial }) => {
+interface Props {
+  projects: ProjectListItem[]
+  testimonial: Testimonial
+}
+
+const Index = ({ projects, testimonial }: Props) => {
   return (
     <Layout testimonial={testimonial}>
       <Column>
-        <Work projects={projects} />
+        <PageTitle slim title="Work" subTitle="A selection of recent projects" />
+        <Wrapper>
+          {projects.map((project) => (
+            <div key={project.id}>
+              <ProjectItemLink
+                href="/work/[slug]"
+                link={`/work/${project.link}`}
+                img={project.logoUrl}
+              />
+            </div>
+          ))}
+        </Wrapper>
       </Column>
     </Layout>
-  );
-};
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const testimonial = await getTestimonials();
-
-  const response = await axios.get(
-    "https://gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug"
-  );
+  const testimonial = await getTestimonials()
+  const projects = await getProjects()
 
   return {
-    revalidate: 1,
+    revalidate: true,
     props: {
       testimonial,
-      projects: response.data.map((p) => ({
-        id: p.id,
-        logoUrl: p.acf.project_logo,
-        link: p.slug,
-      })),
-    },
-  };
-};
+      projects
+    }
+  }
+}
 
-export default Index;
+export default Index
