@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Theme, { breakpoints, mqLess, mqMore, px2rem } from '../../theme'
 import Column from '../column'
 import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 
 interface Props {
   heroHtml?: string
@@ -12,28 +11,9 @@ interface Props {
 
 const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
-  const [loaded, setLoaded] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoaded(true)
-    }, 300)
-  })
   return (
     <StyledHeader>
-      {/* <Head>
-        <link
-          rel="preload"
-          as="image"
-          href="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
-        />
-      </Head>
-      <img
-        className="hero"
-        src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
-        alt=""
-      /> */}
-      {/* <picture style={!loaded ? { display: 'none' } : {}}>
+      <picture>
         <source
           srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
           media="(min-width: 1101px)"
@@ -51,7 +31,7 @@ const Header = ({ heroHtml }: Props) => {
           loading="lazy"
           alt=""
         />
-      </picture> */}
+      </picture>
       <div className="background">
         <div></div>
         <div>
@@ -80,11 +60,10 @@ const StyledHeader = styled.header`
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: black;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
   z-index: 1;
 
-  img.hero {
+  picture {
     position: absolute;
     left: 0;
     right: 0;
