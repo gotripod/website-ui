@@ -21,7 +21,7 @@ const Header = ({ heroHtml }: Props) => {
   })
   return (
     <StyledHeader>
-      <Head>
+      {/* <Head>
         <link
           rel="preload"
           as="image"
@@ -32,7 +32,7 @@ const Header = ({ heroHtml }: Props) => {
         className="hero"
         src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
         alt=""
-      />
+      /> */}
       {/* <picture style={!loaded ? { display: 'none' } : {}}>
         <source
           srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
