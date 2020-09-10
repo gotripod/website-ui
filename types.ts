@@ -17,6 +17,8 @@ export interface Service {
 }
 
 export interface Post {
+  date: string
+  slug: string
   id: number
   title: string
   content: string

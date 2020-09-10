@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import Theme, { mqLess, breakpoints, px2rem } from '../../theme'
 import Link from '../link'
 import theme from '../../theme'
+import { Post } from 'types'
 
-/**
- * Item Component
- *
- * It renders the preview of a blog post. Each blog post contains
- * - Title: clickable title of the post
- * - Author: name of author and published date
- * - FeaturedMedia: the featured image/video of the post
- */
-const Item = ({ post }) => {
+interface Props {
+  post: Post
+}
+
+const Item = ({ post }: Props): ReactElement => {
   const date = new Date(post.date)
 
   return (
@@ -20,7 +17,7 @@ const Item = ({ post }) => {
       <Article>
         <PublishDate>{date.toDateString()}</PublishDate>
 
-        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+        <Title>{post.title}</Title>
 
         <Slink link={'insights/' + post.slug}>Read More</Slink>
       </Article>
@@ -28,7 +25,6 @@ const Item = ({ post }) => {
   )
 }
 
-// Connect the Item to gain access to `state` as a prop
 export default Item
 
 const Slink = styled(Link)`
