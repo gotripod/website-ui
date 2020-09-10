@@ -1,3 +1,13 @@
+export interface Category {
+  id: number
+}
+
+export interface Pagination {
+  totalItems: number
+  pageCount: number
+  currentPage?: number
+}
+
 export interface Testimonial {
   quote: string
   quoteAuthor: string

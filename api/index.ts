@@ -1,6 +1,17 @@
 import axios from 'axios'
-import { Testimonial, ProjectListItem, Project, MediaItem, Post } from '../types'
+import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category } from '../types'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
+
+const getCategoryBySlug = async (slug: string): Promise<Category> => {
+  const response = await fetch('https://gotripod.com/wp-json/wp/v2/categories?slug=' + slug)
+  const categories = await response.json()
+
+  const category = categories[0]
+
+  return {
+    id: category.id
+  }
+}
 
 const getTestimonial = async (): Promise<Testimonial> => {
   const testimonials = (
@@ -89,12 +100,25 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
   }
 }
 
-const getPostsPage = async (): Promise<{
+interface Params {
+  categoryId?: number
+  page?: number
+}
+
+const getPostsPage = async (
+  params: Params = {}
+): Promise<{
   posts: Post[]
   totalCount: number
   pageCount: number
 }> => {
-  const response = await fetch('https://gotripod.com/wp-json/wp/v2/posts?per_page=9')
+  const { categoryId, page } = params
+
+  const response = await fetch(
+    `https://gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
+      categoryId ? `&categories=${categoryId}` : ''
+    }`
+  )
   const posts = await response.json()
 
   return {
@@ -111,6 +135,7 @@ const getPostsPage = async (): Promise<{
 }
 
 export {
+  getCategoryBySlug,
   getTestimonial,
   getTestimonialById,
   getMediaById,

@@ -19,7 +19,7 @@ const Item = ({ post }: Props): ReactElement => {
 
         <Title>{post.title}</Title>
 
-        <Slink link={'insights/' + post.slug}>Read More</Slink>
+        <Slink link={post.slug}>Read More</Slink>
       </Article>
     </Li>
   )
