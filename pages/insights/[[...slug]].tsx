@@ -15,7 +15,9 @@ import Item from 'components/posts/list-item'
 import Pagination from 'components/posts/pagination'
 import styled from 'styled-components'
 import { mqLess, breakpoints } from 'theme'
-
+import parse, { domToReact } from 'html-react-parser'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 interface PostBaseProps {
   testimonial: Testimonial
 }
@@ -31,6 +33,36 @@ interface SinglePostProps {
 
 type Props = PostListProps | SinglePostProps
 
+const getLanguage = (node) => {
+  if (node.children[0].attribs.class != null) {
+    return node.children[0].attribs.class.replace('language-', '')
+  }
+  return null
+}
+
+const getCode = (node) => {
+  if (node.children.length > 0 && node.children[0].name === 'code') {
+    return node.children[0].children
+  } else {
+    return node.children
+  }
+}
+
+const replaceCode = (node) => {
+  if (node.name === 'pre') {
+    const code = getCode(node)
+    const language = getLanguage(node)
+    console.log(language, code)
+    return (
+      node.children.length > 0 && (
+        <SyntaxHighlighter style={xonokai} language={language}>
+          {domToReact(code)}
+        </SyntaxHighlighter>
+      )
+    )
+  }
+}
+
 const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement => {
   return (
     <Layout testimonial={testimonial}>
@@ -40,7 +72,7 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
         </Column>
         <Column>
           {'post' in props ? (
-            <Content dangerouslySetInnerHTML={{ __html: props.post.content }}></Content>
+            <Content>{parse(props.post.content, { replace: replaceCode })}</Content>
           ) : (
             <>
               <Container>
