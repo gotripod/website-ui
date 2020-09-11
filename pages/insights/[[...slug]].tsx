@@ -14,10 +14,11 @@ import PageTitle from 'components/page-title'
 import Item from 'components/posts/list-item'
 import Pagination from 'components/posts/pagination'
 import styled from 'styled-components'
-import { mqLess, breakpoints } from 'theme'
+import theme, { mqLess, breakpoints } from 'theme'
 import parse, { domToReact } from 'html-react-parser'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+
 interface PostBaseProps {
   testimonial: Testimonial
 }
@@ -94,6 +95,11 @@ const Content = styled.div`
   background-color: #fff;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   padding: 80px 104px;
+
+  a {
+    color: ${theme.colours.linkOrange};
+    text-decoration: underline;
+  }
 `
 
 const Container = styled.ul`
