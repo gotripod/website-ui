@@ -15,10 +15,16 @@ Push to master (if you're an admin) or open a PR against admin. Deploys are done
 
 # Updating dependencies
 
+Open the Terminal in VSCode.
+
 To see what's outdated:
 
 `npx npm-check-updates`
 
 To update package.json:
 
-`npx npm-check-updates -u`
+`npx npm-check-updates -u && npm install`
+
+Then stop the docker container and rebuild with:
+
+`make start-with-rebuild`

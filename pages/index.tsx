@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getTestimonial } from '../api'
@@ -34,8 +33,10 @@ const Index = ({ services, posts, testimonial, heroHtml }: Props): React.ReactEl
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postData = (await axios.get('https://gotripod.com/wp-json/wp/v2/posts?per_page=3')).data
-  let acfData = (await axios.get('https://gotripod.com/wp-json/acf/v3/pages/5')).data
+  const postResponse = await fetch('https://gotripod.com/wp-json/wp/v2/posts?per_page=3')
+  const postData = await postResponse.json()
+  const acfResponse = await fetch('https://gotripod.com/wp-json/acf/v3/pages/5')
+  let acfData = await acfResponse.json()
 
   acfData = keysToCamelDeep(acfData.acf)
 

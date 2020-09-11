@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category } from '../types'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 
@@ -14,9 +13,9 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
 }
 
 const getTestimonial = async (): Promise<Testimonial> => {
-  const testimonials = (
-    await axios.get('https://gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
-  ).data
+  const response = await fetch('https://gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
+
+  const testimonials = await response.json()
 
   const testimonial = testimonials[0]
 
@@ -27,9 +26,9 @@ const getTestimonial = async (): Promise<Testimonial> => {
 }
 
 const getTestimonialById = async (testimonialId: number): Promise<Testimonial> => {
-  const testimonial = (
-    await axios.get(`https://gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`)
-  ).data
+  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`)
+
+  const testimonial = await response.json()
 
   return {
     quote: testimonial.acf.testimonial_body,
@@ -38,9 +37,10 @@ const getTestimonialById = async (testimonialId: number): Promise<Testimonial> =
 }
 
 const getMediaById = async (mediaId: number): Promise<MediaItem> => {
-  const mediaResponse = await axios.get(`https://gotripod.com/wp-json/wp/v2/media/${mediaId}`)
+  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/media/${mediaId}`)
+  const media = await response.json()
 
-  return mediaResponse.data
+  return media
 }
 
 const getProjects = async (): Promise<ProjectListItem[]> => {
