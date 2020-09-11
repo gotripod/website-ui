@@ -83,20 +83,28 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   console.debug('Insights/Posts parameters: ', postSlugOrIndexType, pageOrCategory)
 
-  if (postSlugOrIndexType === undefined) {
-    const { posts, totalCount, pageCount } = await getPostsPage()
-    return {
-      revalidate: 1,
-      props: {
-        testimonial,
-        posts,
-        pagination: {
-          totalItems: totalCount,
-          pageCount: pageCount,
-          currentPage: context.params.page ? Number(context.params.page) : null
-        }
+  const getIndexProps = (
+    posts: Post[],
+    totalCount: number,
+    pageCount: number,
+    page: string | string[] | null
+  ) => ({
+    revalidate: 1,
+    props: {
+      testimonial,
+      posts,
+      pagination: {
+        totalItems: totalCount,
+        pageCount: pageCount,
+        currentPage: page ? Number(page) : null
       }
     }
+  })
+
+  if (postSlugOrIndexType === undefined) {
+    const { posts, totalCount, pageCount } = await getPostsPage()
+
+    return getIndexProps(posts, totalCount, pageCount, context.params.page)
   } else if (pageOrCategory === undefined) {
     const post = await getPostBySlug(postSlugOrIndexType)
     return {
@@ -106,32 +114,11 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     }
   } else if (postSlugOrIndexType === 'page') {
     const { posts, totalCount, pageCount } = await getPostsPage({ page: Number(pageOrCategory) })
-    return {
-      revalidate: 1,
-      props: {
-        testimonial,
-        posts,
-        pagination: {
-          totalItems: totalCount,
-          pageCount: pageCount,
-          currentPage: Number(pageOrCategory)
-        }
-      }
-    }
+    return getIndexProps(posts, totalCount, pageCount, pageOrCategory)
   } else if (postSlugOrIndexType === 'category') {
     const category = await getCategoryBySlug(pageOrCategory)
     const { posts, totalCount, pageCount } = await getPostsPage({ categoryId: category.id })
-    return {
-      revalidate: 1,
-      props: {
-        testimonial,
-        posts,
-        pagination: {
-          totalItems: totalCount,
-          pageCount: pageCount
-        }
-      }
-    }
+    return getIndexProps(posts, totalCount, pageCount, null)
   }
 }
 
@@ -146,10 +133,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return { paths: paths, fallback: true }
 }
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const [postSlugOrIndexType, pageOrCategory] = context.params.slug as string[]
-
-// }
 
 export default Index
