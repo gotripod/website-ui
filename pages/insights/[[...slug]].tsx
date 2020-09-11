@@ -5,7 +5,13 @@
  */
 
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { getTestimonial, getPostsPage, getPostBySlug, getCategoryBySlug } from '../../api'
+import {
+  getTestimonial,
+  getPostsPage,
+  getPostBySlug,
+  getCategoryBySlug,
+  getTagBySlug
+} from '../../api'
 import Column from '../../components/column'
 import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType } from 'types'
@@ -53,7 +59,7 @@ const replaceCode = (node) => {
   if (node.name === 'pre') {
     const code = getCode(node)
     const language = getLanguage(node)
-    console.log(language, code)
+
     return (
       node.children.length > 0 && (
         <SyntaxHighlighter style={xonokai} language={language}>
@@ -156,6 +162,10 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   } else if (postSlugOrIndexType === 'category') {
     const category = await getCategoryBySlug(pageOrCategory)
     const { posts, totalCount, pageCount } = await getPostsPage({ categoryId: category.id })
+    return getIndexProps(posts, totalCount, pageCount, null)
+  } else if (postSlugOrIndexType === 'topic') {
+    const tag = await getTagBySlug(pageOrCategory)
+    const { posts, totalCount, pageCount } = await getPostsPage({ tagId: tag.id })
     return getIndexProps(posts, totalCount, pageCount, null)
   }
 }

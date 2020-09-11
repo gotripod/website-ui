@@ -12,6 +12,17 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
   }
 }
 
+const getTagBySlug = async (slug: string): Promise<Category> => {
+  const response = await fetch('https://gotripod.com/wp-json/wp/v2/tags?slug=' + slug)
+  const tags = await response.json()
+
+  const tag = tags[0]
+
+  return {
+    id: tag.id
+  }
+}
+
 const getTestimonial = async (): Promise<Testimonial> => {
   const response = await fetch('https://gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
 
@@ -102,6 +113,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
 
 interface Params {
   categoryId?: number
+  tagId?: number
   page?: number
 }
 
@@ -112,13 +124,15 @@ const getPostsPage = async (
   totalCount: number
   pageCount: number
 }> => {
-  const { categoryId, page } = params
+  const { categoryId, tagId, page } = params
 
-  const response = await fetch(
-    `https://gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
-      categoryId ? `&categories=${categoryId}` : ''
-    }`
-  )
+  const url = `https://gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
+    categoryId ? `&categories=${categoryId}` : ''
+  }${tagId ? `&tags=${tagId}` : ''}`
+
+  console.debug('Fetching page of posts from ', url)
+
+  const response = await fetch(url)
   const posts = await response.json()
 
   return {
@@ -136,6 +150,7 @@ const getPostsPage = async (
 
 export {
   getCategoryBySlug,
+  getTagBySlug,
   getTestimonial,
   getTestimonialById,
   getMediaById,
