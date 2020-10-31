@@ -16,7 +16,8 @@ export default {
   colours: {
     linkBlue: '#62bead',
     headingBlue: '#4291ce',
-    linkOrange: '#ef7852'
+    linkOrange: '#ef7852',
+    highlightBlue: '#4eace0'
   },
   gutter: 13,
   fontSize: {

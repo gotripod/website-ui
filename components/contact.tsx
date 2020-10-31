@@ -1,35 +1,23 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import Theme, { mqLess, breakpoints, px2rem } from "../theme";
-import { Button } from "./button";
-import Column from "./column";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import Theme, { mqLess, breakpoints, px2rem } from '../theme'
+import { Button } from './button'
+import Column from './column'
 
 const Contact = () => (
   <Column>
     <Wrapper>
       <h1>Got an idea for a project?</h1>
 
-      <p>
-        Need a website? Web-enabled software to streamline your business? Just
-        some advice?
-      </p>
+      <p>Need a website? Web-enabled software to streamline your business? Just some advice?</p>
 
-      <form
-        acceptCharset="UTF-8"
-        action="https://usebasin.com/f/608feeaf0fac"
-        method="POST"
-      >
+      <form acceptCharset="UTF-8" action="https://usebasin.com/f/608feeaf0fac" method="POST">
         <fieldset>
           <Row>
             <Col>
               <Field>
                 <Label htmlFor="message">Message*</Label>
-                <TextArea
-                  id="message"
-                  name="message"
-                  rows={9}
-                  required
-                ></TextArea>
+                <TextArea id="message" name="message" rows={9} required></TextArea>
               </Field>
             </Col>
             <Col>
@@ -52,8 +40,7 @@ const Contact = () => (
                   required
                 />
                 <Label htmlFor="contact-permission">
-                  Please get back to me ASAP and treat my details with respect
-                  in line with your{" "}
+                  Please get back to me ASAP and treat my details with respect in line with your{' '}
                   <a href="/privacy-policy/">privacy policy</a>.
                 </Label>
               </Field>
@@ -66,13 +53,13 @@ const Contact = () => (
       </form>
     </Wrapper>
   </Column>
-);
+)
 
-export default Contact;
+export default Contact
 
 const SButton = styled(Button)`
   background: #666;
-`;
+`
 
 const Wrapper = styled.section`
   color: #ededed;
@@ -93,7 +80,7 @@ const Wrapper = styled.section`
   ${mqLess(breakpoints.medium)} {
     padding: ${Theme.gutter * 4}px ${px2rem(Theme.gutter)};
   }
-`;
+`
 
 const Col = styled.div`
   padding: ${px2rem(Theme.gutter)} ${px2rem(Theme.gutter * 2)};
@@ -102,7 +89,7 @@ const Col = styled.div`
   ${mqLess(breakpoints.medium)} {
     padding: 0 0;
   }
-`;
+`
 const Field = styled.div`
   text-align: left;
   margin-bottom: ${Theme.gutter * 2}px;
@@ -119,7 +106,7 @@ const Field = styled.div`
   }
 
   &.checkbox input:checked + label:after {
-    content: "";
+    content: '';
   }
 
   &.checkbox label {
@@ -129,7 +116,7 @@ const Field = styled.div`
   }
 
   &.checkbox label:before {
-    content: "";
+    content: '';
     background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
     top: 0;
@@ -154,14 +141,14 @@ const Field = styled.div`
     border-bottom: 8px solid;
     transform: rotate(-45deg);
   }
-`;
+`
 const Row = styled.div`
   display: flex;
 
   ${mqLess(breakpoints.medium)} {
     display: block;
   }
-`;
+`
 
 const InputStyle = css`
   color: #ededed;
@@ -174,16 +161,16 @@ const InputStyle = css`
   padding: ${Theme.gutter}px;
   transition: background-color 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
-`;
+`
 
 const Input = styled.input`
   ${InputStyle}
-`;
+`
 const TextArea = styled.textarea`
   ${InputStyle}
-`;
+`
 
 const Label = styled.label`
   margin-bottom: ${Theme.gutter}px;
   display: inline-block;
-`;
+`
