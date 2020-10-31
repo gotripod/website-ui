@@ -145,7 +145,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     }
   })
 
-  if (postSlugOrIndexType === undefined) {
+  if (postSlugOrIndexType === undefined || postSlugOrIndexType === '[[...slug]]') {
     const { posts, totalCount, pageCount } = await getPostsPage()
 
     return getIndexProps(posts, totalCount, pageCount, context.params.page)
