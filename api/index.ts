@@ -98,6 +98,7 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
 }
 
 const getPostBySlug = async (slug: string): Promise<Post> => {
+  console.debug('Getting post with slug', slug)
   const response = await fetch(`https://gotripod.com/wp-json/wp/v2/posts?slug=${slug}`)
   const json = await response.json()
   const post = json[0]
