@@ -14,7 +14,7 @@ const Link = ({ href, link, className, children }: Props) => {
   const isCurrentPage = router.pathname === link
 
   return (
-    <NextLink href={link}>
+    <NextLink href={href ? href : link}>
       <a onClick={() => { }} aria-current={isCurrentPage ? 'page' : undefined} className={className}>
         {children}
       </a>
