@@ -81,16 +81,16 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
           {'post' in props ? (
             <Content>{parse(props.post.content, { replace: replaceCode })}</Content>
           ) : (
-            <>
-              <Container>
-                {'posts' in props &&
-                  props.posts.map((post) => {
-                    return <Item key={post.id} post={post} />
-                  })}
-              </Container>
-              <Pagination {...props.pagination} />
-            </>
-          )}
+              <>
+                <Container>
+                  {'posts' in props &&
+                    props.posts.map((post) => {
+                      return <Item key={post.id} post={post} />
+                    })}
+                </Container>
+                <Pagination {...props.pagination} />
+              </>
+            )}
         </Column>
       </Column>
     </Layout>
@@ -145,7 +145,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     }
   })
 
-  if (postSlugOrIndexType === undefined) {
+  if (postSlugOrIndexType === undefined || postSlugOrIndexType === '[[...slug]]') {
     const { posts, totalCount, pageCount } = await getPostsPage()
 
     return getIndexProps(posts, totalCount, pageCount, context.params.page)
@@ -178,6 +178,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = posts.map((post) => ({
     params: { slug: [post.slug] }
   }))
+
+  console.log('Passing collected paths', paths)
 
   return { paths: paths, fallback: true }
 }
