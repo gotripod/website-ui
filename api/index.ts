@@ -103,12 +103,22 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
   const json = await response.json()
   const post = json[0]
 
+  const tmUrl = `https://gotripod.com/wp-json/wp/v2/team_member/${post.acf.article_author.ID}`
+  console.log(tmUrl)
+  const teamMemberResponse = await fetch(tmUrl)
+  const teamMemberJson = await teamMemberResponse.json()
+
   return {
     id: post.id,
     title: post.title.rendered,
     content: post.content.rendered,
     date: post.date,
-    slug: post.slug
+    slug: post.slug,
+    teamMember: {
+      name: teamMemberJson.title.rendered,
+      position: teamMemberJson.acf.team_member_position,
+      imageUrl: teamMemberJson.team_member_image[teamMemberJson.acf.team_member_image].guid
+    }
   }
 }
 

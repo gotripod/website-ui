@@ -24,6 +24,7 @@ import theme, { mqLess, breakpoints } from 'theme'
 import parse, { domToReact } from 'html-react-parser'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import Image from 'next/image'
 
 interface PostBaseProps {
   testimonial: Testimonial
@@ -79,7 +80,20 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
         </Column>
         <Column>
           {'post' in props ? (
-            <Content>{parse(props.post.content, { replace: replaceCode })}</Content>
+            <>
+              <Content>{parse(props.post.content, { replace: replaceCode })}
+
+                {
+                  props.post.teamMember && <TeamMember>
+                    <AuthorAvatar src={props.post.teamMember.imageUrl} width={100} height={100} />
+                    <AuthorDetails>
+                      By {props.post.teamMember.name}, {props.post.teamMember.position}
+
+                    </AuthorDetails>
+                  </TeamMember>
+                }
+              </Content>
+            </>
           ) : (
               <>
                 <Container>
@@ -96,6 +110,23 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
     </Layout>
   )
 }
+
+const AuthorDetails = styled.p`
+  margin-left: 20px;
+  color: #999;
+`
+
+const TeamMember = styled.div`
+  display: flex;
+  margin: ${theme.gutter * 4}px auto 0 auto;
+  width: 500px;
+`
+
+const AuthorAvatar = styled(Image)`
+  border-radius: 50%;
+  margin-right: 20px;
+  display: block;
+`
 
 const Content = styled.div`
   background-color: #fff;
