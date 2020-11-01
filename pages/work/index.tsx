@@ -23,8 +23,7 @@ const Index = ({ projects, testimonial }: Props): ReactNode => {
           {projects.map((project) => (
             <div key={project.id}>
               <ProjectItemLink
-                href="/work/[slug]"
-                link={`/work/${project.link}`}
+                href={`/work/${project.link}`}
                 img={project.logoUrl}
               />
             </div>
@@ -59,7 +58,7 @@ const Wrapper = styled.section`
   }
 `
 
-const ProjectItemLink = styled(Link)<{ img: string }>`
+const ProjectItemLink = styled(Link) <{ img: string }>`
   background: url(${(props) => props.img});
   height: 270px;
   display: block;
