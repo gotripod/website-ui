@@ -32,6 +32,11 @@ export interface Post {
   id: number
   title: string
   content: string
+  teamMember?: {
+    position: string
+    name: string
+    imageUrl: string
+  }
 }
 
 export interface Project {
