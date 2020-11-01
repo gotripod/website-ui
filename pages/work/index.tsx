@@ -23,7 +23,7 @@ const Index = ({ projects, testimonial }: Props): ReactNode => {
           {projects.map((project) => (
             <div key={project.id}>
               <ProjectItemLink
-                href={`/work/${project.link}`}
+                link={`/work/${project.link}`}
                 img={project.logoUrl}
               />
             </div>
