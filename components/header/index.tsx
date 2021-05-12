@@ -4,6 +4,7 @@ import Theme, { breakpoints, mqLess, mqMore, px2rem } from '../../theme'
 import Column from '../column'
 import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 interface Props {
   heroHtml?: string
@@ -13,25 +14,7 @@ const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
   return (
     <StyledHeader>
-      {/* <picture>
-        <source
-          srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
-          media="(min-width: 1101px)"
-        />
-        <source
-          srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-1024x427.jpg.webp"
-          media="(max-width: 1100px)"
-        />
-        <source
-          srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-768x320.jpg.webp"
-          media="(max-width: 800)"
-        />
-        <img
-          src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800-300x125.jpg.webp"
-          loading="lazy"
-          alt=""
-        />
-      </picture> */}
+      <Image layout="fill" src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp" />
       <div className="background">
         <div></div>
         <div>
