@@ -3,7 +3,7 @@ import styled from "styled-components";
 import theme, { breakpoints, mqLess, px2rem } from "../../theme";
 import { Article } from "../../types";
 import Column from "../column";
-import Link from "../link";
+import Link from 'next/link'
 
 interface Props {
   articles: Article[];
@@ -22,7 +22,7 @@ const Articles = ({ articles }: Props) => {
     );
     return `${da}/${mo}/${ye}`;
   };
-
+  console.log(articles)
   return (
     <Column>
       <StyledArticleList>
@@ -33,7 +33,7 @@ const Articles = ({ articles }: Props) => {
               <article key={`article-${article.id}`}>
                 <div className="date">{formatDate(article.date)}</div>
                 <h2>{article.title}</h2>
-                <Slink href="/insights/[slug]" link={`${article.link}`}>
+                <Slink href={article.link}>
                   Read More
                 </Slink>
               </article>
