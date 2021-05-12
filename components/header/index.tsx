@@ -19,7 +19,9 @@ const Header = ({ heroHtml }: Props) => {
         <div></div>
         <div>
           <a href="/">
-            <img
+            <Image
+              width="250"
+              height="52"
               src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
               alt="Go Tripod"
             />
@@ -45,25 +47,6 @@ const StyledHeader = styled.header`
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
   z-index: 1;
-
-  picture {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: -1;
-    object-fit: cover;
-
-    img,
-    source {
-      position: absolute;
-      left: 0;
-      right: 0;
-      width: 100%;
-
-      object-fit: cover;
-    }
-  }
 
   .gradient {
     margin-top: ${px2rem(160)};
@@ -99,7 +82,7 @@ const StyledHeader = styled.header`
     /* padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0; */
 
     height: 255px;
-    z-index: -1;
+    z-index: 2;
     display: flex;
     align-items: stretch;
 

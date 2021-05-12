@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import Theme, { px2rem, breakpoints, mqLess } from "../theme";
 import theme from "../theme";
+import Image from 'next/image'
 
 const Footer = () => (
   <Foot>
@@ -37,13 +38,15 @@ const Footer = () => (
     <Top>
       <div>
         <a href="/">
-          <img
+          <Image
+            width="154" height="32"
             src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
             alt="Go Tripod"
           />{" "}
         </a>
 
-        <img
+        <Image
+          width="48" height="32"
           src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
           alt=""
         />
