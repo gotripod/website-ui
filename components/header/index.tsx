@@ -19,7 +19,7 @@ const Header = ({ heroHtml }: Props) => {
         <div></div>
         <div>
           <a href="/">
-            <Image
+            <img
               width="250"
               height="52"
               src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
