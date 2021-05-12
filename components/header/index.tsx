@@ -33,7 +33,7 @@ const Header = ({ heroHtml }: Props) => {
         <div className="gradient">
           <LargeNav />
           {router.pathname == '/' && (
-            <h2>Your website should inspire confidence amoungst your customers</h2>
+            <h2>The web? It's as easy as one, two, three.</h2>
           )}
         </div>
       </Column>
