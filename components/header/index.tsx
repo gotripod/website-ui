@@ -29,7 +29,7 @@ const Header = ({ heroHtml }: Props) => {
         </div>
         <div></div>
       </div>
-      <Column>
+      <Column style={{zIndex: 10}}>
         <div className="gradient">
           <LargeNav />
           {router.pathname == '/' && (
