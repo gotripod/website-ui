@@ -13,7 +13,7 @@ const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
   return (
     <StyledHeader>
-      <picture>
+      {/* <picture>
         <source
           srcSet="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
           media="(min-width: 1101px)"
@@ -31,7 +31,7 @@ const Header = ({ heroHtml }: Props) => {
           loading="lazy"
           alt=""
         />
-      </picture>
+      </picture> */}
       <div className="background">
         <div></div>
         <div>
