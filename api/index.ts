@@ -1,6 +1,6 @@
-import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category } from '../types'
+import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category, WPPage } from '../types'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
-
+import he from 'he'
 const getCategoryBySlug = async (slug: string): Promise<Category> => {
   const response = await fetch('https://gotripod.com/wp-json/wp/v2/categories?slug=' + slug)
   const categories = await response.json()
@@ -97,6 +97,20 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
   }
 }
 
+const getPageBySlug = async (slug: string): Promise<WPPage> => {
+  console.debug('Getting page with slug', slug)
+  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/pages?slug=${slug}`)
+  const json = await response.json()
+  const page = json[0]
+
+  return {
+    title: he.decode(page.title.rendered),
+    date: page.date,
+    body: he.decode(page.acf.section_body),
+    link: page.link
+  }
+}
+
 const getPostBySlug = async (slug: string): Promise<Post> => {
   console.debug('Getting post with slug', slug)
   const response = await fetch(`https://gotripod.com/wp-json/wp/v2/posts?slug=${slug}`)
@@ -168,5 +182,6 @@ export {
   getProjects,
   getProjectBySlug,
   getPostBySlug,
-  getPostsPage
+  getPostsPage,
+  getPageBySlug
 }

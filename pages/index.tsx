@@ -6,17 +6,17 @@ import Articles from '../components/home/articles'
 import ServiceList from '../components/home/service-list'
 import Layout from '../components/layout'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
-import { Testimonial } from 'types'
+import { Article, Service, Testimonial } from 'types'
 import he from 'he'
 
 interface Props {
-  services: any
-  posts: any
+  services: Service[]
+  articles: Article[]
   testimonial: Testimonial
   heroHtml: string
 }
 
-const Index = ({ services, posts, testimonial, heroHtml }: Props): React.ReactElement => {
+const Index = ({ services, articles, testimonial, heroHtml }: Props): React.ReactElement => {
   const title =
     'Go Tripod: Website, web app & software development, Falmouth Cornwall, South West United Kingdom'
   return (
@@ -27,7 +27,7 @@ const Index = ({ services, posts, testimonial, heroHtml }: Props): React.ReactEl
       </Head>
       <Column>
         <ServiceList services={services} />
-        <Articles articles={posts} />
+        <Articles articles={articles} />
       </Column>
     </Layout>
   )

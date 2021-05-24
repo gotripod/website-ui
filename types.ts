@@ -1,3 +1,10 @@
+export interface WPPage {
+  date: string
+  title: string
+  link: string
+  body: string
+}
+
 export interface Category {
   id: number
 }
