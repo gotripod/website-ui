@@ -6,7 +6,6 @@ import Column from '../../components/column'
 import Map from '../../components/contact/map'
 import Layout from '../../components/layout'
 import PageTitle from '../../components/page-title'
-import Image from 'next/image'
 
 const Contact = (): ReactNode => {
   return (
@@ -60,7 +59,7 @@ const Contact = (): ReactNode => {
   )
 }
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.img`
   margin-left: ${theme.gutter * 4}px;
 `
 
