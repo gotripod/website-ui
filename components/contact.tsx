@@ -97,6 +97,7 @@ const Field = styled.div`
   &.checkbox {
     display: flex;
     position: relative;
+    cursor: pointer;
   }
 
   &.checkbox input {
@@ -127,18 +128,12 @@ const Field = styled.div`
 
   &.checkbox label:after {
     position: absolute;
-
-    top: 9px;
-
-    left: 7px;
-
-    height: 16px;
-
-    width: 26px;
-
-    border-left: 8px solid;
-
-    border-bottom: 8px solid;
+    top: 6px;
+    left: 3px;
+    height: 11px;
+    width: 36px;
+    border-left: 6px solid;
+    border-bottom: 6px solid;
     transform: rotate(-45deg);
   }
 `
