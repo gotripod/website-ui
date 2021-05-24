@@ -1,27 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import theme, { breakpoints, mqLess, px2rem } from "../../theme";
-import { Article } from "../../types";
-import Column from "../column";
+import React from 'react'
+import styled from 'styled-components'
+import theme, { breakpoints, mqLess, px2rem } from '../../theme'
+import { Article } from '../../types'
+import Column from '../column'
 import Link from 'next/link'
 
 interface Props {
-  articles: Article[];
+  articles: Article[]
 }
 
 const Articles = ({ articles }: Props) => {
   const formatDate = (stringDate: string): string => {
-    const date = new Date(stringDate);
-    const dtf = new Intl.DateTimeFormat("en", {
-      year: "numeric",
-      month: "numeric",
-      day: "2-digit",
-    });
-    const [{ value: mo }, , { value: da }, , { value: ye }] = dtf.formatToParts(
-      date
-    );
-    return `${da}/${mo}/${ye}`;
-  };
+    const date = new Date(stringDate)
+    const dtf = new Intl.DateTimeFormat('en', {
+      year: 'numeric',
+      month: 'numeric',
+      day: '2-digit'
+    })
+    const [{ value: mo }, , { value: da }, , { value: ye }] = dtf.formatToParts(date)
+    return `${da}/${mo}/${ye}`
+  }
   console.log(articles)
   return (
     <Column>
@@ -32,20 +30,20 @@ const Articles = ({ articles }: Props) => {
             return (
               <article key={`article-${article.id}`}>
                 <div className="date">{formatDate(article.date)}</div>
-                <h2>{article.title}</h2>
-                <Slink href={article.link}>
-                  Read More
-                </Slink>
+                <h2>
+                  <Link href={article.link}>{article.title}</Link>
+                </h2>
+                <Slink href={article.link}>Read More</Slink>
               </article>
-            );
+            )
           })}
         </div>
       </StyledArticleList>
     </Column>
-  );
-};
+  )
+}
 
-export default Articles;
+export default Articles
 
 const Slink = styled(Link)`
   color: #62bead;
@@ -59,7 +57,7 @@ const Slink = styled(Link)`
     display: inline-block;
     margin-bottom: ${px2rem(theme.gutter * 2)};
   }
-`;
+`
 
 const StyledArticleList = styled.section`
   background: white;
@@ -117,4 +115,4 @@ const StyledArticleList = styled.section`
       padding: 0 ${px2rem(theme.gutter * 2)};
     }
   }
-`;
+`

@@ -7,6 +7,7 @@ import ServiceList from '../components/home/service-list'
 import Layout from '../components/layout'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 import { Testimonial } from 'types'
+import he from 'he'
 
 interface Props {
   services: any
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
       posts: postData.map((post: any) => ({
         id: post.id,
         date: post.date,
-        title: post.title.rendered,
+        title: he.decode(post.title.rendered),
         link: `/insights/${post.slug}/`
       })),
       testimonial
