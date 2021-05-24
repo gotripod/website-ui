@@ -1,66 +1,50 @@
-import React from "react";
-import styled from "styled-components";
-import { GalleryImage } from "../../types";
+import React, { ReactElement } from 'react'
+import styled from 'styled-components'
+import { GalleryImage } from '../../types'
+import { SRLWrapper } from 'simple-react-lightbox'
+import theme, { px2rem } from 'theme'
 
 interface Props {
-  images: GalleryImage[];
-  caption: string;
+  images: GalleryImage[]
+  caption: string
 }
 
-const GalleryBlock = ({ caption, images }: Props) => {
-  const key = caption && caption.replace(/ /g, "");
+const GalleryBlock = ({ caption, images }: Props): ReactElement => {
+  const key = caption && caption.replace(/ /g, '')
   return (
     <>
-      <Gallery>
-        {images.map((image, idx) => {
-          return (
-            <Lightbox>
-              <a className="shower" href={`#img-${key}-${idx}`}>
-                <Img key={image.url} alt={image.alt} src={image.url} />
-              </a>
-              <a className="hider" href={`#_`}>
-                <Img key={image.url} alt={image.alt} src={image.url} />
-              </a>
-            </Lightbox>
-          );
-        })}
-      </Gallery>
+      <SRLWrapper>
+        <Gallery>
+          {images.map((image) => {
+            return (
+              <A key={key} href={image.url}>
+                <Img alt={image.alt} src={image.url} />
+              </A>
+            )
+          })}
+        </Gallery>
+      </SRLWrapper>
       <Caption>{caption}</Caption>
     </>
-  );
-};
+  )
+}
 
-const Lightbox = styled.div`
-  flex: 1;
-  a {
-    display: block;
-    flex-basis: 50%;
-  }
-
-  .shower {
-  }
-
-  .hider {
-    background: red;
-    width: 100vh;
-    height: 100vh;
-    display: none;
-  }
-
-  .hider:target {
-    display: block;
-  }
-`;
+const A = styled.a`
+  flex: 1 0 30%;
+  padding: ${px2rem(theme.gutter * 2)} ${px2rem(theme.gutter * 4)};
+`
 
 const Caption = styled.p`
   width: 100%;
   text-align: left;
-`;
+`
 
-const Img = styled.img``;
+const Img = styled.img``
 
 const Gallery = styled.section`
   display: flex;
-`;
+  flex-wrap: wrap;
+  background: #ededed;
+`
 
-export default GalleryBlock;
+export default GalleryBlock
