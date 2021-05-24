@@ -14,7 +14,10 @@ const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
   return (
     <StyledHeader>
-      <Image layout="fill" src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp" />
+      <Image
+        layout="fill"
+        src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
+      />
       <div className="background">
         <div></div>
         <div>
@@ -29,12 +32,10 @@ const Header = ({ heroHtml }: Props) => {
         </div>
         <div></div>
       </div>
-      <Column style={{zIndex: 10}}>
+      <Column style={{ zIndex: 10 }}>
         <div className="gradient">
           <LargeNav />
-          {router.pathname == '/' && (
-            <h2>The web? We'll make it as easy as one, two, three.</h2>
-          )}
+          {router.pathname == '/' && <h2>The web? We'll make it as easy as one, two, three.</h2>}
         </div>
       </Column>
     </StyledHeader>
@@ -50,11 +51,7 @@ const StyledHeader = styled.header`
 
   .gradient {
     margin-top: ${px2rem(160)};
-    background: linear-gradient(
-      to right,
-      rgba(98, 190, 173, 0.9),
-      rgba(66, 145, 206, 0.9)
-    );
+    background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
 
     h2 {
       padding: ${px2rem(Theme.gutter * 2)} 0 ${px2rem(Theme.gutter * 12)} 0;
@@ -75,47 +72,40 @@ const StyledHeader = styled.header`
   }
 
   ${mqMore(breakpoints.medium)} {
+    .background {
+      width: 100%;
+      position: absolute;
+      /* padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0; */
 
-  .background {
-    width: 100%;
-    position: absolute;
-    /* padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0; */
-
-    height: 255px;
-    z-index: 2;
-    display: flex;
-    align-items: stretch;
-
-    div {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    div:nth-child(1) {
-      flex: 1;
-    }
-
-    div:nth-child(2) {
-      width: 1140px;
-      height: 160px;
+      height: 255px;
+      z-index: 2;
       display: flex;
-align-items: center;
-justify-content: center;
+      align-items: stretch;
+
+      div {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      div:nth-child(1) {
+        flex: 1;
+      }
+
+      div:nth-child(2) {
+        width: 1140px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      div:nth-child(3) {
+        flex: 1;
+      }
+
+      img {
+        height: 100%;
+      }
     }
-
-    div:nth-child(3) {
-      flex: 1;
-    }
-
-    img {
-      height: 100%;
-    }
-  }
-
-  }
-
-  a {
-    height: ${px2rem(52)};
-    display: inline-block;
   }
 
   ${mqLess(breakpoints.medium)} {
@@ -127,8 +117,8 @@ justify-content: center;
       h2 {
         width: auto;
         font-size: ${px2rem(33)};
-        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)}
-          ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 2)};
+        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)}
+          ${px2rem(Theme.gutter * 2)};
       }
     }
     a {
@@ -139,14 +129,9 @@ justify-content: center;
 
     .background {
       height: 52px;
-      background: linear-gradient(
-        to right,
-        rgba(98, 190, 173, 0.9),
-        rgba(66, 145, 206, 0.9)
-      );
+      background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
       padding: 0;
       float: right;
-      
     }
 
     picture,

@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
         title: s.serviceTitle,
         body: s.serviceBody
       })),
-      posts: postData.map((post: any) => ({
+      articles: postData.map((post: any) => ({
         id: post.id,
         date: post.date,
         title: he.decode(post.title.rendered),

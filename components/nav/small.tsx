@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import menu from "../../menu";
-import Link from "../link";
-import theme, { mqLess, breakpoints, mqMore, px2rem } from "../../theme";
+import React from 'react'
+import styled from 'styled-components'
+import menu from '../../menu'
+import Link from '../link'
+import theme, { mqLess, breakpoints, mqMore, px2rem } from '../../theme'
 
 interface Props {
-  className?: string;
+  className?: string
 }
 
 const SmallNav = ({ className }: Props) => (
@@ -16,20 +16,18 @@ const SmallNav = ({ className }: Props) => (
     <span></span>
     <ul>
       {menu.map(({ text, link }) => {
-        const isCurrentPage = false;
+        const isCurrentPage = false
         return (
           <li key={link}>
-            <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-              {text}
-            </Link>
+            <Link href={link}>{text}</Link>
           </li>
-        );
+        )
       })}
     </ul>
   </NavContainer>
-);
+)
 
-export default SmallNav;
+export default SmallNav
 
 const NavContainer = styled.nav`
   ${mqMore(breakpoints.medium)} {
@@ -115,15 +113,15 @@ const NavContainer = styled.nav`
   }
 
   li a {
-    font-family: "Cabin";
+    font-family: 'Cabin';
     float: none;
     padding: 0;
     display: inline-block;
     line-height: 2em;
     border-bottom: 2px solid;
     border-bottom-color: transparent;
-    &[aria-current="page"] {
+    &[aria-current='page'] {
       border-bottom-color: #fff;
     }
   }
-`;
+`

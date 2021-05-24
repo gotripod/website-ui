@@ -20,10 +20,10 @@ const Pagination = (props: PaginationType): ReactElement => {
   return (
     <Container>
       {/* If there's a next page, render this link */}
-      {<SLinkButton link={olderLink(props)}>← Older posts</SLinkButton>}
+      {<SLinkButton href={olderLink(props)}>← Older posts</SLinkButton>}
 
       {/* If there's a previous page, render this link */}
-      {currentPage ? <SLinkButton link={newerLink(props)}>Newer posts →</SLinkButton> : null}
+      {currentPage ? <SLinkButton href={newerLink(props)}>Newer posts →</SLinkButton> : null}
     </Container>
   )
 }

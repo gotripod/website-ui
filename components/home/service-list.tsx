@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import Theme, { breakpoints, mqLess, px2rem } from "../../theme";
-import { Service } from "../../types";
-import BaseCard from "./base-card";
-import Enquire from "./enquire";
+import React from 'react'
+import styled from 'styled-components'
+import Theme, { breakpoints, mqLess, px2rem } from '../../theme'
+import { Service } from '../../types'
+import BaseCard from './base-card'
+import Enquire from './enquire'
 
 interface Props {
-  services: Service[];
+  services: Service[]
 }
 
 const ServiceList = ({ services }: Props) => {
@@ -18,11 +18,8 @@ const ServiceList = ({ services }: Props) => {
             <div className="contentWrap">
               {idx === 0 && <h1>We are Go Tripod.</h1>}
               <h2>{service.title}</h2>
-              <div
-                className="body"
-                dangerouslySetInnerHTML={{ __html: service.body }}
-              />
-              <Enquire link="/contact">Enquire</Enquire>
+              <div className="body" dangerouslySetInnerHTML={{ __html: service.body }} />
+              <Enquire href="/contact">Enquire</Enquire>
             </div>
 
             <img src={service.imageUrl} loading="lazy" />
@@ -30,10 +27,10 @@ const ServiceList = ({ services }: Props) => {
         </li>
       ))}
     </StyledServiceList>
-  );
-};
+  )
+}
 
-export default ServiceList;
+export default ServiceList
 
 const StyledServiceList = styled.ul`
   list-style: none;
@@ -42,7 +39,7 @@ const StyledServiceList = styled.ul`
   margin-top: -${px2rem(Theme.gutter * 4)};
   z-index: 1;
   position: relative;
-`;
+`
 
 const Item = styled(BaseCard)`
   ${Theme.cardFlare}
@@ -106,4 +103,4 @@ const Item = styled(BaseCard)`
       margin-bottom: ${Theme.gutter * 2}px;
     }
   }
-`;
+`

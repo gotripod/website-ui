@@ -1,29 +1,28 @@
-import React from "react";
-import styled from "styled-components";
-import menu from "../../menu";
-import { breakpoints, mqLess } from "../../theme";
-import Link from "../link";
+import React from 'react'
+import styled from 'styled-components'
+import menu from '../../menu'
+import { breakpoints, mqLess } from '../../theme'
+import Link from '../link'
 
 interface Props {
-  className?: string;
+  className?: string
 }
 
 const LargeNav = ({ className }: Props) => (
   <NavContainer className={className}>
     <ul>
       {menu.map(({ text, link }) => {
-        const isCurrentPage = false;
         return (
           <li key={link}>
-            <Link link={link}>{text}</Link>
+            <Link href={link}>{text}</Link>
           </li>
-        );
+        )
       })}
     </ul>
   </NavContainer>
-);
+)
 
-export default LargeNav;
+export default LargeNav
 
 const NavContainer = styled.nav`
   ${mqLess(breakpoints.medium)} {
@@ -45,21 +44,20 @@ const NavContainer = styled.nav`
     margin: 52px 0;
     font-size: 1em;
     color: #f7f7f7;
-    font-family: "Cabin";
+    font-family: 'Cabin';
 
     & > a {
       position: relative;
       display: inline-block;
-      line-height: 2em;
       border-bottom: 2px solid;
       border-bottom-color: transparent;
     }
 
     & > a:after {
-      content: "";
+      content: '';
       background-color: #f7f7f7;
       position: absolute;
-      bottom: 20px;
+      bottom: 0;
       left: 0;
       right: 0;
       width: 0;
@@ -68,7 +66,7 @@ const NavContainer = styled.nav`
       transition: width 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    & > a[aria-current="page"]:after,
+    & > a[aria-current='page']:after,
     & > a:hover:after {
       width: 100%;
     }
@@ -87,10 +85,10 @@ const NavContainer = styled.nav`
       margin-right: 0;
 
       &:after {
-        content: "";
+        content: '';
         display: inline-block;
         width: 24px;
       }
     }
   }
-`;
+`

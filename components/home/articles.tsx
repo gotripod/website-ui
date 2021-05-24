@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import theme, { breakpoints, mqLess, px2rem } from '../../theme'
 import { Article } from '../../types'
@@ -9,7 +9,7 @@ interface Props {
   articles: Article[]
 }
 
-const Articles = ({ articles }: Props) => {
+const Articles = ({ articles }: Props): ReactElement => {
   const formatDate = (stringDate: string): string => {
     const date = new Date(stringDate)
     const dtf = new Intl.DateTimeFormat('en', {

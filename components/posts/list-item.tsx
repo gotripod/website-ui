@@ -19,7 +19,7 @@ const Item = ({ post }: Props): ReactElement => {
 
         <Title dangerouslySetInnerHTML={{ __html: post.title }}></Title>
 
-        <Slink link={post.slug}>Read More</Slink>
+        <Slink href={post.slug}>Read More</Slink>
       </Article>
     </Li>
   )
