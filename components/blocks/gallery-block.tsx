@@ -15,9 +15,9 @@ const GalleryBlock = ({ caption, images }: Props): ReactElement => {
     <>
       <SRLWrapper>
         <Gallery>
-          {images.map((image) => {
+          {images.map((image, idx) => {
             return (
-              <A key={key} href={image.url}>
+              <A key={`${key}-${idx}`} href={image.url}>
                 <Img alt={image.alt} src={image.url} />
               </A>
             )
