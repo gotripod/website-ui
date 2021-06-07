@@ -17,7 +17,7 @@ const Item = ({ post }: Props): ReactElement => {
       <Article>
         <PublishDate>{date.toDateString()}</PublishDate>
 
-        <Title dangerouslySetInnerHTML={{ __html: post.title }}></Title>
+        <Title>{post.title}</Title>
 
         <Slink href={post.slug}>Read More</Slink>
       </Article>

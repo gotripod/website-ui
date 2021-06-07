@@ -76,35 +76,42 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
     <Layout testimonial={testimonial}>
       <Column>
         <Column slim>
-          <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />
+          {'post' in props ? (
+            <PageTitle
+              title={props.post.title}
+              subTitle={new Date(props.post.date).toDateString()}
+            />
+          ) : (
+            <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />
+          )}
         </Column>
         <Column>
           {'post' in props ? (
             <>
-              <Content>{parse(props.post.content, { replace: replaceCode })}
+              <Content>
+                {parse(props.post.content, { replace: replaceCode })}
 
-                {
-                  props.post.teamMember && <TeamMember>
+                {props.post.teamMember && (
+                  <TeamMember>
                     <AuthorAvatar src={props.post.teamMember.imageUrl} width={100} height={100} />
                     <AuthorDetails>
                       By {props.post.teamMember.name}, {props.post.teamMember.position}
-
                     </AuthorDetails>
                   </TeamMember>
-                }
+                )}
               </Content>
             </>
           ) : (
-              <>
-                <Container>
-                  {'posts' in props &&
-                    props.posts.map((post) => {
-                      return <Item key={post.id} post={post} />
-                    })}
-                </Container>
-                <Pagination {...props.pagination} />
-              </>
-            )}
+            <>
+              <Container>
+                {'posts' in props &&
+                  props.posts.map((post) => {
+                    return <Item key={post.id} post={post} />
+                  })}
+              </Container>
+              <Pagination {...props.pagination} />
+            </>
+          )}
         </Column>
       </Column>
     </Layout>

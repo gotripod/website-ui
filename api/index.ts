@@ -124,7 +124,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
 
   return {
     id: post.id,
-    title: post.title.rendered,
+    title: he.decode(post.title.rendered),
     content: post.content.rendered,
     date: post.date,
     slug: post.slug,
@@ -163,7 +163,7 @@ const getPostsPage = async (
   return {
     posts: posts.map((post) => ({
       id: post.id,
-      title: post.title.rendered,
+      title: he.decode(post.title.rendered),
       content: post.content.rendered,
       date: post.date,
       slug: post.slug
