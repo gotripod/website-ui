@@ -33,7 +33,7 @@ const Articles = ({ articles }: Props): ReactElement => {
                 <h2>
                   <Link href={article.link}>{article.title}</Link>
                 </h2>
-                <Slink href={article.link}>Read More</Slink>
+                <Slink><Link href={article.link}>Read More</Link></Slink>
               </article>
             )
           })}
@@ -45,7 +45,7 @@ const Articles = ({ articles }: Props): ReactElement => {
 
 export default Articles
 
-const Slink = styled(Link)`
+const Slink = styled.a`
   color: #62bead;
   text-decoration: underline;
 
