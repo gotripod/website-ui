@@ -34,9 +34,9 @@ const Index = ({ services, articles, testimonial, heroHtml }: Props): React.Reac
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postResponse = await fetch('https://gotripod.com/wp-json/wp/v2/posts?per_page=3')
+  const postResponse = await fetch('https://content.gotripod.com/wp-json/wp/v2/posts?per_page=3')
   const postData = await postResponse.json()
-  const acfResponse = await fetch('https://gotripod.com/wp-json/acf/v3/pages/5')
+  const acfResponse = await fetch('https://content.gotripod.com/wp-json/acf/v3/pages/5')
   let acfData = await acfResponse.json()
 
   acfData = keysToCamelDeep(acfData.acf)

@@ -16,7 +16,7 @@ const Header = ({ heroHtml }: Props) => {
     <StyledHeader>
       <Image
         layout="fill"
-        src="https://gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
+        src="https://content.gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
       />
       <div className="background">
         <div></div>
@@ -25,7 +25,7 @@ const Header = ({ heroHtml }: Props) => {
             <img
               width="250"
               height="52"
-              src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
+              src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
               alt="Go Tripod"
             />
           </a>

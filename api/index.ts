@@ -2,7 +2,7 @@ import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category, WPPag
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 import he from 'he'
 const getCategoryBySlug = async (slug: string): Promise<Category> => {
-  const response = await fetch('https://gotripod.com/wp-json/wp/v2/categories?slug=' + slug)
+  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/categories?slug=' + slug)
   const categories = await response.json()
 
   const category = categories[0]
@@ -13,7 +13,7 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
 }
 
 const getTagBySlug = async (slug: string): Promise<Category> => {
-  const response = await fetch('https://gotripod.com/wp-json/wp/v2/tags?slug=' + slug)
+  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/tags?slug=' + slug)
   const tags = await response.json()
 
   const tag = tags[0]
@@ -24,7 +24,7 @@ const getTagBySlug = async (slug: string): Promise<Category> => {
 }
 
 const getTestimonial = async (): Promise<Testimonial> => {
-  const response = await fetch('https://gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
+  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
 
   const testimonials = await response.json()
 
@@ -37,7 +37,7 @@ const getTestimonial = async (): Promise<Testimonial> => {
 }
 
 const getTestimonialById = async (testimonialId: number): Promise<Testimonial> => {
-  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`)
 
   const testimonial = await response.json()
 
@@ -48,7 +48,7 @@ const getTestimonialById = async (testimonialId: number): Promise<Testimonial> =
 }
 
 const getMediaById = async (mediaId: number): Promise<MediaItem> => {
-  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/media/${mediaId}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/media/${mediaId}`)
   const media = await response.json()
 
   return media
@@ -56,7 +56,7 @@ const getMediaById = async (mediaId: number): Promise<MediaItem> => {
 
 const getProjects = async (): Promise<ProjectListItem[]> => {
   const response = await fetch(
-    'https://gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug'
+    'https://content.gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug'
   )
 
   const projects = await response.json()
@@ -69,7 +69,7 @@ const getProjects = async (): Promise<ProjectListItem[]> => {
 }
 
 const getProjectBySlug = async (slug: string): Promise<Project> => {
-  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/project?slug=${slug}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/project?slug=${slug}`)
   const json = await response.json()
   const post = json[0]
 
@@ -99,7 +99,7 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
 
 const getPageBySlug = async (slug: string): Promise<WPPage> => {
   console.debug('Getting page with slug', slug)
-  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/pages?slug=${slug}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/pages?slug=${slug}`)
   const json = await response.json()
   const page = json[0]
 
@@ -113,11 +113,11 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
 
 const getPostBySlug = async (slug: string): Promise<Post> => {
   console.debug('Getting post with slug', slug)
-  const response = await fetch(`https://gotripod.com/wp-json/wp/v2/posts?slug=${slug}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/posts?slug=${slug}`)
   const json = await response.json()
   const post = json[0]
 
-  const tmUrl = `https://gotripod.com/wp-json/wp/v2/team_member/${post.acf.article_author.ID}`
+  const tmUrl = `https://content.gotripod.com/wp-json/wp/v2/team_member/${post.acf.article_author.ID}`
   console.log(tmUrl)
   const teamMemberResponse = await fetch(tmUrl)
   const teamMemberJson = await teamMemberResponse.json()
@@ -151,7 +151,7 @@ const getPostsPage = async (
 }> => {
   const { categoryId, tagId, page } = params
 
-  const url = `https://gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
+  const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
     categoryId ? `&categories=${categoryId}` : ''
   }${tagId ? `&tags=${tagId}` : ''}`
 

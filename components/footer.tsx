@@ -40,14 +40,14 @@ const Footer = () => (
         <a href="/">
           <Image
             width="154" height="32"
-            src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
+            src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
             alt="Go Tripod"
           />{" "}
         </a>
 
         <Image
           width="48" height="32"
-          src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
+          src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
           alt=""
         />
       </div>
@@ -192,7 +192,7 @@ const Nav = styled.nav`
 `;
 
 const Top = styled.div`
-  background-image: url("https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-footer-stripes.svg");
+  background-image: url("https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-footer-stripes.svg");
 
   border-bottom: 1px solid #626262;
 

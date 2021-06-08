@@ -27,7 +27,7 @@ const Contact = (): ReactNode => {
               <StyledImage
                 height={40}
                 width={193}
-                src="https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-white.svg"
+                src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-white.svg"
                 alt="Go Tripod"
               />
               <AddressList>

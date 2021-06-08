@@ -25,9 +25,9 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
       {`
         @font-face {
           font-family: 'Cabin';
-          src: url('https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff2')
+          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff2')
               format('woff2'),
-            url('https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff')
+            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff')
               format('woff');
           font-weight: bold;
           font-style: normal;
@@ -36,9 +36,9 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
 
         @font-face {
           font-family: 'Noto Sans';
-          src: url('https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff2')
+          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff2')
               format('woff2'),
-            url('https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff')
+            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff')
               format('woff');
           font-weight: bold;
           font-style: normal;
@@ -70,13 +70,13 @@ const STestimonials = styled(Testimonials)`
 
 const MainContainer = styled.main`
   background-color: #ededed;
-  background-image: url('https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-dots-tile-v2.svg');
+  background-image: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-dots-tile-v2.svg');
   background-attachment: fixed;
   position: relative;
 
   &:before {
     content: '';
-    background-image: url(https://gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-stripes.svg);
+    background-image: url(https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-stripes.svg);
     background-repeat: no-repeat;
     background-position: -3px -20px;
     height: 1500px;
