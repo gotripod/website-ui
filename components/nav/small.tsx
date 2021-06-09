@@ -38,7 +38,7 @@ const NavContainer = styled.nav`
   position: fixed;
   top: 16px;
   left: 13px;
-  z-index: 2;
+  z-index: 101;
 
   input {
     display: block;

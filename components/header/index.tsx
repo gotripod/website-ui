@@ -15,6 +15,7 @@ const Header = ({ heroHtml }: Props) => {
   return (
     <StyledHeader>
       <Image
+        objectFit="cover"
         layout="fill"
         src="https://content.gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
       />
@@ -47,7 +48,6 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
-  z-index: 1;
 
   .gradient {
     margin-top: ${px2rem(160)};
@@ -65,9 +65,14 @@ const StyledHeader = styled.header`
   }
 
   .background {
+    position: relative;
     width: 100%;
     img {
       height: 100%;
+
+      ${mqLess(breakpoints.medium)} {
+        width: 150px;
+      }
     }
   }
 
@@ -109,6 +114,8 @@ const StyledHeader = styled.header`
   }
 
   ${mqLess(breakpoints.medium)} {
+
+    padding-bottom: ${px2rem(Theme.gutter * 5)};
     .gradient {
       margin-top: ${px2rem(Theme.gutter * 3 + 52)};
       margin-left: ${px2rem(Theme.gutter * 2)};
@@ -128,6 +135,9 @@ const StyledHeader = styled.header`
     }
 
     .background {
+      position: fixed;
+
+      z-index: 100;
       height: 52px;
       background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
       padding: 0;
