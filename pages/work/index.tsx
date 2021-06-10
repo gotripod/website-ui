@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const projects = await getProjects()
 
   return {
-    revalidate: true,
+    revalidate: 30,
     props: {
       testimonial,
       projects

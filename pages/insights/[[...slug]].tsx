@@ -171,7 +171,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     pageCount: number,
     page: string | string[] | null
   ) => ({
-    revalidate: 1,
+    revalidate: 30,
     props: {
       testimonial,
       posts,

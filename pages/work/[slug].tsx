@@ -60,6 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     Array.isArray(context.params.slug) ? context.params.slug[0] : context.params.slug
   )
   return {
+    revalidate: 30,
     props: {
       project
     }

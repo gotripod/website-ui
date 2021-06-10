@@ -44,6 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const testimonial = await getTestimonial()
 
   return {
+    revalidate: 30,
     props: {
       services: acfData.serviceBuilder.map((s: any) => ({
         imageUrl: s.serviceImage,

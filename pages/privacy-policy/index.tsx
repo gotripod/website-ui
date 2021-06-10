@@ -36,9 +36,9 @@ const Card = styled(BaseCard)`
 const Main = styled.div``
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context)
   const page = await getPageBySlug('privacy-policy')
   return {
+    revalidate: 30,
     props: {
       page
     }
