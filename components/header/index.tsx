@@ -18,7 +18,7 @@ const Header = ({ heroHtml }: Props) => {
         alt=""
         objectFit="cover"
         layout="fill"
-        blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkDc06AwAC3QGaX0Z5XAAAAABJRU5ErkJggg=="
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkDc06AwAC3QGaX0Z5XAAAAABJRU5ErkJggg=="
         placeholder="blur"
         src="https://content.gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
       />
