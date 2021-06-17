@@ -15,6 +15,7 @@ const Header = ({ heroHtml }: Props) => {
   return (
     <StyledHeader>
       <Image
+        alt=""
         objectFit="cover"
         layout="fill"
         blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkDc06AwAC3QGaX0Z5XAAAAABJRU5ErkJggg=="
@@ -38,7 +39,7 @@ const Header = ({ heroHtml }: Props) => {
       <Column style={{ zIndex: 10 }}>
         <div className="gradient">
           <LargeNav />
-          {router.pathname == '/' && <h2>The web? We'll make it as easy as one, two, three.</h2>}
+          {router.pathname == '/' && <h2>The web? We&apos;ll make it as easy as one, two, three.</h2>}
         </div>
       </Column>
     </StyledHeader>
@@ -50,7 +51,6 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
-  
 
   .gradient {
     margin-top: ${px2rem(160)};
@@ -80,7 +80,7 @@ const StyledHeader = styled.header`
   }
 
   ${mqMore(breakpoints.medium)} {
-  z-index: 1;
+    z-index: 1;
     .background {
       width: 100%;
       position: absolute;
@@ -118,7 +118,6 @@ const StyledHeader = styled.header`
   }
 
   ${mqLess(breakpoints.medium)} {
-
     padding-bottom: ${px2rem(Theme.gutter * 5)};
     .gradient {
       margin-top: ${px2rem(Theme.gutter * 3 + 52)};

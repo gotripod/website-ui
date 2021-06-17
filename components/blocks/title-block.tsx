@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import theme, { px2rem } from "../../theme";
+import React from 'react'
+import styled from 'styled-components'
+import theme, { px2rem } from '../../theme'
 
 interface Props {
-  title: string;
-  body: string;
+  title: string
+  body: string
 }
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   div {
     flex-basis: 65%;
   }
-`;
+`
 
 const TitleBlock = ({ title, body }: Props) => {
   return (
@@ -29,7 +29,7 @@ const TitleBlock = ({ title, body }: Props) => {
 
       <div dangerouslySetInnerHTML={{ __html: body }} />
     </Wrapper>
-  );
-};
+  )
+}
 
-export default TitleBlock;
+export default TitleBlock

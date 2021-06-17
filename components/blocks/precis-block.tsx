@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import Column from "../column";
+import Link from 'components/link'
+import React from 'react'
+import styled from 'styled-components'
+import Column from '../column'
 
 interface Props {
-  technologies: any[];
-  services: any[];
+  technologies: any[]
+  services: any[]
 }
 
 const PrecisBlock = ({ technologies, services }: Props) => {
@@ -28,23 +29,23 @@ const PrecisBlock = ({ technologies, services }: Props) => {
         </ul>
       </div>
 
-      <div className={"next"}>
+      <div className={'next'}>
         <p>So, what would you like to do next?</p>
         <ul className="list">
           <li>
-            <a href="/work/curious-ways/">See another example of our work</a>
+            <Link href="/work/curious-ways/">See another example of our work</Link>
           </li>
           <li>
-            <a href="/work/">Go back to the Work overview page</a>
+            <Link href="/work/">Go back to the Work overview page</Link>
           </li>
           <li>
-            <a href="/contact/">Contact us</a>
+            <Link href="/contact/">Contact us</Link>
           </li>
         </ul>
       </div>
     </SColumn>
-  );
-};
+  )
+}
 
 const SColumn = styled(Column)`
   display: flex;
@@ -56,7 +57,7 @@ const SColumn = styled(Column)`
     top: 8px;
     left: 0;
     position: relative;
-    content: "⋆";
+    content: '⋆';
     color: orange;
     font-size: 50px;
     line-height: 0;
@@ -75,5 +76,5 @@ const SColumn = styled(Column)`
     padding: 0;
     list-style: none;
   }
-`;
-export default PrecisBlock;
+`
+export default PrecisBlock

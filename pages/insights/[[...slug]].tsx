@@ -160,7 +160,6 @@ const Container = styled.ul`
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const testimonial = await getTestimonial()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [postSlugOrIndexType, pageOrCategory] = (context.params.slug || []) as string[]
 
   console.debug('Insights/Posts parameters: ', postSlugOrIndexType, pageOrCategory)

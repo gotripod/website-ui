@@ -1,52 +1,55 @@
 // import { Facebook, Linkedin, Twitter } from "@icons-pack/react-simple-icons";
-import React from "react";
-import styled from "styled-components";
-import Theme, { px2rem, breakpoints, mqLess } from "../theme";
-import theme from "../theme";
+import React from 'react'
+import styled from 'styled-components'
+import Theme, { px2rem, breakpoints, mqLess } from '../theme'
+import theme from '../theme'
 import Image from 'next/image'
+import Link from './link'
 
 const Footer = () => (
   <Foot>
     <Nav>
       <ul>
         <li>
-          {" "}
-          <a href="/">
+          {' '}
+          <Link href="/">
             <span>Home</span>
-          </a>
+          </Link>
         </li>
         <li>
-          {" "}
-          <a href="/work/">
+          {' '}
+          <Link href="/work/">
             <span>Work</span>
-          </a>
+          </Link>
         </li>
         <li>
-          {" "}
-          <a href="/insights/">
+          {' '}
+          <Link href="/insights/">
             <span>Insights</span>
-          </a>
+          </Link>
         </li>
         <li>
-          {" "}
-          <a href="/contact/">
+          {' '}
+          <Link href="/contact/">
             <span>Contact</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </Nav>
     <Top>
       <div>
-        <a href="/">
+        <Link href="/">
           <Image
-            width="154" height="32"
+            width="154"
+            height="32"
             src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
             alt="Go Tripod"
-          />{" "}
-        </a>
+          />{' '}
+        </Link>
 
         <Image
-          width="48" height="32"
+          width="48"
+          height="32"
           src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
           alt=""
         />
@@ -74,20 +77,18 @@ const Footer = () => (
         <a
           href="https://twitter.com/gotripod"
           target="_blank"
-          rel="noopener"
-          title="Follow Go Tripod on Twitter (opens in new window)"
-        >
+          rel="noopener noreferrer"
+          title="Follow Go Tripod on Twitter (opens in new window)">
           {/* <Twitter size={18} color={"white"} /> */}
         </a>
       </li>
       <li>
-        {" "}
+        {' '}
         <a
           href="https://www.facebook.com/gotripod"
           target="_blank"
-          rel="noopener"
-          title="Like Go Tripod on Facebook (opens in new window)"
-        >
+          rel="noopener noreferrer"
+          title="Like Go Tripod on Facebook (opens in new window)">
           {/* <Facebook size={18} color={"white"} /> */}
         </a>
       </li>
@@ -95,23 +96,21 @@ const Footer = () => (
         <a
           href="https://www.linkedin.com/company/go-tripod-ltd"
           target="_blank"
-          rel="noopener"
-          title="Follow Go Tripod on LinkedIn (opens in new window)"
-        >
+          rel="noopener noreferrer"
+          title="Follow Go Tripod on LinkedIn (opens in new window)">
           {/* <Linkedin size={18} color={"white"} /> */}
         </a>
       </li>
     </Social>
 
     <Rights>
-      © 2020 Go Tripod. All rights reserved. Registered in the UK company number
-      6912029. VAT No. 972 5228 06. Get with our{" "}
-      <a href="/privacy-policy/">Privacy&nbsp;Policy</a>.
+      © 2020 Go Tripod. All rights reserved. Registered in the UK company number 6912029. VAT No.
+      972 5228 06. Get with our <Link href="/privacy-policy/">Privacy&nbsp;Policy</Link>.
     </Rights>
   </Foot>
-);
+)
 
-export default Footer;
+export default Footer
 
 const Social = styled.ul`
   list-style: none;
@@ -124,7 +123,7 @@ const Social = styled.ul`
   li {
     margin-right: ${Theme.gutter}px;
   }
-`;
+`
 
 const ContactDetails = styled.div`
   display: flex;
@@ -153,19 +152,19 @@ const ContactDetails = styled.div`
     display: block;
     text-align: center;
   }
-`;
+`
 
 const Foot = styled.footer`
   background: #424242;
   color: #f7f7f7;
-`;
+`
 
 const Rights = styled.p`
   padding: 20px;
   text-align: center;
   background: #2c2c2c;
   font-size: 13px;
-`;
+`
 
 const Nav = styled.nav`
   background: linear-gradient(to left, #62bead, #86cdc0);
@@ -189,10 +188,10 @@ const Nav = styled.nav`
       flex-wrap: wrap;
     }
   }
-`;
+`
 
 const Top = styled.div`
-  background-image: url("https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-footer-stripes.svg");
+  background-image: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/bg-footer-stripes.svg');
 
   border-bottom: 1px solid #626262;
 
@@ -212,4 +211,4 @@ const Top = styled.div`
   img {
     height: 32px;
   }
-`;
+`

@@ -24,7 +24,7 @@ const Articles = ({ articles }: Props): ReactElement => {
   return (
     <Column>
       <StyledArticleList>
-        <h1>Here's what we've been up to recently...</h1>
+        <h1>Here&apos;s what we&apos;ve been up to recently...</h1>
         <div className="articles">
           {articles.map((article: Article) => {
             return (
@@ -33,7 +33,9 @@ const Articles = ({ articles }: Props): ReactElement => {
                 <h2>
                   <Link href={article.link}>{article.title}</Link>
                 </h2>
-                <Slink><Link href={article.link}>Read More</Link></Slink>
+                <Slink>
+                  <Link href={article.link}>Read More</Link>
+                </Slink>
               </article>
             )
           })}

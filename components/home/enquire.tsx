@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Link from "../link";
-import { px2rem } from "../../theme";
+import styled from 'styled-components'
+import Link from '../link'
+import { px2rem } from '../../theme'
 
 const Enquire = styled(Link)`
   display: inline-block;
@@ -28,6 +28,6 @@ const Enquire = styled(Link)`
   color: #fff !important;
 
   background-color: #62bead;
-`;
+`
 
-export default Enquire;
+export default Enquire

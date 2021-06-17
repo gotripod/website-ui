@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import theme, { px2rem } from "../../theme";
-import { Testimonial } from "../../types";
+import styled from 'styled-components'
+import theme, { px2rem } from '../../theme'
+import { Testimonial } from '../../types'
 
 interface Props {
-  testimonial: Testimonial;
-  className?: string;
+  testimonial: Testimonial
+  className?: string
 }
 
 const Testimonials = ({ testimonial, className }: Props) => (
@@ -12,16 +12,16 @@ const Testimonials = ({ testimonial, className }: Props) => (
     <blockquote>{testimonial.quote}</blockquote>
     <p>&mdash; {testimonial.quoteAuthor}</p>
   </Wrapper>
-);
+)
 
-export default Testimonials;
+export default Testimonials
 
 const Wrapper = styled.section`
   background: white;
   border-bottom: 5px solid rgba(0, 0, 0, 0.3);
   text-align: center;
-  padding: ${px2rem(theme.gutter * 3)} ${px2rem(theme.gutter * 2)}
-    ${px2rem(theme.gutter * 4)} ${px2rem(theme.gutter * 2)};
+  padding: ${px2rem(theme.gutter * 3)} ${px2rem(theme.gutter * 2)} ${px2rem(theme.gutter * 4)}
+    ${px2rem(theme.gutter * 2)};
 
   blockquote {
     font-style: italic;
@@ -33,4 +33,4 @@ const Wrapper = styled.section`
   p {
     color: #999;
   }
-`;
+`

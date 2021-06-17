@@ -1,17 +1,12 @@
-import { MediaItem } from "../types";
+import { MediaItem } from '../types'
 
 interface Props {
-  media: MediaItem;
-  className?: string;
+  media: MediaItem
+  className?: string
 }
 
 const MediaImage = ({ media, className }: Props) => {
-  return (
-    <img
-      className={className}
-      src={media.media_details.sizes.full.source_url}
-    />
-  );
-};
+  return <img className={className} src={media.media_details.sizes.full.source_url} />
+}
 
-export default MediaImage;
+export default MediaImage

@@ -1,8 +1,8 @@
-import React from "react";
-import { Testimonial } from "../../types";
+import React from 'react'
+import { Testimonial } from '../../types'
 
 interface Props {
-  testimonial: Testimonial;
+  testimonial: Testimonial
 }
 
 const TestimonialBlock = ({ testimonial }: Props) => {
@@ -12,7 +12,7 @@ const TestimonialBlock = ({ testimonial }: Props) => {
 
       <footer>― {testimonial.quoteAuthor}</footer>
     </blockquote>
-  );
-};
+  )
+}
 
-export default TestimonialBlock;
+export default TestimonialBlock

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import styled, { css } from 'styled-components'
 import Theme, { mqLess, breakpoints, px2rem } from '../theme'
@@ -41,7 +42,7 @@ const Contact = () => (
                 />
                 <Label htmlFor="contact-permission">
                   Please get back to me ASAP and treat my details with respect in line with your{' '}
-                  <a href="/privacy-policy/">privacy policy</a>.
+                  <Link href="/privacy-policy/">privacy policy</Link>.
                 </Label>
               </Field>
             </Col>
