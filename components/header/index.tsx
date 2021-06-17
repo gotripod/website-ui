@@ -16,6 +16,7 @@ const Header = ({ heroHtml }: Props) => {
     <StyledHeader>
       <Image
         alt=""
+        priority
         objectFit="cover"
         layout="fill"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkDc06AwAC3QGaX0Z5XAAAAABJRU5ErkJggg=="
