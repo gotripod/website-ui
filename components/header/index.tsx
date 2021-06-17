@@ -5,6 +5,7 @@ import Column from '../column'
 import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import heroImage from './hero.jpg'
 
 interface Props {
   heroHtml?: string
@@ -19,9 +20,8 @@ const Header = ({ heroHtml }: Props) => {
         priority
         objectFit="cover"
         layout="fill"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkDc06AwAC3QGaX0Z5XAAAAABJRU5ErkJggg=="
         placeholder="blur"
-        src="https://content.gotripod.com/wp-content/uploads/2018/02/hero-space-800.jpg.webp"
+        src={heroImage}
       />
       <div className="background">
         <div></div>
