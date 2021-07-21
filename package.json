@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@icons-pack/react-simple-icons": "^4.4.0",
+    "@react-css/grid": "^1.4.3",
     "@types/styled-components": "^5.1.10",
     "deep-map-keys": "^2.0.1",
     "he": "^1.2.0",

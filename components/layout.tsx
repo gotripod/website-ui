@@ -40,8 +40,16 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
               format('woff2'),
             url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff')
               format('woff');
+          font-display: swap;
+        }
+
+        @font-face {
+          font-family: 'Noto Sans';
+          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-bold-webfont.woff2')
+              format('woff2'),
+            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-bold-webfont.woff')
+              format('woff');
           font-weight: bold;
-          font-style: normal;
           font-display: swap;
         }
       `}
@@ -65,7 +73,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
 export default Layout
 
 const STestimonials = styled(Testimonials)`
-  margin-bottom: ${Theme.gutter * 4}px;
+  margin-bottom: ${Theme.gutter * 6}px;
 `
 
 const MainContainer = styled.main`

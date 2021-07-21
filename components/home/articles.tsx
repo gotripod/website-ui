@@ -4,6 +4,8 @@ import theme, { breakpoints, mqLess, px2rem } from '../../theme'
 import { Article } from '../../types'
 import Column from '../column'
 import Link from 'next/link'
+import BaseCard from './base-card'
+import Grid from '@react-css/grid'
 
 interface Props {
   articles: Article[]
@@ -24,11 +26,12 @@ const Articles = ({ articles }: Props): ReactElement => {
   return (
     <Column>
       <StyledArticleList>
+        <>
         <h1>Here&apos;s what we&apos;ve been up to recently...</h1>
-        <div className="articles">
+        <Grid className="articles" columns="repeat(auto-fill, minmax(25ch, 1fr))" gap="2em">
           {articles.map((article: Article) => {
             return (
-              <article key={`article-${article.id}`}>
+              <article  key={`article-${article.id}`}>
                 <div className="date">{formatDate(article.date)}</div>
                 <h2>
                   <Link href={article.link}>{article.title}</Link>
@@ -39,7 +42,8 @@ const Articles = ({ articles }: Props): ReactElement => {
               </article>
             )
           })}
-        </div>
+        </Grid>
+        </>
       </StyledArticleList>
     </Column>
   )
@@ -61,22 +65,17 @@ const Slink = styled.a`
   }
 `
 
-const StyledArticleList = styled.section`
-  background: white;
+const StyledArticleList = styled(BaseCard)`
   text-align: center;
-  margin: ${px2rem(52)} 0;
-  padding: ${px2rem(52)};
+  margin: ${px2rem(theme.gutter * 6)} 0;
+  padding: ${px2rem(theme.gutter * 4)};
 
   .articles {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin: 0 auto;
+    margin: ${px2rem(theme.gutter * 4)} 0;
   }
 
   article {
-    flex: ${1 / 3};
-    padding: 0 ${px2rem(30)};
+
   }
 
   div.date {
@@ -84,6 +83,12 @@ const StyledArticleList = styled.section`
   }
   h2 {
     font-size: ${px2rem(20)};
+    margin: ${px2rem(theme.gutter * 2)} 0;
+
+  }
+
+  h1 {
+    font-size: ${px2rem(36)};
   }
 
   ${mqLess(breakpoints.medium)} {
@@ -96,15 +101,10 @@ const StyledArticleList = styled.section`
 
     article {
       border-bottom: 1px solid #ededed;
-      margin-bottom: ${px2rem(theme.gutter * 2)};
     }
 
     article:last-child {
       border-bottom: 1px solid white;
-    }
-
-    h2 {
-      margin-top: 0;
     }
 
     .item {

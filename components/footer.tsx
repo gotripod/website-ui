@@ -40,11 +40,11 @@ const Footer = () => (
       <div>
         <Link href="/">
           <Image
-            width="154"
-            height="32"
+            width="193"
+            height="40"
             src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
             alt="Go Tripod"
-          />{' '}
+          />
         </Link>
 
         <Image
@@ -117,7 +117,7 @@ const Social = styled.ul`
   padding: 0;
   display: flex;
   justify-content: flex-start;
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
 
   li {
@@ -128,7 +128,7 @@ const Social = styled.ul`
 const ContactDetails = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 50px auto;
 
   address,
@@ -139,12 +139,15 @@ const ContactDetails = styled.div`
 
   .phone {
     text-align: right;
+    font-size: ${px2rem(30)};
+    font-weight: bold;
+
   }
 
   .email {
     text-align: center;
     color: #4eace0;
-    font-size: 30px;
+    font-size: ${px2rem(30)};
     font-weight: bold;
   }
 
@@ -169,8 +172,9 @@ const Rights = styled.p`
 const Nav = styled.nav`
   background: linear-gradient(to left, #62bead, #86cdc0);
   font-size: 16px;
+  color: black;
   text-transform: uppercase;
-  padding: 13px;
+  padding: ${px2rem(Theme.gutter)};
 
   ul {
     list-style: none;
@@ -202,13 +206,9 @@ const Top = styled.div`
   padding: 39px;
 
   div {
-    max-width: 1200px;
+    max-width: 1140px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-  }
-
-  img {
-    height: 32px;
   }
 `

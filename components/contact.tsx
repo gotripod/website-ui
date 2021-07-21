@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import Theme, { mqLess, breakpoints, px2rem } from '../theme'
 import { Button } from './button'
 import Column from './column'
+import Grid from '@react-css/grid'
 
 const Contact = () => (
   <Column>
@@ -14,14 +15,14 @@ const Contact = () => (
 
       <form acceptCharset="UTF-8" action="https://usebasin.com/f/608feeaf0fac" method="POST">
         <fieldset>
-          <Row>
-            <Col>
+          <Grid gap='2em' columns="repeat(auto-fit, minmax(320px, 1fr))">
+            <Grid.Item>
               <Field>
                 <Label htmlFor="message">Message*</Label>
                 <TextArea id="message" name="message" rows={9} required></TextArea>
               </Field>
-            </Col>
-            <Col>
+            </Grid.Item>
+            <Grid.Item>
               <Field>
                 <Label htmlFor="name">Name</Label>
                 <Input type="text" id="name" name="name" />
@@ -40,13 +41,13 @@ const Contact = () => (
                   value="Granted"
                   required
                 />
-                <Label htmlFor="contact-permission">
+                <Label style={{fontWeight: 'normal'}} htmlFor="contact-permission">
                   Please get back to me ASAP and treat my details with respect in line with your{' '}
                   <Link href="/privacy-policy/">privacy policy</Link>.
                 </Label>
               </Field>
-            </Col>
-          </Row>
+            </Grid.Item>
+          </Grid>
 
           <input type="hidden" name="source" value="https://gotripod.com/" />
           <SButton type="submit">Send it</SButton>
@@ -60,6 +61,7 @@ export default Contact
 
 const SButton = styled(Button)`
   background: #666;
+  font-size: 18px;
 `
 
 const Wrapper = styled.section`
@@ -67,7 +69,11 @@ const Wrapper = styled.section`
   text-align: center;
   background: linear-gradient(to right, #4291ce, #6ba9d9);
   padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 8)};
-  margin-bottom: ${Theme.gutter * 4}px;
+  margin-bottom: ${px2rem(Theme.gutter * 6)};
+
+  p {
+    margin-bottom: ${px2rem(Theme.gutter * 3)};
+  }
 
   h1 {
     font-size: 2rem;
@@ -76,21 +82,14 @@ const Wrapper = styled.section`
 
   fieldset {
     border: 0;
+    padding: 0;
   }
 
   ${mqLess(breakpoints.medium)} {
-    padding: ${Theme.gutter * 4}px ${px2rem(Theme.gutter)};
+    padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter)};
   }
 `
 
-const Col = styled.div`
-  padding: ${px2rem(Theme.gutter)} ${px2rem(Theme.gutter * 2)};
-  flex: 1;
-
-  ${mqLess(breakpoints.medium)} {
-    padding: 0 0;
-  }
-`
 const Field = styled.div`
   text-align: left;
   margin-bottom: ${Theme.gutter * 2}px;
@@ -138,13 +137,6 @@ const Field = styled.div`
     transform: rotate(-45deg);
   }
 `
-const Row = styled.div`
-  display: flex;
-
-  ${mqLess(breakpoints.medium)} {
-    display: block;
-  }
-`
 
 const InputStyle = css`
   color: #ededed;
@@ -169,4 +161,9 @@ const TextArea = styled.textarea`
 const Label = styled.label`
   margin-bottom: ${Theme.gutter}px;
   display: inline-block;
+  font-weight: bold;
+
+  a {
+    text-decoration: underline;
+  }
 `
