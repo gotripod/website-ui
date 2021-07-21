@@ -1,6 +1,8 @@
+import Grid from '@react-css/grid'
 import Link from 'components/link'
 import React from 'react'
 import styled from 'styled-components'
+import theme, { px2rem } from 'theme'
 import Column from '../column'
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
 const PrecisBlock = ({ technologies, services }: Props) => {
   return (
     <SColumn>
+      <Grid  gap='1em' columns="repeat(auto-fit, minmax(250px, 1fr))">
       <div>
         <p>Our involvement in this project included the following:</p>
         <ul>
@@ -43,12 +46,18 @@ const PrecisBlock = ({ technologies, services }: Props) => {
           </li>
         </ul>
       </div>
+      </Grid>
     </SColumn>
   )
 }
 
 const SColumn = styled(Column)`
-  display: flex;
+
+  font-size: 90%;
+
+  p {
+    margin-bottom: ${px2rem(theme.gutter)};
+  }
 
   li {
   }
@@ -63,10 +72,6 @@ const SColumn = styled(Column)`
     line-height: 0;
   }
 
-  div {
-    flex: 1;
-  }
-
   ul {
     padding: 0;
     list-style: none;
@@ -75,6 +80,15 @@ const SColumn = styled(Column)`
   .next ul {
     padding: 0;
     list-style: none;
+  }
+
+  .next li:before {
+    content: ''
+  }
+
+  .next a {
+    color: ${theme.colours.headingBlue};
+    text-decoration: underline;
   }
 `
 export default PrecisBlock

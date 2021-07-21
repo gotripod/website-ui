@@ -21,7 +21,9 @@ export default {
   },
   gutter: 13,
   fontSize: {
+    aside: 14,
     base: 18,
+    prominentText: 20,
     h2: 40
   },
   lineHeight: 26,

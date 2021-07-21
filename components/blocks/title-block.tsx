@@ -9,7 +9,7 @@ interface Props {
 
 const Wrapper = styled.div`
   display: flex;
-  padding: ${px2rem(theme.gutter * 2)} 0 ${px2rem(theme.gutter * 4)} 0;
+  margin: ${px2rem(theme.gutter * 6)} 0 ${px2rem(theme.gutter * 6)} 0;
 
   h2 {
     color: ${theme.colours.headingBlue};

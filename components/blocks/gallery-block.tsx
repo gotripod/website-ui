@@ -37,6 +37,9 @@ const A = styled.a`
 const Caption = styled.p`
   width: 100%;
   text-align: left;
+  font-size: ${px2rem(theme.fontSize.aside)};
+  font-style: italic;
+  margin: ${px2rem(theme.gutter)} 0;
 `
 
 const Img = styled.img``
