@@ -47,12 +47,14 @@ const Footer = () => (
           />
         </Link>
 
+        <div className="yus">
         <Image
           width="48"
           height="32"
           src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
           alt=""
         />
+        </div>
       </div>
     </Top>
 
@@ -103,7 +105,7 @@ const Footer = () => (
     </Social>
 
     <Rights>
-      © 2020 Go Tripod. All rights reserved. Registered in the UK company number 6912029. VAT No.
+      © {(new Date()).getFullYear()} Go Tripod. All rights reserved. Registered in the UK company number 6912029. VAT No.
       972 5228 06. Get with our <SLink href="/privacy-policy/">Privacy&nbsp;Policy</SLink>.
     </Rights>
   </Foot>
@@ -129,6 +131,10 @@ const Social = styled.ul`
 
   li {
     margin-right: ${px2rem(Theme.gutter * 2)};
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    justify-content: center;
   }
 `
 
@@ -212,10 +218,20 @@ const Top = styled.div`
 
   padding: 39px;
 
-  div {
+  > div {
     max-width: 1140px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+    ${mqLess(breakpoints.medium)} {
+      justify-content: center;
+    }
+  }
+
+  .yus {
+    ${mqLess(breakpoints.medium)} {
+      display: none;
+    }
   }
 `
