@@ -1,6 +1,8 @@
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { ReactElement } from 'react'
+import styled from 'styled-components'
+import theme from 'theme'
 
 interface Props {
   href: string
@@ -21,5 +23,13 @@ const Link = ({ prefetch = false, href, className, children }: Props): ReactElem
     </NextLink>
   )
 }
+
+export const BlueLink = styled(Link)`
+  color: ${theme.colours.linkBlue};
+  text-decoration: underline;
+  &:visited {
+    color: ${theme.colours.linkBlue};
+  }
+`
 
 export default Link

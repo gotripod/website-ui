@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import theme, { breakpoints, mqLess, px2rem } from '../../theme'
 import { Testimonial } from '../../types'
+import {BlueLink} from 'components/link'
 
 interface Props {
   testimonial: Testimonial
@@ -10,7 +11,9 @@ interface Props {
 const Testimonials = ({ testimonial, className }: Props) => (
   <Wrapper className={className}>
     <blockquote>&ldquo;{testimonial.quote}&rdquo;</blockquote>
-    <p>&mdash; {testimonial.quoteAuthor}</p>
+    <p>&mdash; {testimonial.quoteAuthor} {testimonial.projectUrl !== '' && <>&emsp;<BlueLink href={testimonial.projectUrl}>Read the case study</BlueLink></>}</p>
+
+    
   </Wrapper>
 )
 

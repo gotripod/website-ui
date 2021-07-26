@@ -45,11 +45,11 @@ const Item = styled(BaseCard)`
   ${Theme.cardFlare}
   overflow: hidden;
   position: relative;
-  padding: ${px2rem(52)};
-  margin-bottom: ${px2rem(52)};
+  padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 5)};
+  margin-bottom: ${px2rem(Theme.gutter * 5)};
 
   .contentWrap {
-    width: 70%;
+    width: 60%;
   }
 
   img {
@@ -63,21 +63,25 @@ const Item = styled(BaseCard)`
     color: ${Theme.colours.headingBlue};
     font-size: ${px2rem(40)};
     margin: 0;
+    position: relative;
+    z-index: 10;
   }
 
   h2 {
     margin-top: 0;
     position: relative;
-    width: 70%;
     z-index: 10;
     font-size: ${Theme.fontSize.h2}px;
   }
 
   .body {
+    position: relative;
+    z-index: 10;
+
     color: #999;
     width: 60%;
     line-height: 150%;
-    margin-bottom: ${Theme.gutter * 4}px;
+    margin: ${px2rem(Theme.gutter * 2)} 0 ${px2rem(Theme.gutter * 3)} 0;
   }
 
   ${mqLess(breakpoints.medium)} {

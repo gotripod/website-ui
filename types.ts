@@ -17,6 +17,7 @@ export interface Pagination {
 
 export interface Testimonial {
   quote: string
+  projectUrl: string
   quoteAuthor: string
 }
 

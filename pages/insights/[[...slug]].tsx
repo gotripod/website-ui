@@ -140,10 +140,7 @@ const Content = styled.div`
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   padding: 80px 104px;
 
-  a {
-    color: ${theme.colours.linkOrange};
-    text-decoration: underline;
-  }
+  ${theme.contentStyles}
 `
 
 const Container = styled.ul`

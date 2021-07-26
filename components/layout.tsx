@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
 import Theme from '../theme'
@@ -16,8 +17,9 @@ interface Props {
   heroHtml?: string
 }
 
-const Layout = ({ children, testimonial, heroHtml }: Props) => (
-  <>
+const Layout = ({ children, testimonial, heroHtml }: Props) => {
+  const route = useRouter()
+  return <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </Head>
@@ -60,7 +62,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
       {children}
 
       <Contact />
-      {testimonial && (
+      {testimonial && route.pathname === '/'  && (
         <Column>
           <STestimonials testimonial={testimonial} />
         </Column>
@@ -68,7 +70,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => (
       <Footer />
     </MainContainer>
   </>
-)
+}
 
 export default Layout
 

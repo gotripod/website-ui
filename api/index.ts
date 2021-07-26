@@ -24,13 +24,14 @@ const getTagBySlug = async (slug: string): Promise<Category> => {
 }
 
 const getTestimonial = async (): Promise<Testimonial> => {
-  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1')
+  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand')
 
   const testimonials = await response.json()
 
   const testimonial = testimonials[0]
 
   return {
+    projectUrl: testimonial.project_url || '',
     quote: testimonial.acf.testimonial_body,
     quoteAuthor: testimonial.title.rendered
   }
@@ -42,6 +43,7 @@ const getTestimonialById = async (testimonialId: number): Promise<Testimonial> =
   const testimonial = await response.json()
 
   return {
+    projectUrl: testimonial.project_url || '',
     quote: testimonial.acf.testimonial_body,
     quoteAuthor: testimonial.title.rendered
   }
@@ -56,7 +58,7 @@ const getMediaById = async (mediaId: number): Promise<MediaItem> => {
 
 const getProjects = async (): Promise<ProjectListItem[]> => {
   const response = await fetch(
-    'https://content.gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug'
+    'https://content.gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug&orderby=menu_order&order=asc'
   )
 
   const projects = await response.json()

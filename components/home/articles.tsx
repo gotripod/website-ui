@@ -6,6 +6,7 @@ import Column from '../column'
 import Link from 'next/link'
 import BaseCard from './base-card'
 import Grid from '@react-css/grid'
+import { Button } from 'components/button'
 
 interface Props {
   articles: Article[]
@@ -43,6 +44,7 @@ const Articles = ({ articles }: Props): ReactElement => {
             )
           })}
         </Grid>
+        <SButton>See them all</SButton>
         </>
       </StyledArticleList>
     </Column>
@@ -50,6 +52,11 @@ const Articles = ({ articles }: Props): ReactElement => {
 }
 
 export default Articles
+
+const SButton = styled(Button)`
+  font-size: 18px;
+  background-color: ${theme.colours.headingBlue};
+`
 
 const Slink = styled.a`
   color: #62bead;

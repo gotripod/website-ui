@@ -1,4 +1,4 @@
-// import { Facebook, Linkedin, Twitter } from "@icons-pack/react-simple-icons";
+import { Facebook, Linkedin, Twitter } from "@icons-pack/react-simple-icons";
 import React from 'react'
 import styled from 'styled-components'
 import Theme, { px2rem, breakpoints, mqLess } from '../theme'
@@ -79,17 +79,16 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
           title="Follow Go Tripod on Twitter (opens in new window)">
-          {/* <Twitter size={18} color={"white"} /> */}
+          <Twitter size={18} color={"white"} />
         </a>
       </li>
       <li>
-        {' '}
         <a
           href="https://www.facebook.com/gotripod"
           target="_blank"
           rel="noopener noreferrer"
           title="Like Go Tripod on Facebook (opens in new window)">
-          {/* <Facebook size={18} color={"white"} /> */}
+          <Facebook size={18} color={"white"} />
         </a>
       </li>
       <li>
@@ -98,19 +97,27 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
           title="Follow Go Tripod on LinkedIn (opens in new window)">
-          {/* <Linkedin size={18} color={"white"} /> */}
+          <Linkedin size={18} color={"white"} />
         </a>
       </li>
     </Social>
 
     <Rights>
       © 2020 Go Tripod. All rights reserved. Registered in the UK company number 6912029. VAT No.
-      972 5228 06. Get with our <Link href="/privacy-policy/">Privacy&nbsp;Policy</Link>.
+      972 5228 06. Get with our <SLink href="/privacy-policy/">Privacy&nbsp;Policy</SLink>.
     </Rights>
   </Foot>
 )
 
 export default Footer
+
+const SLink = styled(Link)`
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+`
 
 const Social = styled.ul`
   list-style: none;
@@ -118,10 +125,10 @@ const Social = styled.ul`
   display: flex;
   justify-content: flex-start;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 0 auto ${px2rem(theme.gutter * 4)} auto;
 
   li {
-    margin-right: ${Theme.gutter}px;
+    margin-right: ${px2rem(Theme.gutter * 2)};
   }
 `
 

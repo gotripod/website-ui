@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import Theme, { mqLess, breakpoints, px2rem } from '../../theme'
-import Link from '../link'
+import Link, { BlueLink } from '../link'
 import theme from '../../theme'
 import { Post } from 'types'
 
@@ -19,7 +19,7 @@ const Item = ({ post }: Props): ReactElement => {
 
         <Title>{post.title}</Title>
 
-        <Slink href={post.slug}>Read More</Slink>
+        <BlueLink href={post.slug}>Read More</BlueLink>
       </Article>
     </Li>
   )
@@ -27,13 +27,6 @@ const Item = ({ post }: Props): ReactElement => {
 
 export default Item
 
-const Slink = styled(Link)`
-  color: ${Theme.colours.linkBlue};
-  text-decoration: underline;
-  &:visited {
-    color: ${Theme.colours.linkBlue};
-  }
-`
 
 const Li = styled.li`
   flex-basis: 33.3333333333%;

@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, DefaultTheme, FlattenSimpleInterpolation, ThemedCssFunction } from 'styled-components'
 
 const px2rem = (px: number): string | number => (Number(px) ? `${Number(px) / 18}rem` : 0)
 
@@ -12,7 +12,7 @@ enum Breakpoint {
   jumbo = 1200
 }
 
-export default {
+let theme = {
   colours: {
     linkBlue: '#62bead',
     headingBlue: '#4291ce',
@@ -44,7 +44,27 @@ export default {
       top: 0;
       left: 0;
     }
+  `,
+  greyCardFlare: css`
+    border-bottom: 5px solid rgba(0,0,0,.3);
   `
 }
+
+const t2 = Object.assign<typeof theme, {contentStyles: FlattenSimpleInterpolation}>(theme, { contentStyles: css`
+a {
+  color: ${theme.colours.linkOrange};
+  text-decoration: underline;
+}
+  h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0 0 ${px2rem(theme.gutter * 2)} 0;
+
+  }
+
+  ul, ol {
+    margin-left: ${px2rem(theme.gutter * 2)};
+  }
+`})
+
+export default t2
 
 export { Breakpoint as breakpoints, px2rem, mqLess, mqMore }
