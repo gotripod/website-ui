@@ -52,6 +52,7 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
+  z-index: 1;
 
   .gradient {
     margin-top: ${px2rem(160)};
@@ -81,7 +82,6 @@ const StyledHeader = styled.header`
   }
 
   ${mqMore(breakpoints.medium)} {
-    z-index: 1;
     .background {
       width: 100%;
       position: absolute;

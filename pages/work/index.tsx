@@ -32,17 +32,14 @@ const Index = ({ projects, testimonial }: Props): ReactNode => {
 }
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  justify-content: space-between;
-  margin: 0 -13px ${theme.gutter * 4}px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  margin: 0 0 ${theme.gutter * 4}px 0;
 
   div {
     padding: 13px;
     box-sizing: border-box;
-    flex-basis: 33.333333%;
-    max-width: 33.333333%;
   }
 
   ${mqLess(breakpoints.medium)} {
@@ -57,13 +54,15 @@ const Wrapper = styled.section`
 
 const ProjectItemLink = styled(Link)<{ img: string }>`
   background: url(${(props) => props.img});
-  height: 265px;
+  height: 260px;
   display: block;
-  background-size: auto 540px;
+  background-size: 355px 530px;
+  background-repeat: no-repeat;
   ${theme.greyCardFlare}
+  background-position: 0 top;
 
   &:hover {
-    background-position: 0 265px;
+    background-position: 0 bottom;
   }
 `
 

@@ -11,11 +11,12 @@ const S = {
     text-align: center;
     padding: ${px2rem(theme.gutter * 4)} 0;
     z-index: 1;
-    margin: -${Theme.gutter * 4}px ${(props) => (props.slim ? Theme.gutter * 6 : 0)}px ${Theme.gutter *
+    margin: -${px2rem(Theme.gutter * 4)} ${(props) => (props.slim ? Theme.gutter * 6 : 0)}px ${Theme.gutter *
       4}px ${(props) => (props.slim ? Theme.gutter * 6 : 0)}px;
     ${Theme.cardFlare}
 
     ${mqLess(breakpoints.medium)} {
+      margin-top: -${px2rem(Theme.gutter * 6)};
       margin-left: ${px2rem(theme.gutter)};
       margin-right: ${px2rem(theme.gutter)};
     }
