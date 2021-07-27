@@ -10,6 +10,7 @@ import Footer from './footer'
 import Header from './header'
 import Testimonials from './home/testimonials'
 import SmallNav from './nav/small'
+import ToTop from './to-top'
 
 interface Props {
   testimonial?: Testimonial
@@ -56,6 +57,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
         }
       `}
     </style>
+    <ToTop />
     <SmallNav />
     <Header heroHtml={heroHtml} />
     <MainContainer>
