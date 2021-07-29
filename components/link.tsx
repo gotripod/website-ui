@@ -9,15 +9,16 @@ interface Props {
   prefetch?: boolean
   className?: string
   children?: React.ReactNode
+  target?: string
 }
 
-const Link = ({ prefetch = false, href, className, children }: Props): ReactElement => {
+const Link = ({ prefetch = false, href, className, children, target }: Props): ReactElement => {
   const router = useRouter()
   const isCurrentPage = router.asPath === href
 
   return (
     <NextLink prefetch={prefetch} href={href}>
-      <a className={className} aria-current={isCurrentPage ? 'page' : undefined}>
+      <a className={className} aria-current={isCurrentPage ? 'page' : undefined} target={target}>
         {children}
       </a>
     </NextLink>

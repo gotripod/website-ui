@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { GalleryImage } from '../../types'
 import { SRLWrapper } from 'simple-react-lightbox'
 import theme, { px2rem } from 'theme'
+import { Caption } from 'components/common'
 
 interface Props {
   images: GalleryImage[]
@@ -34,13 +35,6 @@ const A = styled.a`
   padding: ${px2rem(theme.gutter * 2)} ${px2rem(theme.gutter * 4)};
 `
 
-const Caption = styled.p`
-  width: 100%;
-  text-align: left;
-  font-size: ${px2rem(theme.fontSize.aside)};
-  font-style: italic;
-  margin: ${px2rem(theme.gutter)} 0;
-`
 
 const Img = styled.img``
 

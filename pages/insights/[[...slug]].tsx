@@ -20,11 +20,12 @@ import PageTitle from 'components/page-title'
 import Item from 'components/posts/list-item'
 import Pagination from 'components/posts/pagination'
 import styled from 'styled-components'
-import theme, { mqLess, breakpoints } from 'theme'
+import theme, { mqLess, breakpoints, px2rem } from 'theme'
 import parse, { domToReact } from 'html-react-parser'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Image from 'next/image'
+import { CaptionStyles } from 'components/common'
 
 interface PostBaseProps {
   testimonial: Testimonial
@@ -136,11 +137,42 @@ const AuthorAvatar = styled(Image)`
 `
 
 const Content = styled.div`
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-  padding: 80px 104px;
+  padding: ${px2rem(theme.gutter * 4)};
+
+  .wp-caption {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wp-caption-text {
+    ${CaptionStyles}
+  }
+
+  blockquote {
+    color: #62bead;
+    position: relative;
+    font-weight: bold;
+    padding: 0 ${px2rem(theme.gutter * 2)};
+    ${theme.cardFlare};
+
+  }
+
+
+  img {
+    height: auto;
+  }
 
   ${theme.contentStyles}
+
+  ${mqLess(breakpoints.medium)} {
+    padding: ${px2rem(theme.gutter * 2)};
+  }
 `
 
 const Container = styled.ul`

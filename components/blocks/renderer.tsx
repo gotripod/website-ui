@@ -15,7 +15,7 @@ const Renderer = ({ block }: Props): React.ReactElement => {
     case 'title_block':
       return <TitleBlock title={block.blockTitle} body={block.blockBody} />
     case 'precis_block':
-      return <PrecisBlock services={block.serviceList} technologies={block.technologyList} />
+      return <PrecisBlock services={block.serviceList} technologies={block.technologyList} links={block.linkList} />
     case 'gallery_block':
       return <GalleryBlock images={block.blockGallery} caption={block.blockNote} />
     case 'testimonial_block':

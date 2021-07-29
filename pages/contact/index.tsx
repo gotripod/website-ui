@@ -1,7 +1,7 @@
 import BaseCard from 'components/home/base-card'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import theme, { px2rem } from 'theme'
+import theme, { breakpoints, mqLess, px2rem } from 'theme'
 import Column from '../../components/column'
 import Map from '../../components/contact/map'
 import Layout from '../../components/layout'
@@ -60,17 +60,27 @@ const Contact = (): ReactNode => {
 }
 
 const StyledImage = styled.img`
-  margin-left: ${theme.gutter * 4}px;
+  margin-left: ${px2rem(theme.gutter * 4)};
+
+
+  ${mqLess(breakpoints.medium)} {
+    margin-top: ${px2rem(theme.gutter)};
+  }
 `
 
 const AddressList = styled.ul`
   list-style: none;
-  margin-left: ${theme.gutter * 4}px;
+  margin-left: ${px2rem(theme.gutter * 4)};
   padding: 0;
 
   .highlight {
     color: ${theme.colours.highlightBlue};
     font-size: ${px2rem(theme.fontSize.base * 1.5)};
+    font-weight: bold;
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    margin-left: 0;
   }
 `
 
@@ -80,18 +90,33 @@ const PostalAddress = styled.address`
 `
 
 const Card = styled(BaseCard)`
-  padding: ${theme.gutter * 8}px;
-  margin-bottom: ${theme.gutter * 6}px;
+  padding: ${px2rem(theme.gutter * 8)};
+  margin-bottom: ${px2rem(theme.gutter * 6)};
+
+  ${mqLess(breakpoints.medium)} {
+    padding: ${px2rem(theme.gutter * 2)};
+    margin-bottom: ${px2rem(theme.gutter * 2)};
+    
+  }
 `
 
-const Col = styled.div``
+const Col = styled.div`
+`
 
 const Main = styled.div`
   display: flex;
-`
+  flex-wrap: wrap;
+
+  `
 
 const Intro = styled.p`
-  margin: 0 0 ${theme.gutter * 6}px;
+  margin: 0 0 ${px2rem(theme.gutter * 6)};
+  font-size: ${px2rem(20)};
+  line-height: ${px2rem(26)};
+
+  ${mqLess(breakpoints.medium)} {
+    margin: 0 0 ${px2rem(theme.gutter * 2)};
+  }
 `
 
 export default Contact

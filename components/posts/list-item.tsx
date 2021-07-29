@@ -15,7 +15,7 @@ const Item = ({ post }: Props): ReactElement => {
   return (
     <Li>
       <Article>
-        <PublishDate>{date.toDateString()}</PublishDate>
+        <PublishDate>{date.toLocaleDateString()}</PublishDate>
 
         <Title>{post.title}</Title>
 
@@ -59,9 +59,9 @@ const Title = styled.h1`
   font-size: 1.1111111111rem;
   line-height: 26px;
   line-height: 1.4444444444rem;
+  margin: ${px2rem(Theme.gutter * 2)} 0;
 `
 
 const PublishDate = styled.span`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
+  color: #999;
 `
