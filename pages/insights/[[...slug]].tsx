@@ -15,7 +15,7 @@ import {
 import Column from '../../components/column'
 import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType } from 'types'
-import { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import PageTitle from 'components/page-title'
 import Item from 'components/posts/list-item'
 import Pagination from 'components/posts/pagination'
@@ -26,6 +26,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Image from 'next/image'
 import { CaptionStyles } from 'components/common'
+import Link from 'components/link'
 
 interface PostBaseProps {
   testimonial: Testimonial
@@ -96,9 +97,11 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
                   <TeamMember>
                     <AuthorAvatar src={props.post.teamMember.imageUrl} width={100} height={100} />
                     <AuthorDetails>
-                      By {props.post.teamMember.name}, {props.post.teamMember.position}
+                      By {props.post.teamMember.name}, {props.post.teamMember.position}<br/>
+                      Filed under: {props.post.taxonomies.filter(t => t.taxonomy === 'category').map(t => <Link key={t.slug} href={`/insights/categories/${t.slug}/`}>{t.name}</Link>)}<br/>
+                      Topics: {props.post.taxonomies.filter(t => t.taxonomy === 'post_tag').map(t => <Link key={t.slug} href={`/topics/${t.slug}/`}>{t.name}</Link>)}    
                     </AuthorDetails>
-                  </TeamMember>
+                    </TeamMember>
                 )}
               </Content>
             </>
@@ -120,14 +123,14 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
 }
 
 const AuthorDetails = styled.p`
-  margin-left: 20px;
+  margin-left: 20px !important;
   color: #999;
 `
 
 const TeamMember = styled.div`
   display: flex;
-  margin: ${theme.gutter * 4}px auto 0 auto;
-  width: 500px;
+  justify-content: center;
+  margin: ${theme.gutter * 4}px 0 0 0;
 `
 
 const AuthorAvatar = styled(Image)`

@@ -114,13 +114,12 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
 }
 
 const getPostBySlug = async (slug: string): Promise<Post> => {
-  console.debug('Getting post with slug', slug)
-  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/posts?slug=${slug}`)
+  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/posts?_embed=1&slug=${slug}`)
   const json = await response.json()
   const post = json[0]
 
   const tmUrl = `https://content.gotripod.com/wp-json/wp/v2/team_member/${post.acf.article_author.ID}`
-  console.log(tmUrl)
+
   const teamMemberResponse = await fetch(tmUrl)
   const teamMemberJson = await teamMemberResponse.json()
 
@@ -130,6 +129,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
     content: post.content.rendered,
     date: post.date,
     slug: post.slug,
+    taxonomies: post._embedded['wp:term'].flat().map(({name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
     teamMember: {
       name: teamMemberJson.title.rendered,
       position: teamMemberJson.acf.team_member_position,
@@ -156,8 +156,6 @@ const getPostsPage = async (
   const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
     categoryId ? `&categories=${categoryId}` : ''
   }${tagId ? `&tags=${tagId}` : ''}`
-
-  console.debug('Fetching page of posts from ', url)
 
   const response = await fetch(url)
   const posts = await response.json()

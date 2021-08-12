@@ -34,12 +34,20 @@ export interface Service {
   imageUrl: string
 }
 
+export interface Taxonomy {
+  link: string
+  name: string
+  slug: string
+  taxonomy: string
+}
+
 export interface Post {
   date: string
   slug: string
   id: number
   title: string
   content: string
+  taxonomies: Taxonomy[]
   teamMember?: {
     position: string
     name: string
