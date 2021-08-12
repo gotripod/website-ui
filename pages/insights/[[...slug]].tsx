@@ -98,8 +98,8 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
                     <AuthorAvatar src={props.post.teamMember.imageUrl} width={100} height={100} />
                     <AuthorDetails>
                       By {props.post.teamMember.name}, {props.post.teamMember.position}<br/>
-                      Filed under: {props.post.taxonomies.filter(t => t.taxonomy === 'category').map(t => <Link key={t.slug} href={`/insights/categories/${t.slug}/`}>{t.name}</Link>)}<br/>
-                      Topics: {props.post.taxonomies.filter(t => t.taxonomy === 'post_tag').map(t => <Link key={t.slug} href={`/topics/${t.slug}/`}>{t.name}</Link>)}    
+                      Filed under: {props.post.taxonomies.filter(t => t.taxonomy === 'category').map(t => <Link key={t.slug} href={`/insights/category/${t.slug}/`}>{t.name}</Link>)}<br/>
+                      Topics: {props.post.taxonomies.filter(t => t.taxonomy === 'post_tag').map(t => <Link key={t.slug} href={`/insights/topic/${t.slug}/`}>{t.name}</Link>)}    
                     </AuthorDetails>
                     </TeamMember>
                 )}
@@ -130,7 +130,7 @@ const AuthorDetails = styled.p`
 const TeamMember = styled.div`
   display: flex;
   justify-content: center;
-  margin: ${theme.gutter * 4}px 0 0 0;
+  margin: ${px2rem(theme.gutter * 4)} 0 0 0;
 `
 
 const AuthorAvatar = styled(Image)`
@@ -140,7 +140,7 @@ const AuthorAvatar = styled(Image)`
 `
 
 const Content = styled.div`
-  margin: 0 auto;
+  margin: 0 auto ${px2rem(theme.gutter * 6)} auto;
   max-width: 1000px;
   width: 100%;
   box-sizing: border-box;
@@ -172,6 +172,7 @@ const Content = styled.div`
   }
 
   ${theme.contentStyles}
+  ${theme.greyCardFlare}
 
   ${mqLess(breakpoints.medium)} {
     padding: ${px2rem(theme.gutter * 2)};
