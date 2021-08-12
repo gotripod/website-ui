@@ -1,11 +1,12 @@
 # Running a development environment:
 
 - Install docker + docker compose
-- Install make
 
 Then run:
 
-`make start`
+`docker-compose up`
+`npm install`
+`npm run dev`
 
 Access the site on http://localhost:3000.
 

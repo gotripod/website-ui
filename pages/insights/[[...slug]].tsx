@@ -93,15 +93,33 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
               <Content>
                 {parse(props.post.content, { replace: replaceCode })}
 
+                <div></div>
+
                 {props.post.teamMember && (
                   <TeamMember>
                     <AuthorAvatar src={props.post.teamMember.imageUrl} width={100} height={100} />
                     <AuthorDetails>
-                      By {props.post.teamMember.name}, {props.post.teamMember.position}<br/>
-                      Filed under: {props.post.taxonomies.filter(t => t.taxonomy === 'category').map(t => <Link key={t.slug} href={`/insights/category/${t.slug}/`}>{t.name}</Link>)}<br/>
-                      Topics: {props.post.taxonomies.filter(t => t.taxonomy === 'post_tag').map(t => <Link key={t.slug} href={`/insights/topic/${t.slug}/`}>{t.name}</Link>)}    
+                      By {props.post.teamMember.name}, {props.post.teamMember.position}
+                      <br />
+                      Filed under:{' '}
+                      {props.post.taxonomies
+                        .filter((t) => t.taxonomy === 'category')
+                        .map((t) => (
+                          <Link key={t.slug} href={`/insights/category/${t.slug}/`}>
+                            {t.name}
+                          </Link>
+                        ))}
+                      <br />
+                      Topics:{' '}
+                      {props.post.taxonomies
+                        .filter((t) => t.taxonomy === 'post_tag')
+                        .map((t) => (
+                          <Link key={t.slug} href={`/insights/topic/${t.slug}/`}>
+                            {t.name}
+                          </Link>
+                        ))}
                     </AuthorDetails>
-                    </TeamMember>
+                  </TeamMember>
                 )}
               </Content>
             </>
@@ -163,9 +181,7 @@ const Content = styled.div`
     font-weight: bold;
     padding: 0 ${px2rem(theme.gutter * 2)};
     ${theme.cardFlare};
-
   }
-
 
   img {
     height: auto;

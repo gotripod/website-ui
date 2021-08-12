@@ -6,6 +6,7 @@ import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import heroImage from './hero.jpg'
+import Link from 'components/link'
 
 interface Props {
   heroHtml?: string
@@ -26,14 +27,14 @@ const Header = ({ heroHtml }: Props) => {
       <div className="background">
         <div></div>
         <div>
-          <a href="/">
+          <Link href="/">
             <img
               width="250"
               height="52"
               src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
               alt="Go Tripod"
             />
-          </a>
+          </Link>
         </div>
         <div></div>
       </div>
