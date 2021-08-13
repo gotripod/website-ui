@@ -113,19 +113,26 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
                       Filed under:{' '}
                       {props.post.taxonomies
                         .filter((t) => t.taxonomy === 'category')
-                        .map((t) => (
+                        .map((t, idx, arr) => (
+                          <>
                           <Link key={t.slug} href={`/insights/category/${t.slug}/`}>
                             {t.name}
                           </Link>
+                          {idx < arr.length - 1 ? ', ' : ''}
+                          </>
                         ))}
                       <br />
                       Topics:{' '}
                       {props.post.taxonomies
                         .filter((t) => t.taxonomy === 'post_tag')
-                        .map((t) => (
+                        .map((t, idx, arr) => (
+                          <>
                           <Link key={t.slug} href={`/insights/topic/${t.slug}/`}>
                             {t.name}
                           </Link>
+                          {idx < arr.length - 1 ? ', ' : ''}
+
+                          </>
                         ))}
                     </AuthorDetails>
                   </TeamMember>
