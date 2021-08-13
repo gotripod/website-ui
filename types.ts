@@ -44,6 +44,7 @@ export interface Taxonomy {
 export interface Post {
   date: string
   slug: string
+  link: string
   id: number
   title: string
   content: string

@@ -27,57 +27,15 @@ import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Image from 'next/image'
 import { CaptionStyles } from 'components/common'
 import Link from 'components/link'
-
-interface PostBaseProps {
-  testimonial: Testimonial
-}
-
-interface PostListProps {
-  posts: Post[]
-  pagination?: PaginationType
-}
-
-interface SinglePostProps {
-  post: Post
-}
-
-type Props = PostListProps | SinglePostProps
-
-const getLanguage = (node) => {
-  if (node.children[0].attribs.class != null) {
-    return node.children[0].attribs.class.replace('language-', '')
-  }
-  return null
-}
-
-const getCode = (node) => {
-  if (node.children.length > 0 && node.children[0].name === 'code') {
-    return node.children[0].children
-  } else {
-    return node.children
-  }
-}
-
-const replaceCode = (node) => {
-  if (node.name === 'pre') {
-    const code = getCode(node)
-    const language = getLanguage(node)
-
-    return (
-      node.children.length > 0 && (
-        <SyntaxHighlighter style={xonokai} language={language}>
-          {domToReact(code)}
-        </SyntaxHighlighter>
-      )
-    )
-  }
-}
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaGooglePlusG } from 'react-icons/fa';
+import { AiOutlineMail } from 'react-icons/ai'
 
 const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement => {
   return (
     <Layout testimonial={testimonial}>
       <Column>
         <Column slim>
+          {/* Post/Article list */}
           {'post' in props ? (
             <PageTitle
               title={props.post.title}
@@ -88,12 +46,63 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
           )}
         </Column>
         <Column>
+          {/* Sign Post/Article */}
           {'post' in props ? (
             <>
               <Content>
                 {parse(props.post.content, { replace: replaceCode })}
 
-                <div></div>
+                <Social>
+                  Sharing is caring:
+                  <ul>
+                    <li>
+                      <a
+                        href={`https://twitter.com/intent/tweet/?url=${encodeURIComponent(
+                          props.post.link
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Share this article on Twitter (opens in new window)">
+                        <FaTwitter size={18} color={'black'} />
+                      </a></li>
+                    <li>
+                      <a
+                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(props.post.link)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Share this article on Facebook (opens in new window)">
+                        <FaFacebookF size={18} color={'black'} />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(props.post.link)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Share this article on LinkedIn (opens in new window)">
+                        <FaLinkedinIn size={18} color={'black'} />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={`https://plus.google.com/share?url=${encodeURIComponent(props.post.link)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Share this article on Google+ (opens in new window)">
+                        <FaGooglePlusG size={18} color={'black'} />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={`mailto:?subject=I thought you might be interested in this article on the Go Tripod website&body=${encodeURIComponent(props.post.link)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Share this article by email (opens in new window)">
+                        <AiOutlineMail size={18} color={'black'} />
+                      </a>
+                    </li>
+                  </ul>
+                </Social>
 
                 {props.post.teamMember && (
                   <TeamMember>
@@ -139,6 +148,37 @@ const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement =
     </Layout>
   )
 }
+
+const Social = styled.div`
+  display: flex;
+  font-weight: bold;
+  font-size: 15px;
+  color: #999;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 ${px2rem(theme.gutter)} !important;
+  }
+
+  li {
+    padding-right: 10px;
+    font-size: 0;
+  }
+
+  a {
+    font-size: 0;
+  }
+
+  a:visited {
+    color: #333;
+  }
+
+  a:hover {
+    opacity: 0.5;
+  }
+`
 
 const AuthorDetails = styled.p`
   margin-left: 20px !important;
@@ -206,6 +246,51 @@ const Container = styled.ul`
     display: block;
   }
 `
+
+interface PostBaseProps {
+  testimonial: Testimonial
+}
+
+interface PostListProps {
+  posts: Post[]
+  pagination?: PaginationType
+}
+
+interface SinglePostProps {
+  post: Post
+}
+
+type Props = PostListProps | SinglePostProps
+
+const getLanguage = (node) => {
+  if (node.children[0].attribs.class != null) {
+    return node.children[0].attribs.class.replace('language-', '')
+  }
+  return null
+}
+
+const getCode = (node) => {
+  if (node.children.length > 0 && node.children[0].name === 'code') {
+    return node.children[0].children
+  } else {
+    return node.children
+  }
+}
+
+const replaceCode = (node) => {
+  if (node.name === 'pre') {
+    const code = getCode(node)
+    const language = getLanguage(node)
+
+    return (
+      node.children.length > 0 && (
+        <SyntaxHighlighter style={xonokai} language={language}>
+          {domToReact(code)}
+        </SyntaxHighlighter>
+      )
+    )
+  }
+}
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const testimonial = await getTestimonial()

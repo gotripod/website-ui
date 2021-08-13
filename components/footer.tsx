@@ -1,4 +1,4 @@
-import { Facebook, Linkedin, Twitter } from "@icons-pack/react-simple-icons";
+import { FaFacebookF as Facebook, FaLinkedinIn as Linkedin, FaTwitter as Twitter } from 'react-icons/fa';
 import React from 'react'
 import styled from 'styled-components'
 import Theme, { px2rem, breakpoints, mqLess } from '../theme'

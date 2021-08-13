@@ -129,6 +129,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
     content: post.content.rendered,
     date: post.date,
     slug: post.slug,
+    link: post.link,
     taxonomies: post._embedded['wp:term'].flat().map(({name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
     teamMember: {
       name: teamMemberJson.title.rendered,
