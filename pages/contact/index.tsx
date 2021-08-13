@@ -1,4 +1,5 @@
 import BaseCard from 'components/home/base-card'
+import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import theme, { breakpoints, mqLess, px2rem } from 'theme'
@@ -10,6 +11,9 @@ import PageTitle from '../../components/page-title'
 const Contact = (): ReactNode => {
   return (
     <Layout>
+      <Head>
+        <title>Contact Go Tripod | website &amp; web application development in Falmouth, Cornwall</title>
+      </Head>
       <Column slim>
         <PageTitle title="Want the internet to work for you?" subTitle="Let's talk" />
       </Column>
