@@ -60,6 +60,11 @@ a {
 
   }
 
+  code {
+    background-color: #f7f7f7 !important;
+    word-break: break-word;
+  }
+
   ul, ol {
     margin-left: ${px2rem(theme.gutter * 2)};
   }

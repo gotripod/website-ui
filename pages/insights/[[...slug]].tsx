@@ -23,7 +23,7 @@ import styled from 'styled-components'
 import theme, { mqLess, breakpoints, px2rem } from 'theme'
 import parse, { domToReact } from 'html-react-parser'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { xonokai } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { coy } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Image from 'next/image'
 import { CaptionStyles } from 'components/common'
 import Link from 'components/link'
@@ -227,6 +227,11 @@ const Content = styled.div`
     height: auto;
   }
 
+  code[class^=language-] {
+    background-color: #f7f7f7 !important;
+    padding: ${px2rem(theme.gutter * 2)} !important;
+  }
+
   ${theme.contentStyles}
   ${theme.greyCardFlare}
 
@@ -278,13 +283,14 @@ const getCode = (node) => {
 }
 
 const replaceCode = (node) => {
-  if (node.name === 'pre') {
+  if (node.name === 'pre' && node.children[0].attribs.class.indexOf('language-') > -1) {
     const code = getCode(node)
     const language = getLanguage(node)
 
     return (
       node.children.length > 0 && (
-        <SyntaxHighlighter style={xonokai} language={language}>
+          
+        <SyntaxHighlighter style={coy} language={language}>
           {domToReact(code)}
         </SyntaxHighlighter>
       )
