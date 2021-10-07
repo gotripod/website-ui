@@ -247,6 +247,7 @@ const getCode = (node) => {
 }
 
 const replaceCode = (node) => {
+  try {
   if (node.name === 'pre' && node.children[0].attribs.class.indexOf('language-') > -1) {
     const code = getCode(node)
     const language = getLanguage(node)
@@ -259,6 +260,9 @@ const replaceCode = (node) => {
       )
     )
   }
+} catch {
+  return null
+}
 }
 
 export default Single

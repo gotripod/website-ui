@@ -19,7 +19,7 @@ const List = ({ posts, pagination }: PostListProps) => (
     <Column>
       <>
         <Container>
-          {posts.map((post) => (
+          {posts && posts.map((post) => (
             <Item key={post.id} post={post} />
           ))}
         </Container>

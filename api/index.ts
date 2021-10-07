@@ -26,6 +26,7 @@ const getTagBySlug = async (slug: string): Promise<Category> => {
 const getTestimonial = async (): Promise<Testimonial> => {
   const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand')
 
+  try {
   const testimonials = await response.json()
 
   const testimonial = testimonials[0]
@@ -34,7 +35,15 @@ const getTestimonial = async (): Promise<Testimonial> => {
     projectUrl: testimonial.project_url || '',
     quote: testimonial.acf.testimonial_body,
     quoteAuthor: testimonial.title.rendered
+  } 
+} catch(e) {
+  console.error(e)
+  return {
+    projectUrl: '',
+    quote: '',
+    quoteAuthor: ''
   }
+}
 }
 
 const getTestimonialById = async (testimonialId: number): Promise<Testimonial> => {

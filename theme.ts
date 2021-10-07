@@ -46,7 +46,7 @@ let theme = {
     }
   `,
   greyCardFlare: css`
-    border-bottom: 5px solid rgba(0,0,0,.3);
+    border-bottom: 5px solid rgba(200, 200, 200);
   `
 }
 
