@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import styled, { css } from 'styled-components'
-import Theme, { mqLess, breakpoints, px2rem } from '../theme'
+import Theme, { mqLess, breakpoints, px2rem, mqMore } from '../theme'
 import { Button } from './button'
 import Column from './column'
 import Grid from '@react-css/grid'
@@ -15,14 +15,14 @@ const Contact = () => (
 
       <form acceptCharset="UTF-8" action="https://usebasin.com/f/608feeaf0fac" method="POST">
         <fieldset>
-          <Grid gap='2em' columns="repeat(auto-fit, minmax(320px, 1fr))">
-            <Grid.Item>
+          <GridContainer>
+            <div>
               <Field>
                 <Label htmlFor="message">Message*</Label>
                 <TextArea id="message" name="message" rows={9} required></TextArea>
               </Field>
-            </Grid.Item>
-            <Grid.Item>
+            </div>
+            <div>
               <Field>
                 <Label htmlFor="name">Name</Label>
                 <Input type="text" id="name" name="name" />
@@ -46,8 +46,8 @@ const Contact = () => (
                   <Link href="/privacy-policy/">privacy policy</Link>.
                 </Label>
               </Field>
-            </Grid.Item>
-          </Grid>
+            </div>
+          </GridContainer>
 
           <input type="hidden" name="source" value="https://gotripod.com/" />
           <SButton type="submit">Send it</SButton>
@@ -58,6 +58,16 @@ const Contact = () => (
 )
 
 export default Contact
+
+const GridContainer = styled.div`
+  padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter)};
+  display: grid;
+
+  ${mqMore(breakpoints.medium)} {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2em;
+  }
+`
 
 const SButton = styled(Button)`
   background: #666;
