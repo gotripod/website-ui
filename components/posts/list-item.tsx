@@ -38,7 +38,6 @@ const Li = styled.li`
   ${mqLess(breakpoints.medium)} {
     flex-basis: 1;
     max-width: 100%;
-    margin: 0 ${px2rem(theme.gutter)};
   }
 `
 

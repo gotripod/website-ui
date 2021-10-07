@@ -34,7 +34,6 @@ const Container = styled.ul`
 
   flex-flow: row wrap;
   padding: 0;
-  margin: -13px;
 
   ${mqLess(breakpoints.medium)} {
     display: block;
