@@ -53,16 +53,25 @@ const Wrapper = styled.section`
 `
 
 const ProjectItemLink = styled(Link)<{ img: string }>`
-  background: url(${(props) => props.img});
-  height: 260px;
   display: block;
-  background-size: 355px 530px;
+  background-image: url(${(props) => props.img});
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  ${theme.greyCardFlare}
   background-position: 0 top;
+  ${theme.greyCardFlare}
+
+  height: 254px;
 
   &:hover {
     background-position: 0 bottom;
+  }
+
+  ${mqLess(breakpoints.large)} {
+    height: 314px;
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    height: 211px;
   }
 `
 
