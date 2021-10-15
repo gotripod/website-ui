@@ -14,7 +14,7 @@ const ServiceList = ({ services }: Props) => {
     <StyledServiceList>
       {services.map((service, idx) => (
         <li key={idx}>
-          <Item>
+          <Item {...(idx % 2 === 0 && {alternate: true})}>
             <div className="contentWrap">
               {idx === 0 && <h1>We are Go Tripod.</h1>}
               <h2>{service.title}</h2>
@@ -41,8 +41,11 @@ const StyledServiceList = styled.ul`
   position: relative;
 `
 
-const Item = styled(BaseCard)`
+const Item = styled(BaseCard)<{alternate?: boolean}>`
   ${Theme.cardFlare}
+
+  ${props => props.alternate && 'right: 0; left: auto;' };
+
   overflow: hidden;
   position: relative;
   padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 5)};
