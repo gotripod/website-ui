@@ -71,7 +71,7 @@ const ProjectItemLink = styled(Link)<{ img: string }>`
   }
 
   ${mqLess(breakpoints.medium)} {
-    height: 211px;
+    height: 250px;
   }
 `
 
