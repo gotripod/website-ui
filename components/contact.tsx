@@ -67,6 +67,10 @@ const GridContainer = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2em;
   }
+
+  ${mqLess(breakpoints.medium)} {
+    padding: ${px2rem(Theme.gutter)} ${px2rem(Theme.gutter)};
+  }
 `
 
 const SButton = styled(Button)`
@@ -97,6 +101,7 @@ const Wrapper = styled.section`
 
   ${mqLess(breakpoints.medium)} {
     padding: ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter)};
+    margin-bottom: ${px2rem(Theme.gutter * 2)};
   }
 `
 

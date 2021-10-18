@@ -56,6 +56,10 @@ export default Articles
 const SButton = styled(Button)`
   font-size: 18px;
   background-color: ${theme.colours.headingBlue};
+
+  ${mqLess(breakpoints.medium)} {
+    width: 100%;
+  }
 `
 
 const Slink = styled.a`
@@ -99,7 +103,11 @@ const StyledArticleList = styled(BaseCard)`
   }
 
   ${mqLess(breakpoints.medium)} {
-    margin: ${px2rem(theme.gutter * 2)} 0;
+    h1 {
+      font-size: ${px2rem(30)};
+    }
+
+    margin: ${px2rem(theme.gutter * 2)} ${px2rem(theme.gutter * 2)};
     padding: ${px2rem(theme.gutter * 2)};
 
     .articles {
@@ -108,6 +116,7 @@ const StyledArticleList = styled(BaseCard)`
 
     article {
       border-bottom: 1px solid #ededed;
+      padding: 0;
     }
 
     article:last-child {
@@ -120,8 +129,8 @@ const StyledArticleList = styled(BaseCard)`
       padding: 0 0;
     }
 
-    article {
-      padding: 0 ${px2rem(theme.gutter * 2)};
+    article h2 {
+      margin-top: 0
     }
   }
 `
