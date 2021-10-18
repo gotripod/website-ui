@@ -89,7 +89,7 @@ const Item = styled(BaseCard)<{alternate?: boolean}>`
   }
 
   ${mqLess(breakpoints.medium)} {
-    margin: ${px2rem(Theme.gutter * 2)} 0;
+    margin: ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 2)};
     padding: ${px2rem(Theme.gutter * 2)};
     img {
       display: none;
@@ -103,8 +103,7 @@ const Item = styled(BaseCard)<{alternate?: boolean}>`
 
     h1,
     h2 {
-      text-align: center;
-      font-size: ${36}px;
+      font-size: ${px2rem(30)};
     }
 
     .body {
