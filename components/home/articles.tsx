@@ -62,7 +62,7 @@ const SButton = styled(Button)`
   }
 `
 
-const Slink = styled.a`
+const Slink = styled.span`
   color: #62bead;
   text-decoration: underline;
 

@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import Link from 'components/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
-import Theme from '../theme'
+import Theme, { breakpoints, mqLess, mqMore } from '../theme'
 import { Testimonial } from '../types'
 import Column from './column'
 import Contact from './contact'
@@ -57,11 +58,28 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
         }
       `}
     </style>
-    <ToTop />
-    <SmallNav />
-    <Header heroHtml={heroHtml} />
     <MainContainer>
-      {children}
+
+      <ToTop />
+      <SmallNav />
+      <Header heroHtml={heroHtml} />
+
+      <Logo>
+        <div></div>
+        <div>
+          <Link href="/">
+            <img
+              width="250"
+              height="52"
+              src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
+              alt="Go Tripod"
+            />
+          </Link>
+        </div>
+        <div></div>
+      </Logo>
+
+      <Floater>{children}</Floater>
 
       <Contact />
       {testimonial && route.pathname === '/'  && (
@@ -75,6 +93,74 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
 }
 
 export default Layout
+
+const Logo = styled.div`
+z-index: ${Theme.zIndex.top};
+
+position: absolute;
+top:0;
+    width: 100%;
+ 
+  
+
+  ${mqMore(breakpoints.medium)} {
+      width: 100%;
+      position: absolute;
+      height: 160px;
+
+      display: flex;
+      align-items: stretch;
+
+      div {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      div:nth-child(1) {
+        flex: 1;
+        height: 255px;
+      }
+
+      div:nth-child(2) {
+        width: 1140px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      div:nth-child(3) {
+        flex: 1;
+        height: 255px;
+      }
+
+      img {
+        height: 100%;
+        
+      }
+  }
+
+  ${mqLess(breakpoints.medium)} {
+    background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
+    height: 52px;
+    position: fixed;
+    padding: 0;
+
+    img {
+      width: 150px;
+    }
+
+      a{
+        padding: 2px 15px;
+      float: right;
+      }
+
+  }
+`
+
+const Floater = styled.div`
+  z-index: ${Theme.zIndex.middle};
+  position: relative;
+`
 
 const STestimonials = styled(Testimonials)`
   margin-bottom: ${Theme.gutter * 6}px;

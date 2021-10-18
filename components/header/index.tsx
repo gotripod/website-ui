@@ -6,7 +6,6 @@ import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import heroImage from './hero.jpg'
-import Link from 'components/link'
 
 interface Props {
   heroHtml?: string
@@ -24,20 +23,7 @@ const Header = ({ heroHtml }: Props) => {
         placeholder="blur"
         src={heroImage}
       />
-      <div className="background">
-        <div></div>
-        <div>
-          <Link href="/">
-            <img
-              width="250"
-              height="52"
-              src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-colour-on-black.svg"
-              alt="Go Tripod"
-            />
-          </Link>
-        </div>
-        <div></div>
-      </div>
+      
       <Column style={{ zIndex: 10 }}>
         <div className="gradient">
           <LargeNav />
@@ -53,7 +39,7 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
-  z-index: ${Theme.zIndex.above};
+  z-index: ${Theme.zIndex.middle};
 
   .gradient {
     margin-top: ${px2rem(160)};
@@ -67,55 +53,6 @@ const StyledHeader = styled.header`
       width: ${px2rem(750)};
 
       margin: 0 auto 0 auto;
-    }
-  }
-
-  .background {
-    position: relative;
-    width: 100%;
-    img {
-      height: 100%;
-
-      ${mqLess(breakpoints.medium)} {
-        width: 150px;
-      }
-    }
-  }
-
-  ${mqMore(breakpoints.medium)} {
-    .background {
-      width: 100%;
-      position: absolute;
-      /* padding: ${px2rem(Theme.gutter * 4)} 0 ${px2rem(Theme.gutter * 8)} 0; */
-
-      height: 255px;
-      z-index: 2;
-      display: flex;
-      align-items: stretch;
-
-      div {
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      div:nth-child(1) {
-        flex: 1;
-      }
-
-      div:nth-child(2) {
-        width: 1140px;
-        height: 160px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      div:nth-child(3) {
-        flex: 1;
-      }
-
-      img {
-        height: 100%;
-      }
     }
   }
 
@@ -137,16 +74,6 @@ const StyledHeader = styled.header`
       height: 30px;
       float: right;
       padding: ${px2rem(13)};
-    }
-
-    .background {
-      position: fixed;
-
-      z-index: 100;
-      height: 52px;
-      background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
-      padding: 0;
-      float: right;
     }
 
     picture,

@@ -37,7 +37,7 @@ const StyledServiceList = styled.ul`
   padding: 0;
   margin: 0;
   margin-top: -${px2rem(Theme.gutter * 4)};
-  z-index: 1;
+  z-index: ${Theme.zIndex.top};
   position: relative;
 `
 
