@@ -13,6 +13,9 @@ enum Breakpoint {
 }
 
 let theme = {
+  zIndex: {
+    above: 101
+  },
   colours: {
     linkBlue: '#62bead',
     headingBlue: '#4291ce',

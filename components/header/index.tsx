@@ -53,7 +53,7 @@ const StyledHeader = styled.header`
   position: relative;
   overflow: hidden;
   padding-bottom: ${px2rem(Theme.gutter * 8)};
-  z-index: 1;
+  z-index: ${Theme.zIndex.above};
 
   .gradient {
     margin-top: ${px2rem(160)};
