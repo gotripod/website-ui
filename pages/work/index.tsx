@@ -6,8 +6,8 @@ import { ProjectListItem, Testimonial } from 'types'
 import PageTitle from 'components/page-title'
 import styled from 'styled-components'
 import theme, { mqLess, breakpoints } from 'theme'
-import Link from 'components/link'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import NextLink from 'next/link'
 
 interface Props {
   projects: ProjectListItem[]
@@ -15,6 +15,16 @@ interface Props {
 }
 
 const Index = ({ projects, testimonial }: Props): ReactNode => {
+
+  const [pageWidth, setPageWidth] = useState<number | null>()
+  const ref = useRef<HTMLImageElement>()
+
+  useLayoutEffect(() => {
+    if(ref.current) {
+      setPageWidth(ref.current.clientWidth)
+    }
+  }, [ref])
+
   return (
     <Layout testimonial={testimonial}>
       <Column>
@@ -22,7 +32,10 @@ const Index = ({ projects, testimonial }: Props): ReactNode => {
         <Wrapper>
           {projects.map((project) => (
             <div key={project.id}>
-              <ProjectItemLink href={`/work/${project.link}`} img={project.logoUrl} />
+            <NextLink href={`/work/${project.link}`} ><ProjectItemLink width={pageWidth}>
+              <img src={project.logoUrl} ref={ref} />
+              <img src={project.logoUrl} />
+              </ProjectItemLink></NextLink>
             </div>
           ))}
         </Wrapper>
@@ -52,26 +65,37 @@ const Wrapper = styled.section`
   }
 `
 
-const ProjectItemLink = styled(Link)<{ img: string }>`
-  display: block;
-  background-image: url(${(props) => props.img});
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: 0 top;
+const ProjectItemLink = styled.a<{width: number}>`
+    display: block;
   ${theme.greyCardFlare}
 
-  height: 254px;
+  font-size: 0;
+  line-height: 0;
 
-  &:hover {
-    background-position: 0 bottom;
+  :hover {
+    img:nth-child(2) {
+      display: block;
+    }
+
+    img:nth-child(1) {
+      display: none;
+    }
   }
 
-  ${mqLess(breakpoints.large)} {
-    height: 314px;
+  img:nth-child(1) {
+    object-position: top;
   }
 
-  ${mqLess(breakpoints.medium)} {
-    height: 250px;
+  img:nth-child(2) {
+    object-position: bottom;
+    display: none;
+  }
+
+  img {
+    max-height: ${props => (props.width) / 1.39087947883}px;
+    width: 100%;
+    object-fit: cover;
+    height: ${614 / 2}px;
   }
 `
 
