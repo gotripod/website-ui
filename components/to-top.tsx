@@ -46,7 +46,7 @@ const Button = styled.button<{hide: boolean}>`
 right: 30px;
     background: white;
     box-shadow: 0 1.5px 4px rgba(0,0,0,.24),0 1.5px 6px rgba(0,0,0,.12);
-    z-index: 100;
+    z-index: ${theme.zIndex.backToTop};
     svg {
         fill: #62bead;
         width: 25px;

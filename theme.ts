@@ -14,6 +14,7 @@ enum Breakpoint {
 
 let theme = {
   zIndex: {
+    backToTop: 103,
     top: 102,
     middle: 101
   },
