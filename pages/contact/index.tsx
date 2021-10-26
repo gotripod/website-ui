@@ -2,7 +2,7 @@ import BaseCard from 'components/home/base-card'
 import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import theme, { breakpoints, mqLess, px2rem } from 'theme'
+import theme, { breakpoints, mqLess, mqMore, px2rem } from 'theme'
 import Column from '../../components/column'
 import Map from '../../components/contact/map'
 import Layout from '../../components/layout'
@@ -24,7 +24,7 @@ const Contact = (): ReactNode => {
             come visit you? Let&apos;s have a coffee, let&apos;s do lunch. It&apos;s up to you.
           </Intro>
           <Main>
-            <Col>
+            <Col style={{flex:1}}>
               <Map />
             </Col>
             <Col>
@@ -108,9 +108,10 @@ const Col = styled.div`
 `
 
 const Main = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
+  ${mqMore(breakpoints.medium)} {
+    display: flex;
+    flex-wrap: wrap;
+  }
   `
 
 const Intro = styled.p`

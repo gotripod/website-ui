@@ -13,8 +13,8 @@ const Map = () => (
 )
 
 const Iframe = styled.iframe`
-  max-width: 425px;
-  height: 425px;
+  width: 100%;
+height: 425px;
 `
 
 export default Map
