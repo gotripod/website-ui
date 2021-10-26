@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import Theme, { mqLess, breakpoints, px2rem, mqMore } from '../theme'
 import { Button } from './button'
 import Column from './column'
-import Grid from '@react-css/grid'
 
 const Contact = () => (
   <Column>
