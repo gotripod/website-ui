@@ -1,4 +1,3 @@
-import Grid from '@react-css/grid'
 import Link from 'components/link'
 import React from 'react'
 import styled from 'styled-components'
@@ -55,6 +54,9 @@ const PrecisBlock = ({ technologies, services, links }: Props) => {
   )
 }
 
+const Grid = styled.div`
+display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1em;
+`
 const SColumn = styled(Column)`
 
   font-size: 90%;

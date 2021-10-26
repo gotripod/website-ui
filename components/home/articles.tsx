@@ -5,7 +5,6 @@ import { Article } from '../../types'
 import Column from '../column'
 import Link from 'next/link'
 import BaseCard from './base-card'
-import Grid from '@react-css/grid'
 import { Button } from 'components/button'
 
 interface Props {
@@ -29,7 +28,7 @@ const Articles = ({ articles }: Props): ReactElement => {
       <StyledArticleList>
         <>
         <h1>Here&apos;s what we&apos;ve been up to recently...</h1>
-        <Grid className="articles" columns="repeat(auto-fill, minmax(25ch, 1fr))" gap="2em">
+        <Grid className="articles">
           {articles.map((article: Article) => {
             return (
               <article  key={`article-${article.id}`}>
@@ -52,6 +51,10 @@ const Articles = ({ articles }: Props): ReactElement => {
 }
 
 export default Articles
+
+const Grid = styled.div`
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr)); gap: 2em;
+`
 
 const SButton = styled(Button)`
   font-size: 18px;

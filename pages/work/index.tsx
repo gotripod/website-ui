@@ -73,6 +73,7 @@ const ProjectItemLink = styled.a<{width: number}>`
   line-height: 0;
 
   :hover {
+    cursor: pointer;
     img:nth-child(2) {
       display: block;
     }
