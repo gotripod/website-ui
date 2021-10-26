@@ -13,7 +13,7 @@ interface Props {
 const PrecisBlock = ({ technologies, services, links }: Props) => {
   return (
     <SColumn>
-      <Grid  gap='1em' columns="repeat(auto-fit, minmax(250px, 1fr))">
+      <Grid>
       <div>
         <p>Our involvement in this project included the following:</p>
         <ul>
