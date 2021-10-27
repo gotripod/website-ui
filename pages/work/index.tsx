@@ -6,8 +6,9 @@ import { ProjectListItem, Testimonial } from 'types'
 import PageTitle from 'components/page-title'
 import styled from 'styled-components'
 import theme, { mqLess, breakpoints } from 'theme'
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { ReactNode, useLayoutEffect, useRef, useState } from 'react'
 import NextLink from 'next/link'
+import Head from 'next/head'
 
 interface Props {
   projects: ProjectListItem[]
@@ -27,6 +28,8 @@ const Index = ({ projects, testimonial }: Props): ReactNode => {
 
   return (
     <Layout testimonial={testimonial}>
+      <Head>Work - Go Tripod</Head>
+
       <Column>
         <PageTitle slim title="Work" subTitle="A selection of recent projects" />
         <Wrapper>

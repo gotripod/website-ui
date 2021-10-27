@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   swcMinify: true,
-  concurrentFeatures: true,
-    serverComponents: true,
   reactStrictMode: true,
   trailingSlash: true,
   images: {

@@ -9,6 +9,7 @@ import { Project } from 'types'
 import Renderer from 'components/blocks/renderer'
 import Layout from 'components/layout'
 import Column from 'components/column'
+import Head from 'next/head'
 //#endregion
 
 //#region component
@@ -18,6 +19,9 @@ interface Props {
 
 const SinglePostPage = ({ project }: Props): React.ReactElement => (
   <Layout>
+
+    <Head>{project.title} - Go Tripod</Head>
+
     <Column>
       <StyledMediaImage media={project.heroMedia} />
       <Content>

@@ -116,6 +116,7 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
 
   return {
     title: he.decode(page.title.rendered),
+    yoastHtml: page.yoast_head,
     date: page.date,
     body: he.decode(page.acf.section_body),
     link: page.link
@@ -133,6 +134,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
   const teamMemberJson = await teamMemberResponse.json()
 
   return {
+    yoastHtml: post.yoast_head,
     id: post.id,
     title: he.decode(post.title.rendered),
     content: post.content.rendered,

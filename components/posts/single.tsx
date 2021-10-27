@@ -1,24 +1,6 @@
-/**
- * This is a catch-all route for posts, handling the index page (with + without pagination),
- * category indexes, and single post. For more on catch-all routes, see:
- * https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes
- */
-
-import { GetStaticProps, GetStaticPaths } from 'next'
-import {
-  getTestimonial,
-  getPostsPage,
-  getPostBySlug,
-  getCategoryBySlug,
-  getTagBySlug
-} from '../../api'
 import Column from '../../components/column'
-import Layout from '../../components/layout'
-import { Testimonial, Post, Pagination as PaginationType } from 'types'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import PageTitle from 'components/page-title'
-import Item from 'components/posts/list-item'
-import Pagination from 'components/posts/pagination'
 import styled from 'styled-components'
 import theme, { mqLess, breakpoints, px2rem } from 'theme'
 import parse, { domToReact } from 'html-react-parser'
@@ -39,6 +21,7 @@ const Single = ({ post }: SinglePostProps) => {
     <>
       <Head>
         <title>{post.title} - Go Tripod</title>
+        {parse(post.yoastHtml)}
       </Head>
       <Column slim>
         <PageTitle title={post.title} subTitle={new Date(post.date).toDateString()} />
@@ -110,24 +93,24 @@ const Single = ({ post }: SinglePostProps) => {
                     {post.taxonomies
                       .filter((t) => t.taxonomy === 'category')
                       .map((t, idx, arr) => (
-                        <>
-                          <Link key={t.slug} href={`/insights/category/${t.slug}/`}>
+                        <React.Fragment key={t.slug}>
+                          <Link href={`/insights/category/${t.slug}/`}>
                             {t.name}
                           </Link>
                           {idx < arr.length - 1 ? ', ' : ''}
-                        </>
+                        </React.Fragment>
                       ))}
                     <br />
                     Topics:{' '}
                     {post.taxonomies
                       .filter((t) => t.taxonomy === 'post_tag')
                       .map((t, idx, arr) => (
-                        <>
+                        <React.Fragment key={t.slug}>
                           <Link key={t.slug} href={`/insights/topic/${t.slug}/`}>
                             {t.name}
                           </Link>
                           {idx < arr.length - 1 ? ', ' : ''}
-                        </>
+                        </React.Fragment>
                       ))}
                   </AuthorDetails>
                 </TeamMember>

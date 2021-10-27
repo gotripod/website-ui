@@ -3,6 +3,7 @@ export interface WPPage {
   title: string
   link: string
   body: string
+  yoastHtml: string
 }
 
 export interface Category {
@@ -42,6 +43,7 @@ export interface Taxonomy {
 }
 
 export interface Post {
+  yoastHtml: string
   date: string
   slug: string
   link: string
