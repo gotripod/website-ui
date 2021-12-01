@@ -19,7 +19,7 @@ const SmallNav = ({ className }: Props) => (
         const isCurrentPage = false
         return (
           <li key={link}>
-            <Link href={link}>{text}</Link>
+            <Link prefetch href={link}><a>{text}</a></Link>
           </li>
         )
       })}

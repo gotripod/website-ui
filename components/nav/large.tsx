@@ -14,7 +14,7 @@ const LargeNav = ({ className }: Props) => (
       {menu.map(({ text, link }) => {
         return (
           <li key={link}>
-            <Link href={link}>{text}</Link>
+            <Link prefetch href={link}><a>{text}</a></Link>
           </li>
         )
       })}
