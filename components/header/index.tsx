@@ -36,7 +36,7 @@ Header.displayName = 'Header'
 
 const StyledImage = styled(Image)<{loaded: boolean}>`
   opacity: ${props => props.loaded ? 1 : 0};
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 `
 
 const StyledHeader = styled.header`

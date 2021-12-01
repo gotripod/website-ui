@@ -28,6 +28,9 @@ const getTestimonial = async (): Promise<Testimonial> => {
     'https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand'
   )
 
+  if(response.status !== 200) {
+    console.error(await response.text())
+  }
   try {
     const testimonials = await response.json()
 
@@ -39,7 +42,7 @@ const getTestimonial = async (): Promise<Testimonial> => {
       quoteAuthor: testimonial.title.rendered
     }
   } catch (e) {
-    console.error('getTestimonial error', e)
+    console.error('getTestimonial error', e, )
     return {
       projectUrl: '',
       quote: '',
