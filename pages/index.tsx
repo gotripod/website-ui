@@ -2,12 +2,13 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getTestimonial } from '../api'
 import Column from '../components/column'
-import Articles from '../components/home/articles'
+const Articles = dynamic(() => import('../components/home/articles'))
 import ServiceList from '../components/home/service-list'
 import Layout from '../components/layout'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 import { Article, Service, Testimonial } from 'types'
 import he from 'he'
+import dynamic from 'next/dynamic'
 
 interface Props {
   services: Service[]

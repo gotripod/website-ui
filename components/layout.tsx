@@ -6,12 +6,14 @@ import styled from 'styled-components'
 import Theme, { breakpoints, mqLess, mqMore } from '../theme'
 import { Testimonial } from '../types'
 import Column from './column'
-import Contact from './contact'
-import Footer from './footer'
+
+const Contact = dynamic(() => import('./contact'))
+const Footer = dynamic(() => import('./footer'))
 import Header from './header'
-import Testimonials from './home/testimonials'
+const Testimonials = dynamic(() => import('./home/testimonials'))
 import SmallNav from './nav/small'
 import ToTop from './to-top'
+import dynamic from 'next/dynamic'
 
 interface Props {
   testimonial?: Testimonial
