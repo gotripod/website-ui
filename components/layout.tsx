@@ -62,7 +62,7 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
 
       <ToTop />
       <SmallNav />
-      <Header heroHtml={heroHtml} />
+      <Header />
 
       <Logo>
         <div></div>

@@ -7,13 +7,9 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import heroImage from './hero.jpg'
 
-interface Props {
-  heroHtml?: string
-}
-
-const Header = ({ heroHtml }: Props) => {
+const Header = React.memo(() => {
   const router = useRouter()
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(router.pathname !== '/')
   return (
     <StyledHeader>
       <StyledImage
@@ -34,7 +30,9 @@ const Header = ({ heroHtml }: Props) => {
       </Column>
     </StyledHeader>
   )
-}
+})
+
+Header.displayName = 'Header'
 
 const StyledImage = styled(Image)<{loaded: boolean}>`
   opacity: ${props => props.loaded ? 1 : 0};
@@ -74,8 +72,7 @@ const StyledHeader = styled.header`
       h2 {
         width: auto;
         font-size: ${px2rem(33)};
-        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)}
-          ${px2rem(Theme.gutter * 2)};
+        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 2)};
       }
     }
     a {
