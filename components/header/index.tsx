@@ -6,6 +6,7 @@ import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import heroImage from './hero.jpg'
+import useNextBlurhash from 'use-next-blurhash'
 
 interface Props {
   heroHtml?: string
@@ -13,6 +14,7 @@ interface Props {
 
 const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
+  const [blurhash] = useNextBlurhash('L88E[Arr00s:3sf8;ej@rVWUXTbc')
   return (
     <StyledHeader>
       <Image
@@ -21,6 +23,7 @@ const Header = ({ heroHtml }: Props) => {
         objectFit="cover"
         layout="fill"
         placeholder="blur"
+        blurDataURL={blurhash}
         src={heroImage}
       />
       
