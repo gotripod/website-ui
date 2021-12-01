@@ -3,7 +3,7 @@
  * category indexes, and single post. For more on catch-all routes, see:
  * https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes
  */
-
+import dynamic from 'next/dynamic'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import {
   getTestimonial,
@@ -17,8 +17,8 @@ import Column from '../../components/column'
 import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType, WPPage } from 'types'
 import React, { ReactElement } from 'react'
-import Single from 'components/posts/single'
-import List from 'components/posts/list'
+const Single = dynamic(() => import ('components/posts/single'))
+const List = dynamic(() => import('components/posts/list'))
 
 const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement => {
   return (
