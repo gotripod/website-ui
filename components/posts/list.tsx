@@ -7,11 +7,13 @@ import styled from 'styled-components'
 import { mqLess, breakpoints } from 'theme'
 import Item from './list-item'
 import Pagination from './pagination'
+import parse from 'html-react-parser'
 
-const List = ({ posts, pagination }: PostListProps) => (
+const List = ({ insightsPage, posts, pagination }: PostListProps) => (
   <>
     <Head>
       <title>Development insights, client advice and news - Go Tripod</title>
+      {parse(insightsPage.yoastHtml)}
     </Head>
     <Column slim>
       <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />

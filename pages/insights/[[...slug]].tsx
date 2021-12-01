@@ -10,11 +10,12 @@ import {
   getPostsPage,
   getPostBySlug,
   getCategoryBySlug,
-  getTagBySlug
+  getTagBySlug,
+  getPageBySlug
 } from '../../api'
 import Column from '../../components/column'
 import Layout from '../../components/layout'
-import { Testimonial, Post, Pagination as PaginationType } from 'types'
+import { Testimonial, Post, Pagination as PaginationType, WPPage } from 'types'
 import React, { ReactElement } from 'react'
 import Single from 'components/posts/single'
 import List from 'components/posts/list'
@@ -33,6 +34,7 @@ export interface PostBaseProps {
 
 export interface PostListProps {
   posts: Post[]
+  insightsPage: WPPage
   pagination?: PaginationType
 }
 
@@ -52,12 +54,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     posts: Post[],
     totalCount: number,
     pageCount: number,
-    page: string | string[] | null
+    page: string | string[] | null,
+    insightsPage: WPPage
   ) => ({
     revalidate: 30,
     props: {
       testimonial,
       posts,
+      insightsPage,
       pagination: {
         totalItems: totalCount,
         pageCount: pageCount,
@@ -67,9 +71,11 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   })
 
   if (postSlugOrIndexType === undefined || postSlugOrIndexType === '[[...slug]]') {
+    
     const { posts, totalCount, pageCount } = await getPostsPage()
+    const insightsPage = await getPageBySlug('insights')
 
-    return getIndexProps(posts, totalCount, pageCount, context.params.page)
+    return getIndexProps(posts, totalCount, pageCount, context.params.page, insightsPage)
   } else if (pageOrCategory === undefined) {
     const post = await getPostBySlug(postSlugOrIndexType)
     return {
@@ -79,15 +85,21 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     }
   } else if (postSlugOrIndexType === 'page') {
     const { posts, totalCount, pageCount } = await getPostsPage({ page: Number(pageOrCategory) })
-    return getIndexProps(posts, totalCount, pageCount, pageOrCategory)
+    const insightsPage = await getPageBySlug('insights')
+
+    return getIndexProps(posts, totalCount, pageCount, pageOrCategory, insightsPage)
   } else if (postSlugOrIndexType === 'category') {
     const category = await getCategoryBySlug(pageOrCategory)
+
     const { posts, totalCount, pageCount } = await getPostsPage({ categoryId: category.id })
-    return getIndexProps(posts, totalCount, pageCount, null)
+    const insightsPage = await getPageBySlug('insights')
+
+    return getIndexProps(posts, totalCount, pageCount, null, insightsPage)
   } else if (postSlugOrIndexType === 'topic') {
+    const insightsPage = await getPageBySlug('insights')
     const tag = await getTagBySlug(pageOrCategory)
     const { posts, totalCount, pageCount } = await getPostsPage({ tagId: tag.id })
-    return getIndexProps(posts, totalCount, pageCount, null)
+    return getIndexProps(posts, totalCount, pageCount, null, insightsPage)
   }
 }
 
