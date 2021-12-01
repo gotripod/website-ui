@@ -13,7 +13,7 @@ const List = ({ insightsPage, posts, pagination }: PostListProps) => (
   <>
     <Head>
       <title>Development insights, client advice and news - Go Tripod</title>
-      {parse(insightsPage.yoastHtml)}
+     
     </Head>
     <Column slim>
       <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />

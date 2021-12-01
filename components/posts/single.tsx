@@ -21,7 +21,6 @@ const Single = ({ post }: SinglePostProps) => {
     <>
       <Head>
         <title>{post.title} - Go Tripod</title>
-        {parse(post.yoastHtml)}
       </Head>
       <Column slim>
         <PageTitle title={post.title} subTitle={new Date(post.date).toDateString()} />

@@ -24,30 +24,34 @@ const getTagBySlug = async (slug: string): Promise<Category> => {
 }
 
 const getTestimonial = async (): Promise<Testimonial> => {
-  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand')
+  const response = await fetch(
+    'https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand'
+  )
 
   try {
-  const testimonials = await response.json()
+    const testimonials = await response.json()
 
-  const testimonial = testimonials[0]
+    const testimonial = testimonials[0]
 
-  return {
-    projectUrl: testimonial.project_url || '',
-    quote: testimonial.acf.testimonial_body,
-    quoteAuthor: testimonial.title.rendered
-  } 
-} catch(e) {
-  console.error(e)
-  return {
-    projectUrl: '',
-    quote: '',
-    quoteAuthor: ''
+    return {
+      projectUrl: testimonial.project_url || '',
+      quote: testimonial.acf.testimonial_body,
+      quoteAuthor: testimonial.title.rendered
+    }
+  } catch (e) {
+    console.error('getTestimonial error', e)
+    return {
+      projectUrl: '',
+      quote: '',
+      quoteAuthor: ''
+    }
   }
-}
 }
 
 const getTestimonialById = async (testimonialId: number): Promise<Testimonial> => {
-  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`)
+  const response = await fetch(
+    `https://content.gotripod.com/wp-json/wp/v2/testimonial/${testimonialId}`
+  )
 
   const testimonial = await response.json()
 
@@ -108,23 +112,28 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
   }
 }
 
-const getPageBySlug = async (slug: string): Promise<WPPage> => {
+const  getPageBySlug = async (slug: string): Promise<WPPage> => {
   console.debug('Getting page with slug', slug)
   const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/pages?slug=${slug}`)
   const json = await response.json()
   const page = json[0]
 
+  // Some pages (such as insights) may not have the section_body acf field
+  const body = page.acf?.section_body ? he.decode(page.acf.section_body) : ''
+
   return {
     title: he.decode(page.title.rendered),
     yoastHtml: page.yoast_head,
     date: page.date,
-    body: he.decode(page.acf.section_body),
+    body: body,
     link: page.link
   }
 }
 
 const getPostBySlug = async (slug: string): Promise<Post> => {
-  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/posts?_embed=1&slug=${slug}`)
+  const response = await fetch(
+    `https://content.gotripod.com/wp-json/wp/v2/posts?_embed=1&slug=${slug}`
+  )
   const json = await response.json()
   const post = json[0]
 
@@ -141,7 +150,9 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
     date: post.date,
     slug: post.slug,
     link: post.link,
-    taxonomies: post._embedded['wp:term'].flat().map(({name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
+    taxonomies: post._embedded['wp:term']
+      .flat()
+      .map(({ name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
     teamMember: {
       name: teamMemberJson.title.rendered,
       position: teamMemberJson.acf.team_member_position,
@@ -165,9 +176,9 @@ const getPostsPage = async (
 }> => {
   const { categoryId, tagId, page } = params
 
-  const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=18${page ? `&page=${page}` : ''}${
-    categoryId ? `&categories=${categoryId}` : ''
-  }${tagId ? `&tags=${tagId}` : ''}`
+  const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=18${
+    page ? `&page=${page}` : ''
+  }${categoryId ? `&categories=${categoryId}` : ''}${tagId ? `&tags=${tagId}` : ''}`
 
   const response = await fetch(url)
   const posts = await response.json()
