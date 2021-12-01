@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import Theme, { breakpoints, mqLess, mqMore, px2rem } from '../../theme'
+import Theme, { breakpoints, mqLess, px2rem } from '../../theme'
 import Column from '../column'
 import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import heroImage from './hero.jpg'
-import useNextBlurhash from 'use-next-blurhash'
 
 interface Props {
   heroHtml?: string
@@ -14,16 +13,16 @@ interface Props {
 
 const Header = ({ heroHtml }: Props) => {
   const router = useRouter()
-  const [blurhash] = useNextBlurhash('L88E[Arr00s:3sf8;ej@rVWUXTbc')
+  const [loaded, setLoaded] = useState(false)
   return (
     <StyledHeader>
-      <Image
+      <StyledImage
+        loaded={loaded}
+        onLoadingComplete={() => setLoaded(true)}
         alt=""
         priority
         objectFit="cover"
         layout="fill"
-        placeholder="blur"
-        blurDataURL={blurhash}
         src={heroImage}
       />
       
@@ -37,7 +36,13 @@ const Header = ({ heroHtml }: Props) => {
   )
 }
 
+const StyledImage = styled(Image)<{loaded: boolean}>`
+  opacity: ${props => props.loaded ? 1 : 0};
+  transition: opacity 1s;
+`
+
 const StyledHeader = styled.header`
+  background-color: black;
   text-align: center;
   position: relative;
   overflow: hidden;
