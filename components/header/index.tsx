@@ -5,7 +5,7 @@ import Column from '../column'
 import LargeNav from '../nav/large'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import heroImage from './hero.jpg'
+import heroImage from './hero-min.jpg'
 
 const Header = React.memo(() => {
   const router = useRouter()
