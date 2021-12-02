@@ -1,15 +1,69 @@
 import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category, WPPage } from '../types'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 import he from 'he'
-const getCategoryBySlug = async (slug: string): Promise<Category> => {
-  const response = await fetch('https://content.gotripod.com/wp-json/wp/v2/categories?slug=' + slug)
-  const categories = await response.json()
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client/core';
 
-  const category = categories[0]
+const API_URL = 'https://content.gotripod.com/graphql'
 
-  return {
-    id: category.id
+const ac = new ApolloClient({
+  uri: API_URL,
+  cache: new InMemoryCache()
+})
+
+
+const fetchAPI = async (query: string, { variables }: any = {}) => {
+  const headers = { 'Content-Type': 'application/json' }
+
+  if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
+    headers[
+      'Authorization'
+    ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
+
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  })
+
+  const json = await res.json()
+  if (json.errors) {
+    console.error(json.errors)
+    throw new Error('Failed to fetch API')
+  }
+  return json.data
+}
+
+interface IReturn {
+  categories: {
+    edges: Array<{
+      node: Category
+    }>
+  }
+}
+
+const getCategoryBySlug = async (slug: string): Promise<Category> => {
+  
+  const gQuery = ac.query<IReturn>({
+    query: gql`
+    query GetCategory {
+      categories(where: {slug: "news"}) {
+        edges {
+          node {
+            categoryId: id
+          }
+        }
+      }
+    }
+    `
+  })
+
+  const response = await gQuery
+
+  return response.data.categories.edges[0].node
 }
 
 const getTagBySlug = async (slug: string): Promise<Category> => {

@@ -3,9 +3,9 @@ import React from 'react'
 import PageTitle from 'components/page-title'
 import styled from 'styled-components'
 import theme, { mqLess, breakpoints, px2rem } from 'theme'
-import parse, { domToReact } from 'html-react-parser'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { coy } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+// import parse, { domToReact } from 'html-react-parser'
+// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+// import { coy } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import Image from 'next/image'
 import { CaptionStyles } from 'components/common'
 import Link from 'components/link'
@@ -29,7 +29,7 @@ const Single = ({ post }: SinglePostProps) => {
         {
           <>
             <Content>
-              {parse(post.content, { replace: replaceCode })}
+              {post.content}
 
               <Social>
                 Sharing is caring:
@@ -213,38 +213,38 @@ const Content = styled.div`
   }
 `
 
-const getLanguage = (node) => {
-  if (node.children[0].attribs.class != null) {
-    return node.children[0].attribs.class.replace('language-', '')
-  }
-  return null
-}
+// const getLanguage = (node) => {
+//   if (node.children[0].attribs.class != null) {
+//     return node.children[0].attribs.class.replace('language-', '')
+//   }
+//   return null
+// }
 
-const getCode = (node) => {
-  if (node.children.length > 0 && node.children[0].name === 'code') {
-    return node.children[0].children
-  } else {
-    return node.children
-  }
-}
+// const getCode = (node) => {
+//   if (node.children.length > 0 && node.children[0].name === 'code') {
+//     return node.children[0].children
+//   } else {
+//     return node.children
+//   }
+// }
 
-const replaceCode = (node) => {
-  try {
-  if (node.name === 'pre' && node.children[0].attribs.class.indexOf('language-') > -1) {
-    const code = getCode(node)
-    const language = getLanguage(node)
+// const replaceCode = (node) => {
+//   try {
+//   if (node.name === 'pre' && node.children[0].attribs.class.indexOf('language-') > -1) {
+//     const code = getCode(node)
+//     const language = getLanguage(node)
 
-    return (
-      node.children.length > 0 && (
-        <SyntaxHighlighter style={coy} language={language}>
-          {domToReact(code)}
-        </SyntaxHighlighter>
-      )
-    )
-  }
-} catch {
-  return null
-}
-}
+//     return (
+//       node.children.length > 0 && (
+//         <SyntaxHighlighter style={coy} language={language}>
+//           {domToReact(code)}
+//         </SyntaxHighlighter>
+//       )
+//     )
+//   }
+// } catch {
+//   return null
+// }
+// }
 
 export default Single

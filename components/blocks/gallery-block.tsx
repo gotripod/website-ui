@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import styled from 'styled-components'
 import { GalleryImage } from '../../types'
-import { SRLWrapper } from 'simple-react-lightbox'
+// import { SRLWrapper } from 'simple-react-lightbox'
 import theme, { px2rem } from 'theme'
 import { Caption } from 'components/common'
 
@@ -14,7 +14,6 @@ const GalleryBlock = ({ caption, images }: Props): ReactElement => {
   const key = caption && caption.replace(/ /g, '')
   return (
     <>
-      <SRLWrapper>
         <Gallery>
           {images.map((image, idx) => {
             return (
@@ -24,7 +23,6 @@ const GalleryBlock = ({ caption, images }: Props): ReactElement => {
             )
           })}
         </Gallery>
-      </SRLWrapper>
       <Caption>{caption}</Caption>
     </>
   )

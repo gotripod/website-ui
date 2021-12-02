@@ -10,6 +10,7 @@ import Renderer from 'components/blocks/renderer'
 import Layout from 'components/layout'
 import Column from 'components/column'
 import Head from 'next/head'
+import sleep from 'helpers/sleep'
 //#endregion
 
 //#region component
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const SinglePostPage = ({ project }: Props): React.ReactElement => (
-  <Layout>
+  project ? <Layout>
 
     <Head>{project.title} - Go Tripod</Head>
 
@@ -30,7 +31,7 @@ const SinglePostPage = ({ project }: Props): React.ReactElement => (
         ))}
       </Content>
     </Column>
-  </Layout>
+  </Layout> : null
 )
 
 export default SinglePostPage
@@ -60,6 +61,8 @@ const Content = styled.div`
 //#region data
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  await sleep(500)
+
   const project = await getProjectBySlug(
     Array.isArray(context.params.slug) ? context.params.slug[0] : context.params.slug
   )
@@ -82,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 //#endregion

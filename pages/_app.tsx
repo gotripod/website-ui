@@ -1,4 +1,4 @@
-import SimpleReactLightbox from 'simple-react-lightbox'
+// import SimpleReactLightbox from 'simple-react-lightbox'
 import './styles.css'
 
 export function reportWebVitals(metric) {
@@ -7,8 +7,8 @@ export function reportWebVitals(metric) {
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <SimpleReactLightbox>
+    //<SimpleReactLightbox>
       <Component {...pageProps} />
-    </SimpleReactLightbox>
+    //</SimpleReactLightbox>
   )
 }

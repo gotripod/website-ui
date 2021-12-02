@@ -9,6 +9,7 @@ import theme, { mqLess, breakpoints } from 'theme'
 import React, { ReactNode, useLayoutEffect, useRef, useState } from 'react'
 import NextLink from 'next/link'
 import Head from 'next/head'
+import sleep from 'helpers/sleep'
 
 interface Props {
   projects: ProjectListItem[]
@@ -104,6 +105,7 @@ const ProjectItemLink = styled.a<{width: number}>`
 `
 
 export const getStaticProps: GetStaticProps = async () => {
+  await sleep(500)
   const testimonial = await getTestimonial()
   const projects = await getProjects()
 

@@ -17,6 +17,7 @@ import Column from '../../components/column'
 import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType, WPPage } from 'types'
 import React, { ReactElement } from 'react'
+import sleep from 'helpers/sleep'
 const Single = dynamic(() => import ('components/posts/single'))
 const List = dynamic(() => import('components/posts/list'))
 
@@ -45,6 +46,8 @@ export interface SinglePostProps {
 type Props = PostListProps | SinglePostProps
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  await sleep(500)
+
   const testimonial = await getTestimonial()
   const [postSlugOrIndexType, pageOrCategory] = (context.params.slug || []) as string[]
 
