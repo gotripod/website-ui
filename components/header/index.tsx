@@ -35,8 +35,8 @@ const Header = React.memo(() => {
 Header.displayName = 'Header'
 
 const StyledImage = styled(Image)<{loaded: boolean}>`
-  opacity: ${props => props.loaded ? 1 : 0};
-  transition: opacity 0.5s;
+  opacity: ${props => props.loaded ? 1 : 0.01};
+  transition: opacity 0.2s;
 `
 
 const StyledHeader = styled.header`
