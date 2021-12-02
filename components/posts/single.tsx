@@ -29,7 +29,7 @@ const Single = ({ post }: SinglePostProps) => {
         {
           <>
             <Content>
-              {post.content}
+              <div dangerouslySetInnerHTML={{__html: post.content}}></div>
 
               <Social>
                 Sharing is caring:
