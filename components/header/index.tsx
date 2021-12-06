@@ -9,12 +9,10 @@ import heroImage from './hero-min.jpg'
 
 const Header = React.memo(() => {
   const router = useRouter()
-  const [loaded, setLoaded] = useState(router.pathname !== '/')
+
   return (
     <StyledHeader>
-      <StyledImage
-        loaded={loaded}
-        onLoadingComplete={() => setLoaded(true)}
+      <Image
         alt=""
         priority
         objectFit="cover"
@@ -33,11 +31,6 @@ const Header = React.memo(() => {
 })
 
 Header.displayName = 'Header'
-
-const StyledImage = styled(Image)<{loaded: boolean}>`
-  opacity: ${props => props.loaded ? 1 : 0.01};
-  transition: opacity 0.2s;
-`
 
 const StyledHeader = styled.header`
   background-color: black;
