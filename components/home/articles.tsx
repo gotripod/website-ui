@@ -5,33 +5,32 @@ import { Article } from '../../types'
 import Column from '../column'
 import Link from 'next/link'
 import BaseCard from './base-card'
-import { Button } from 'components/button'
+import { LinkButton } from 'components/button'
 
 interface Props {
   articles: Article[]
 }
 
-const Articles = ({ articles }: Props): ReactElement => {
-  const formatDate = (stringDate: string): string => {
-    const date = new Date(stringDate)
-    const dtf = new Intl.DateTimeFormat('en', {
-      year: 'numeric',
-      month: 'numeric',
-      day: '2-digit'
-    })
-    const [{ value: mo }, , { value: da }, , { value: ye }] = dtf.formatToParts(date)
-    return `${da}/${mo}/${ye}`
-  }
-  console.log(articles)
-  return (
-    <Column>
-      <StyledArticleList>
-        <>
+const formatDate = (stringDate: string): string => {
+  const date = new Date(stringDate)
+  const dtf = new Intl.DateTimeFormat('en', {
+    year: 'numeric',
+    month: 'numeric',
+    day: '2-digit'
+  })
+  const [{ value: mo }, , { value: da }, , { value: ye }] = dtf.formatToParts(date)
+  return `${da}/${mo}/${ye}`
+}
+
+const Articles = ({ articles }: Props) => (
+  <Column>
+    <StyledArticleList>
+      <>
         <h1>Here&apos;s what we&apos;ve been up to recently...</h1>
         <Grid className="articles">
           {articles.map((article: Article) => {
             return (
-              <article  key={`article-${article.id}`}>
+              <article key={`article-${article.id}`}>
                 <div className="date">{formatDate(article.date)}</div>
                 <h2>
                   <Link href={article.link}>{article.title}</Link>
@@ -43,22 +42,24 @@ const Articles = ({ articles }: Props): ReactElement => {
             )
           })}
         </Grid>
-        <SButton>See them all</SButton>
-        </>
-      </StyledArticleList>
-    </Column>
-  )
-}
+        <SButton href="/insights">See them all</SButton>
+      </>
+    </StyledArticleList>
+  </Column>
+)
 
 export default Articles
 
 const Grid = styled.div`
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr)); gap: 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25ch, 1fr));
+  gap: 2em;
 `
 
-const SButton = styled(Button)`
+const SButton = styled(LinkButton)`
   font-size: 18px;
   background-color: ${theme.colours.headingBlue};
+  color: white !important;
 
   ${mqLess(breakpoints.medium)} {
     width: 100%;
@@ -89,7 +90,6 @@ const StyledArticleList = styled(BaseCard)`
   }
 
   article {
-
   }
 
   div.date {
@@ -98,7 +98,6 @@ const StyledArticleList = styled(BaseCard)`
   h2 {
     font-size: ${px2rem(20)};
     margin: ${px2rem(theme.gutter * 2)} 0;
-
   }
 
   h1 {
@@ -133,7 +132,7 @@ const StyledArticleList = styled(BaseCard)`
     }
 
     article h2 {
-      margin-top: 0
+      margin-top: 0;
     }
   }
 `
