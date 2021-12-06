@@ -12,7 +12,7 @@ const Header = React.memo(() => {
 
   return (
     <StyledHeader>
-      <StyledImage
+      <Image
         alt=""
         priority
         objectFit="cover"
@@ -31,10 +31,6 @@ const Header = React.memo(() => {
 })
 
 Header.displayName = 'Header'
-
-const StyledImage = styled(Image)<{loaded: boolean}>`
-
-`
 
 const StyledHeader = styled.header`
   background-color: black;
