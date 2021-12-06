@@ -35,40 +35,9 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
         gtag('config', 'UA-9912208-1');
       `}}>
       </script>
+      <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet"> 
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet"> 
     </Head>
-    <style jsx global>
-      {`
-        @font-face {
-          font-family: 'Cabin';
-          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff2')
-              format('woff2'),
-            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/cabin-bold-webfont.woff')
-              format('woff');
-          font-weight: bold;
-          font-style: normal;
-          font-display: swap;
-        }
-
-        @font-face {
-          font-family: 'Noto Sans';
-          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff2')
-              format('woff2'),
-            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-regular-webfont.woff')
-              format('woff');
-          font-display: swap;
-        }
-
-        @font-face {
-          font-family: 'Noto Sans';
-          src: url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-bold-webfont.woff2')
-              format('woff2'),
-            url('https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/fonts/notosans-bold-webfont.woff')
-              format('woff');
-          font-weight: bold;
-          font-display: swap;
-        }
-      `}
-    </style>
     <MainContainer>
 
       <ToTop />
