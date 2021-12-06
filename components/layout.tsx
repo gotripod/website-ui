@@ -35,8 +35,8 @@ const Layout = ({ children, testimonial, heroHtml }: Props) => {
         gtag('config', 'UA-9912208-1');
       `}}>
       </script>
-      <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet"> 
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet"> 
+      <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap" rel="stylesheet" /> 
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" /> 
     </Head>
     <MainContainer>
 
