@@ -1,7 +1,7 @@
 import { Testimonial, ProjectListItem, Project, MediaItem, Post, Category, WPPage } from '../types'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
 import he from 'he'
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client/core';
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client/core'
 
 const API_URL = 'https://content.gotripod.com/graphql'
 
@@ -10,14 +10,11 @@ const ac = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-
 const fetchAPI = async (query: string, { variables }: any = {}) => {
   const headers = { 'Content-Type': 'application/json' }
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-    headers[
-      'Authorization'
-    ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
+    headers['Authorization'] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
   }
 
   const res = await fetch(API_URL, {
@@ -25,8 +22,8 @@ const fetchAPI = async (query: string, { variables }: any = {}) => {
     headers,
     body: JSON.stringify({
       query,
-      variables,
-    }),
+      variables
+    })
   })
 
   const json = await res.json()
@@ -46,18 +43,17 @@ interface IReturn {
 }
 
 const getCategoryBySlug = async (slug: string): Promise<Category> => {
-  
   const gQuery = ac.query<IReturn>({
     query: gql`
-    query GetCategory {
-      categories(where: {slug: "news"}) {
-        edges {
-          node {
-            categoryId: id
+      query GetCategory {
+        categories(where: { slug: "news" }) {
+          edges {
+            node {
+              categoryId: id
+            }
           }
         }
       }
-    }
     `
   })
 
@@ -82,7 +78,7 @@ const getTestimonial = async (): Promise<Testimonial> => {
     'https://content.gotripod.com/wp-json/wp/v2/testimonial?per_page=1&orderby=rand'
   )
 
-  if(response.status !== 200) {
+  if (response.status !== 200) {
     console.error(await response.text())
   }
   try {
@@ -96,7 +92,7 @@ const getTestimonial = async (): Promise<Testimonial> => {
       quoteAuthor: testimonial.title.rendered
     }
   } catch (e) {
-    console.error('getTestimonial error', e, )
+    console.error('getTestimonial error', e)
     return {
       projectUrl: '',
       quote: '',
@@ -170,21 +166,21 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
 }
 
 interface PageGqlResponse {
-    page:{
-      seo: {
-        title: string,
-        fullHead: string
-      },
-      title: string,
-      date: string,
-      content: string,
-      link: string,
-      section: {
-        sectionBody: string
-        sectionSubtitle: string
-        sectionTitle: string
-      }
+  page: {
+    seo: {
+      title: string
+      fullHead: string
     }
+    title: string
+    date: string
+    content: string
+    link: string
+    section: {
+      sectionBody: string
+      sectionSubtitle: string
+      sectionTitle: string
+    }
+  }
 }
 
 const getPageBySlug = async (slug: string): Promise<WPPage> => {
@@ -193,26 +189,26 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
   // // Some pages (such as insights) may not have the section_body acf field
   // const body = page.acf?.section_body ? he.decode(page.acf.section_body) : ''
 
-  const query = gql`query PageQuery {
-    page(id: "contact", idType: URI) {
-      seo {
+  const query = gql`
+    query PageQuery {
+      page(id: "contact", idType: URI) {
+        seo {
+          title
+          fullHead
+        }
         title
-        fullHead
-      }
-      title
-      date
-      content(format: RENDERED)
-      link
-      section {
-        sectionBody
-        sectionSubtitle
-        sectionTitle
+        date
+        content(format: RENDERED)
+        link
+        section {
+          sectionBody
+          sectionSubtitle
+          sectionTitle
+        }
       }
     }
-  }
   `
 
-    
   const gQuery = ac.query<PageGqlResponse>({ query })
 
   const response = await gQuery
@@ -235,12 +231,14 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
   )
   const json = await response.json()
   const post = json[0]
+  const teamMemberId = post.acf.article_author.ID
+  let teamMemberJson
+  if (teamMemberId) {
+    const tmUrl = `https://content.gotripod.com/wp-json/wp/v2/team_member/${teamMemberId}`
 
-  const tmUrl = `https://content.gotripod.com/wp-json/wp/v2/team_member/${post.acf.article_author.ID}`
-
-  const teamMemberResponse = await fetch(tmUrl)
-  const teamMemberJson = await teamMemberResponse.json()
-
+    const teamMemberResponse = await fetch(tmUrl)
+    teamMemberJson = await teamMemberResponse.json()
+  }
   return {
     yoastHtml: post.yoast_head,
     id: post.id,
@@ -252,7 +250,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
     taxonomies: post._embedded['wp:term']
       .flat()
       .map(({ name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
-    teamMember: {
+    teamMember: teamMemberJson && {
       name: teamMemberJson.title.rendered,
       position: teamMemberJson.acf.team_member_position,
       imageUrl: teamMemberJson.team_member_image[teamMemberJson.acf.team_member_image].guid
