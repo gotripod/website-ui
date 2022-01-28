@@ -18,7 +18,7 @@ import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType, WPPage } from 'types'
 import React, { ReactElement } from 'react'
 import sleep from 'helpers/sleep'
-const Single = dynamic(() => import ('components/posts/single'))
+const Single = dynamic(() => import('components/posts/single'))
 const List = dynamic(() => import('components/posts/list'))
 
 const Index = ({ testimonial, ...props }: PostBaseProps & Props): ReactElement => {
@@ -74,7 +74,6 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   })
 
   if (postSlugOrIndexType === undefined || postSlugOrIndexType === '[[...slug]]') {
-    
     const { posts, totalCount, pageCount } = await getPostsPage()
     const insightsPage = await getPageBySlug('insights')
 
@@ -108,7 +107,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
 // This function gets called at BUILD time
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { posts } = await getPostsPage()
+  const { posts } = await getPostsPage({ perPage: 10000 })
 
   // Get the paths we want to pre-render
   const paths = posts.map((post) => ({

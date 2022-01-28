@@ -221,6 +221,7 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
 interface Params {
   categoryId?: number
   tagId?: number
+  perPage?: number
   page?: number
 }
 
@@ -231,9 +232,9 @@ const getPostsPage = async (
   totalCount: number
   pageCount: number
 }> => {
-  const { categoryId, tagId, page } = params
+  const { categoryId, tagId, page, perPage = 18 } = params
 
-  const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=18${
+  const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=${perPage}${
     page ? `&page=${page}` : ''
   }${categoryId ? `&categories=${categoryId}` : ''}${tagId ? `&tags=${tagId}` : ''}`
 
