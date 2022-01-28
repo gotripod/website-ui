@@ -4,6 +4,7 @@ export interface WPPage {
   link: string
   body: string
   yoastHtml: string
+  yoastTitle: string
 }
 
 export interface Category {

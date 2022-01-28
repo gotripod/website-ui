@@ -1,19 +1,24 @@
 import BaseCard from 'components/home/base-card'
 import Head from 'next/head'
 import React, { ReactNode } from 'react'
+import parse from 'html-react-parser'
 import styled from 'styled-components'
 import theme, { breakpoints, mqLess, mqMore, px2rem } from 'theme'
 import Column from '../../components/column'
 import Map from '../../components/contact/map'
 import Layout from '../../components/layout'
 import PageTitle from '../../components/page-title'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { getPageBySlug } from 'api'
 
-const Contact = (): ReactNode => {
+const Contact = ({ page }: InferGetStaticPropsType<typeof getStaticProps>): ReactNode => {
   return (
     <Layout>
       <Head>
-        <title>Contact Go Tripod | website &amp; web application development in Falmouth, Cornwall</title>
+        <title>{page.yoastTitle}</title>
+        {parse(page.yoastHtml)}
       </Head>
+
       <Column slim>
         <PageTitle title="Want the internet to work for you?" subTitle="Let's talk" />
       </Column>
@@ -24,7 +29,7 @@ const Contact = (): ReactNode => {
             come visit you? Let&apos;s have a coffee, let&apos;s do lunch. It&apos;s up to you.
           </Intro>
           <Main>
-            <Col style={{flex:1}}>
+            <Col style={{ flex: 1 }}>
               <Map />
             </Col>
             <Col>
@@ -63,9 +68,18 @@ const Contact = (): ReactNode => {
   )
 }
 
+export const getStaticProps = async ({}: GetStaticPropsContext) => {
+  const page = await getPageBySlug('privacy-policy')
+  return {
+    revalidate: 30,
+    props: {
+      page
+    }
+  }
+}
+
 const StyledImage = styled.img`
   margin-left: ${px2rem(theme.gutter * 4)};
-
 
   ${mqLess(breakpoints.medium)} {
     margin-top: ${px2rem(theme.gutter)};
@@ -100,19 +114,17 @@ const Card = styled(BaseCard)`
   ${mqLess(breakpoints.medium)} {
     padding: ${px2rem(theme.gutter * 2)};
     margin-bottom: ${px2rem(theme.gutter * 2)};
-    
   }
 `
 
-const Col = styled.div`
-`
+const Col = styled.div``
 
 const Main = styled.div`
   ${mqMore(breakpoints.medium)} {
     display: flex;
     flex-wrap: wrap;
   }
-  `
+`
 
 const Intro = styled.p`
   margin: 0 0 ${px2rem(theme.gutter * 6)};

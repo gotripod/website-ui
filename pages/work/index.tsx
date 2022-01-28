@@ -1,45 +1,41 @@
-import { GetStaticProps } from 'next'
-import { getTestimonial, getProjects } from 'api'
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { getTestimonial, getProjects, getPageBySlug } from 'api'
 import Column from 'components/column'
 import Layout from 'components/layout'
-import { ProjectListItem, Testimonial } from 'types'
-import PageTitle from 'components/page-title'
 import styled from 'styled-components'
 import theme, { mqLess, breakpoints } from 'theme'
-import React, { ReactNode, useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import NextLink from 'next/link'
 import Head from 'next/head'
 import sleep from 'helpers/sleep'
+import PageTitle from 'components/page-title'
+import parse from 'html-react-parser'
 
-interface Props {
-  projects: ProjectListItem[]
-  testimonial: Testimonial
-}
-
-const Index = ({ projects, testimonial }: Props): ReactNode => {
-
+const Index = ({ projects, testimonial, page }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [pageWidth, setPageWidth] = useState<number | null>()
   const ref = useRef<HTMLImageElement>()
 
   useLayoutEffect(() => {
-    if(ref.current) {
+    if (ref.current) {
       setPageWidth(ref.current.clientWidth)
     }
   }, [ref])
 
   return (
     <Layout testimonial={testimonial}>
-      <Head>Work - Go Tripod</Head>
+      <Head>{parse(page.yoastHtml)}</Head>
 
       <Column>
         <PageTitle slim title="Work" subTitle="A selection of recent projects" />
         <Wrapper>
           {projects.map((project) => (
             <div key={project.id}>
-            <NextLink href={`/work/${project.link}`} ><ProjectItemLink width={pageWidth}>
-              <img src={project.logoUrl} ref={ref} />
-              <img src={project.logoUrl} />
-              </ProjectItemLink></NextLink>
+              <NextLink href={`/work/${project.link}`}>
+                <ProjectItemLink width={pageWidth}>
+                  <img src={project.logoUrl} ref={ref} />
+                  <img src={project.logoUrl} />
+                </ProjectItemLink>
+              </NextLink>
             </div>
           ))}
         </Wrapper>
@@ -69,8 +65,8 @@ const Wrapper = styled.section`
   }
 `
 
-const ProjectItemLink = styled.a<{width: number}>`
-    display: block;
+const ProjectItemLink = styled.a<{ width: number }>`
+  display: block;
   ${theme.greyCardFlare}
 
   font-size: 0;
@@ -97,21 +93,23 @@ const ProjectItemLink = styled.a<{width: number}>`
   }
 
   img {
-    max-height: ${props => (props.width) / 1.39087947883}px;
+    max-height: ${(props) => props.width / 1.39087947883}px;
     width: 100%;
     object-fit: cover;
     height: ${614 / 2}px;
   }
 `
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
   await sleep(500)
   const testimonial = await getTestimonial()
   const projects = await getProjects()
+  const page = await getPageBySlug('work')
 
   return {
     revalidate: 30,
     props: {
+      page,
       testimonial,
       projects
     }

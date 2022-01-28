@@ -169,20 +169,62 @@ const getProjectBySlug = async (slug: string): Promise<Project> => {
   }
 }
 
-const  getPageBySlug = async (slug: string): Promise<WPPage> => {
-  console.debug('Getting page with slug', slug)
-  const response = await fetch(`https://content.gotripod.com/wp-json/wp/v2/pages?slug=${slug}`)
-  const json = await response.json()
-  const page = json[0]
+interface PageGqlResponse {
+    page:{
+      seo: {
+        title: string,
+        fullHead: string
+      },
+      title: string,
+      date: string,
+      content: string,
+      link: string,
+      section: {
+        sectionBody: string
+        sectionSubtitle: string
+        sectionTitle: string
+      }
+    }
+}
 
-  // Some pages (such as insights) may not have the section_body acf field
-  const body = page.acf?.section_body ? he.decode(page.acf.section_body) : ''
+const getPageBySlug = async (slug: string): Promise<WPPage> => {
+  console.debug('Getting page with slug', slug)
+
+  // // Some pages (such as insights) may not have the section_body acf field
+  // const body = page.acf?.section_body ? he.decode(page.acf.section_body) : ''
+
+  const query = gql`query PageQuery {
+    page(id: "contact", idType: URI) {
+      seo {
+        title
+        fullHead
+      }
+      title
+      date
+      content(format: RENDERED)
+      link
+      section {
+        sectionBody
+        sectionSubtitle
+        sectionTitle
+      }
+    }
+  }
+  `
+
+    
+  const gQuery = ac.query<PageGqlResponse>({ query })
+
+  const response = await gQuery
+
+  const page = response.data.page
 
   return {
-    title: he.decode(page.title.rendered),
-    yoastHtml: page.yoast_head,
+    title: page.title,
+    yoastHtml: page.seo.fullHead,
+    yoastTitle: page.seo.title,
     date: page.date,
-    body: body,
+    body: page.content,
     link: page.link
   }
 }

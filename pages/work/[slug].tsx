@@ -1,5 +1,5 @@
 //#region imports
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import React from 'react'
 import styled from 'styled-components'
 import { getProjectBySlug, getProjects } from 'api'
@@ -18,21 +18,23 @@ interface Props {
   project: Project
 }
 
-const SinglePostPage = ({ project }: Props): React.ReactElement => (
-  project ? <Layout>
+const SinglePostPage = ({ project }: Props): React.ReactElement =>
+  project ? (
+    <Layout>
+      <Head>
+        <title>{project.title} | Go Tripod</title>
+      </Head>
 
-    <Head>{project.title} - Go Tripod</Head>
-
-    <Column>
-      <StyledMediaImage media={project.heroMedia} />
-      <Content>
-        {project.blocks.map((block, i) => (
-          <Renderer key={i} block={block} />
-        ))}
-      </Content>
-    </Column>
-  </Layout> : null
-)
+      <Column>
+        <StyledMediaImage media={project.heroMedia} />
+        <Content>
+          {project.blocks.map((block, i) => (
+            <Renderer key={i} block={block} />
+          ))}
+        </Content>
+      </Column>
+    </Layout>
+  ) : null
 
 export default SinglePostPage
 //#endregion
@@ -60,7 +62,7 @@ const Content = styled.div`
 
 //#region data
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
   await sleep(500)
 
   const project = await getProjectBySlug(

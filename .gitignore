@@ -4,3 +4,5 @@ node_modules
 .DS_Store
 
 .vercel
+public/*.xml
+public/robots.txt
