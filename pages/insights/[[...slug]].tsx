@@ -107,7 +107,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
 // This function gets called at BUILD time
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { posts } = await getPostsPage({ perPage: 10000 })
+  const { posts } = await getPostsPage({ perPage: 100 })
 
   // Get the paths we want to pre-render
   const paths = posts.map((post) => ({
