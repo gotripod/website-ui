@@ -250,11 +250,13 @@ const getPostBySlug = async (slug: string): Promise<Post> => {
     taxonomies: post._embedded['wp:term']
       .flat()
       .map(({ name, link, taxonomy, slug }) => ({ name, link, taxonomy, slug })),
-    teamMember: teamMemberJson && {
-      name: teamMemberJson.title.rendered,
-      position: teamMemberJson.acf.team_member_position,
-      imageUrl: teamMemberJson.team_member_image[teamMemberJson.acf.team_member_image].guid
-    }
+    teamMember: teamMemberJson
+      ? {
+          name: teamMemberJson.title.rendered,
+          position: teamMemberJson.acf.team_member_position,
+          imageUrl: teamMemberJson.team_member_image[teamMemberJson.acf.team_member_image].guid
+        }
+      : null
   }
 }
 
