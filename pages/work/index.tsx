@@ -23,7 +23,10 @@ const Index = ({ projects, testimonial, page }: InferGetStaticPropsType<typeof g
 
   return (
     <Layout testimonial={testimonial}>
-      <Head>{parse(page.yoastHtml)}</Head>
+      <Head>
+        <title>{page.yoastTitle}</title>
+        {parse(page.yoastHtml)}
+      </Head>
 
       <Column>
         <PageTitle slim title="Work" subTitle="A selection of recent projects" />
