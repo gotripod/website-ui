@@ -45,8 +45,8 @@ interface IReturn {
 const getCategoryBySlug = async (slug: string): Promise<Category> => {
   const gQuery = ac.query<IReturn>({
     query: gql`
-      query GetCategory {
-        categories(where: { slug: "news" }) {
+      query GetCategory($name: [String]) {
+        categories(where: { slug: $name }) {
           edges {
             node {
               categoryId: id
@@ -54,7 +54,8 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
           }
         }
       }
-    `
+    `,
+    variables: { name: slug }
   })
 
   const response = await gQuery
@@ -190,8 +191,8 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
   // const body = page.acf?.section_body ? he.decode(page.acf.section_body) : ''
 
   const query = gql`
-    query PageQuery {
-      page(id: "contact", idType: URI) {
+    query PageQuery($slug: ID!) {
+      page(id: $slug, idType: URI) {
         seo {
           title
           fullHead
@@ -209,7 +210,7 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
     }
   `
 
-  const gQuery = ac.query<PageGqlResponse>({ query })
+  const gQuery = ac.query<PageGqlResponse>({ query, variables: { slug } })
 
   const response = await gQuery
 
@@ -220,7 +221,7 @@ const getPageBySlug = async (slug: string): Promise<WPPage> => {
     yoastHtml: page.seo.fullHead,
     yoastTitle: page.seo.title,
     date: page.date,
-    body: page.content,
+    body: page.section.sectionBody ? page.section.sectionBody : page.content,
     link: page.link
   }
 }

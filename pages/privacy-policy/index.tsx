@@ -65,6 +65,7 @@ const Main = styled.div`
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const page = await getPageBySlug('privacy-policy')
+  console.log(page)
   return {
     revalidate: 30,
     props: {
