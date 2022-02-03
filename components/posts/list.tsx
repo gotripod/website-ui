@@ -9,22 +9,20 @@ import Item from './list-item'
 import Pagination from './pagination'
 import parse from 'html-react-parser'
 
-const List = ({ insightsPage, posts, pagination }: PostListProps) => (
+const List = ({ insightsPage, posts, pagination, extraTitle }: PostListProps) => (
   <>
     <Head>
-      <title>Development insights, client advice and news - Go Tripod</title>
-     
+      <title>
+        {extraTitle ? `${extraTitle} from` : 'Development insights, client advice and news'} Go
+        Tripod, Software developers in Cornwall
+      </title>
     </Head>
     <Column slim>
       <PageTitle title="Insights" subTitle="Nuggets from the Go Tripod hive mind" />
     </Column>
     <Column>
       <>
-        <Container>
-          {posts && posts.map((post) => (
-            <Item key={post.id} post={post} />
-          ))}
-        </Container>
+        <Container>{posts && posts.map((post) => <Item key={post.id} post={post} />)}</Container>
         <Pagination {...pagination} />
       </>
     </Column>

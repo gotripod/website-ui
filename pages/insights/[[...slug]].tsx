@@ -26,6 +26,7 @@ import Layout from '../../components/layout'
 import { Testimonial, Post, Pagination as PaginationType, WPPage } from 'types'
 import React, { ReactElement } from 'react'
 import sleep from 'helpers/sleep'
+import { toTitle } from 'helpers/keys-to-camel'
 const Single = dynamic(() => import('components/posts/single'))
 const List = dynamic(() => import('components/posts/list'))
 
@@ -43,6 +44,7 @@ export interface PostBaseProps {
 
 export interface PostListProps {
   posts: Post[]
+  extraTitle?: String
   insightsPage: WPPage
   pagination?: PaginationType
 }
@@ -72,13 +74,15 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     totalCount: number,
     pageCount: number,
     page: string | string[] | null,
-    insightsPage: WPPage
+    insightsPage: WPPage,
+    extraTitle?: string
   ) => ({
     revalidate: 30,
     props: {
       testimonial,
       posts,
       insightsPage,
+      extraTitle,
       pagination: {
         totalItems: totalCount,
         pageCount: pageCount,
@@ -110,12 +114,26 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const { posts, totalCount, pageCount } = await getPostsPage({ categoryId: category.id })
     const insightsPage = await getPageBySlug('insights')
 
-    return getIndexProps(posts, totalCount, pageCount, null, insightsPage)
+    return getIndexProps(
+      posts,
+      totalCount,
+      pageCount,
+      null,
+      insightsPage,
+      toTitle(pageOrCategory.replace('-', ' '))
+    )
   } else if (postSlugOrIndexType === 'topic') {
     const insightsPage = await getPageBySlug('insights')
     const tag = await getTagBySlug(pageOrCategory)
     const { posts, totalCount, pageCount } = await getPostsPage({ tagId: tag.id })
-    return getIndexProps(posts, totalCount, pageCount, null, insightsPage)
+    return getIndexProps(
+      posts,
+      totalCount,
+      pageCount,
+      null,
+      insightsPage,
+      toTitle(pageOrCategory.replace('-', ' '))
+    )
   }
 }
 
