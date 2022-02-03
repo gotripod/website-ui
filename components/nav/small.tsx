@@ -19,7 +19,7 @@ const SmallNav = ({ className }: Props) => (
         const isCurrentPage = false
         return (
           <li key={link}>
-            <Link href={link}><a>{text}</a></Link>
+            <Link href={link}>{text}</Link>
           </li>
         )
       })}

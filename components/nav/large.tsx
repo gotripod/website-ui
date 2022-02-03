@@ -14,7 +14,7 @@ const LargeNav = ({ className }: Props) => (
       {menu.map(({ text, link }) => {
         return (
           <li key={link}>
-            <Link href={link}><a>{text}</a></Link>
+            <Link href={link}>{text}</Link>
           </li>
         )
       })}

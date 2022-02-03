@@ -13,7 +13,7 @@ const Header = React.memo(() => {
   return (
     <StyledHeader>
       <StyledImage
-        loaded={loaded}
+        $loaded={loaded ? true : undefined}
         onLoadingComplete={() => setLoaded(true)}
         alt=""
         priority
@@ -21,11 +21,13 @@ const Header = React.memo(() => {
         layout="fill"
         src={heroImage}
       />
-      
+
       <Column style={{ zIndex: 10 }}>
         <div className="gradient">
           <LargeNav />
-          {router.pathname == '/' && <h2>The web? We&apos;ll make it as easy as one, two, three.</h2>}
+          {router.pathname == '/' && (
+            <h2>The web? We&apos;ll make it as easy as one, two, three.</h2>
+          )}
         </div>
       </Column>
     </StyledHeader>
@@ -34,8 +36,8 @@ const Header = React.memo(() => {
 
 Header.displayName = 'Header'
 
-const StyledImage = styled(Image)<{loaded: boolean}>`
-  opacity: ${props => props.loaded ? 1 : 0.01};
+const StyledImage = styled(Image)<{ $loaded: boolean }>`
+  opacity: ${(props) => (props.$loaded ? 1 : 0.01)};
   transition: opacity 0.2s;
 `
 
@@ -72,7 +74,8 @@ const StyledHeader = styled.header`
       h2 {
         width: auto;
         font-size: ${px2rem(33)};
-        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)} ${px2rem(Theme.gutter * 2)};
+        padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)}
+          ${px2rem(Theme.gutter * 2)};
       }
     }
     a {

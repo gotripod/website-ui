@@ -44,7 +44,7 @@ export interface PostBaseProps {
 
 export interface PostListProps {
   posts: Post[]
-  extraTitle?: String
+  extraTitle: String | null
   insightsPage: WPPage
   pagination?: PaginationType
 }
@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     pageCount: number,
     page: string | string[] | null,
     insightsPage: WPPage,
-    extraTitle?: string
+    extraTitle: string | null = null
   ) => ({
     revalidate: 30,
     props: {
