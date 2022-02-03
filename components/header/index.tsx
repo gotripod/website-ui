@@ -26,10 +26,10 @@ const Header = React.memo(() => {
         <div className="gradient">
           <LargeNav />
           {router.pathname == '/' && (
-            <h1>
-              Looking for software development in Cornwall? We&apos;ll make it as easy as one, two,
-              three.
-            </h1>
+            <>
+              <h1>Looking for software development in Cornwall?</h1>
+              <h2> We&apos;ll make it as easy as one, two, three.</h2>
+            </>
           )}
         </div>
       </Column>
@@ -56,14 +56,23 @@ const StyledHeader = styled.header`
     margin-top: ${px2rem(160)};
     background: linear-gradient(to right, rgba(98, 190, 173, 0.9), rgba(66, 145, 206, 0.9));
 
+    h1,
     h2 {
       padding: ${px2rem(Theme.gutter * 2)} 0 ${px2rem(Theme.gutter * 12)} 0;
       color: #ededed;
       font-size: ${px2rem(44)};
       font-weight: bold;
-      width: ${px2rem(750)};
+      width: ${px2rem(900)};
 
       margin: 0 auto 0 auto;
+    }
+
+    h1 {
+      padding-bottom: ${px2rem(Theme.gutter)};
+    }
+
+    h2 {
+      padding-top: 0;
     }
   }
 
@@ -74,11 +83,16 @@ const StyledHeader = styled.header`
       margin-left: ${px2rem(Theme.gutter * 2)};
       margin-right: ${px2rem(Theme.gutter * 2)};
 
+      h1,
       h2 {
         width: auto;
         font-size: ${px2rem(33)};
         padding: ${px2rem(Theme.gutter * 3)} ${px2rem(Theme.gutter * 2)} ${px2rem(Theme.gutter * 4)}
           ${px2rem(Theme.gutter * 2)};
+      }
+
+      h2 {
+        display: none;
       }
     }
     a {
