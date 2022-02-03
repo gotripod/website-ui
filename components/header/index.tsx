@@ -26,7 +26,10 @@ const Header = React.memo(() => {
         <div className="gradient">
           <LargeNav />
           {router.pathname == '/' && (
-            <h2>The web? We&apos;ll make it as easy as one, two, three.</h2>
+            <h1>
+              Looking for software development in Cornwall? We&apos;ll make it as easy as one, two,
+              three.
+            </h1>
           )}
         </div>
       </Column>
