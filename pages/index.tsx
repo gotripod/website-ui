@@ -1,30 +1,27 @@
-import { GetStaticProps } from 'next'
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
-import { getTestimonial } from '../api'
+import { getPageBySlug, getTestimonial } from '../api'
 import Column from '../components/column'
 const Articles = dynamic(() => import('../components/home/articles'))
 import ServiceList from '../components/home/service-list'
 import Layout from '../components/layout'
 import { keysToCamelDeep } from 'helpers/keys-to-camel'
-import { Article, Service, Testimonial } from 'types'
 import he from 'he'
 import dynamic from 'next/dynamic'
+import parse from 'html-react-parser'
 
-interface Props {
-  services: Service[]
-  articles: Article[]
-  testimonial: Testimonial
-  heroHtml: string
-}
-
-const Index = ({ services, articles, testimonial, heroHtml }: Props): React.ReactElement => {
-  const title =
-    'Go Tripod: Website, web app & software development, Falmouth Cornwall, South West United Kingdom'
+const Index = ({
+  services,
+  articles,
+  testimonial,
+  heroHtml,
+  page
+}: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement => {
   return (
     <Layout testimonial={testimonial} heroHtml={heroHtml}>
       <Head>
-        <title>{title}</title>
-        <meta property="og:title" content={title} key="title" />
+        <title>{page.yoastTitle}</title>
+        {parse(page.yoastHtml)}
       </Head>
       <Column>
         <ServiceList services={services} />
@@ -34,7 +31,8 @@ const Index = ({ services, articles, testimonial, heroHtml }: Props): React.Reac
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (_: GetStaticPropsContext) => {
+  const page = await getPageBySlug('home')
   const postResponse = await fetch('https://content.gotripod.com/wp-json/wp/v2/posts?per_page=3')
   const postData = await postResponse.json()
   const acfResponse = await fetch('https://content.gotripod.com/wp-json/acf/v3/pages/5')
@@ -47,6 +45,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     revalidate: 30,
     props: {
+      page,
       services: acfData.serviceBuilder.map((s: any) => ({
         imageUrl: s.serviceImage,
         title: s.serviceTitle,
