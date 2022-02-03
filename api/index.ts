@@ -125,7 +125,7 @@ const getMediaById = async (mediaId: number): Promise<MediaItem> => {
 
 const getProjects = async (): Promise<ProjectListItem[]> => {
   const response = await fetch(
-    'https://content.gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug&orderby=menu_order&order=asc'
+    'https://content.gotripod.com/wp-json/wp/v2/project?_fields=acf.project_logo,id,slug,title&orderby=menu_order&order=asc'
   )
 
   const projects = await response.json()
@@ -133,7 +133,8 @@ const getProjects = async (): Promise<ProjectListItem[]> => {
   return projects.map((p) => ({
     id: p.id,
     logoUrl: p.acf.project_logo,
-    link: p.slug
+    link: p.slug,
+    title: p.title.rendered
   }))
 }
 

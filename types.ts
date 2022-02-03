@@ -71,6 +71,7 @@ export interface ProjectListItem {
   id: string
   logoUrl: string
   link: string
+  title: string
 }
 
 export interface GalleryImage {
