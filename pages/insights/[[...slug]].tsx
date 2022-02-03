@@ -135,6 +135,10 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       toTitle(pageOrCategory.replace('-', ' '))
     )
   }
+
+  return {
+    notFound: true
+  }
 }
 
 // This function gets called at BUILD time
