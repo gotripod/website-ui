@@ -2,7 +2,15 @@
  * This is a catch-all route for posts, handling the index page (with + without pagination),
  * category indexes, and single post. For more on catch-all routes, see:
  * https://nextjs.org/docs/routing/dynamic-routes#catch-all-routes
- */
+ *
+ * /insights/
+ * /insights/post-name/
+ * /insights/page/2/
+ * /insights/category/cat-name/
+ * /insights/category/cat-name/page/2/
+ * /insights/topic/topic-name/
+ * /insights/topic/topic-name/page/2
+ **/
 import dynamic from 'next/dynamic'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import {
@@ -46,12 +54,18 @@ export interface SinglePostProps {
 type Props = PostListProps | SinglePostProps
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  await sleep(500)
+  const [postSlugOrIndexType, pageOrCategory, maybePage] = (context.params.slug || []) as string[]
+
+  console.debug('Insights/Posts parameters: ', context.params.slug)
 
   const testimonial = await getTestimonial()
-  const [postSlugOrIndexType, pageOrCategory] = (context.params.slug || []) as string[]
 
-  console.debug('Insights/Posts parameters: ', postSlugOrIndexType, pageOrCategory)
+  // The third level slug part should always be "page" otherwise we can bail
+  if (maybePage && maybePage !== 'page') {
+    return {
+      notFound: true
+    }
+  }
 
   const getIndexProps = (
     posts: Post[],
