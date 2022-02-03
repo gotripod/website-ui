@@ -14,7 +14,7 @@ const ServiceList = ({ services }: Props) => {
     <StyledServiceList>
       {services.map((service, idx) => (
         <li key={idx}>
-          <Item {...(idx % 2 !== 0 && {alternate: true})}>
+          <Item {...(idx % 2 !== 0 && { alternate: true })}>
             <div className="contentWrap">
               {idx === 0 && <h1>We are Go Tripod.</h1>}
               <h2>{service.title}</h2>
@@ -22,7 +22,7 @@ const ServiceList = ({ services }: Props) => {
               <Enquire href="/contact">Enquire</Enquire>
             </div>
 
-            <img src={service.imageUrl} loading="lazy" />
+            <img src={service.imageUrl} alt={service.title} loading="lazy" />
           </Item>
         </li>
       ))}
@@ -41,11 +41,11 @@ const StyledServiceList = styled.ul`
   position: relative;
 `
 
-const Item = styled(BaseCard)<{alternate?: boolean}>`
+const Item = styled(BaseCard)<{ alternate?: boolean }>`
   ${Theme.cardFlare}
 
   &:before {
-    ${props => props.alternate ? 'right: 0; left: auto;' : '' };
+    ${(props) => (props.alternate ? 'right: 0; left: auto;' : '')};
   }
   overflow: hidden;
   position: relative;

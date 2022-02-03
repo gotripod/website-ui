@@ -35,8 +35,8 @@ const Index = ({ projects, testimonial, page }: InferGetStaticPropsType<typeof g
             <div key={project.id}>
               <NextLink href={`/work/${project.link}`}>
                 <ProjectItemLink width={pageWidth}>
-                  <img src={project.logoUrl} ref={ref} />
-                  <img src={project.logoUrl} />
+                  <img src={project.logoUrl} alt={project.title} ref={ref} />
+                  <img src={project.logoUrl} alt={project.title} />
                 </ProjectItemLink>
               </NextLink>
             </div>
