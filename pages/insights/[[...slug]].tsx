@@ -56,7 +56,8 @@ export interface SinglePostProps {
 type Props = PostListProps | SinglePostProps
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const [postSlugOrIndexType, pageOrCategory, maybePage] = (context.params.slug || []) as string[]
+  const [postSlugOrIndexType, pageOrCategory, maybePage, _pageNum, extra] = (context.params.slug ||
+    []) as string[]
 
   console.debug('Insights/Posts parameters: ', context.params.slug)
 
@@ -64,6 +65,11 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   // The third level slug part should always be "page" otherwise we can bail
   if (maybePage && maybePage !== 'page') {
+    return {
+      notFound: true
+    }
+  } else if (maybePage && maybePage === 'page' && extra) {
+    // Pagination should always be the last URL param
     return {
       notFound: true
     }
@@ -110,7 +116,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     return getIndexProps(posts, totalCount, pageCount, pageOrCategory, insightsPage)
   } else if (postSlugOrIndexType === 'category') {
     const category = await getCategoryBySlug(pageOrCategory)
-
+    console.log('Got category', category)
     const { posts, totalCount, pageCount } = await getPostsPage({ categoryId: category.id })
     const insightsPage = await getPageBySlug('insights')
 

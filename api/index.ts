@@ -49,7 +49,8 @@ const getCategoryBySlug = async (slug: string): Promise<Category> => {
         categories(where: { slug: $name }) {
           edges {
             node {
-              categoryId: id
+              id: databaseId
+              name
             }
           }
         }
@@ -281,7 +282,7 @@ const getPostsPage = async (
   const url = `https://content.gotripod.com/wp-json/wp/v2/posts?per_page=${perPage}${
     page ? `&page=${page}` : ''
   }${categoryId ? `&categories=${categoryId}` : ''}${tagId ? `&tags=${tagId}` : ''}`
-
+  console.log('Fetching posts', url)
   const response = await fetch(url)
   const posts = await response.json()
 
