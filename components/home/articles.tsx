@@ -60,10 +60,6 @@ const SButton = styled(LinkButton)`
   font-size: 18px;
   background-color: ${theme.colours.headingBlue};
   color: white !important;
-
-  ${mqLess(breakpoints.medium)} {
-    width: 100%;
-  }
 `
 
 const Slink = styled.span`
@@ -114,11 +110,13 @@ const StyledArticleList = styled(BaseCard)`
 
     .articles {
       display: block;
+      margin-bottom: 0;
     }
 
     article {
       border-bottom: 1px solid #ededed;
       padding: 0;
+      padding-top: ${px2rem(theme.gutter)};
     }
 
     article:last-child {

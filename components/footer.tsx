@@ -1,4 +1,8 @@
-import { FaFacebookF as Facebook, FaLinkedinIn as Linkedin, FaTwitter as Twitter } from 'react-icons/fa';
+import {
+  FaFacebookF as Facebook,
+  FaLinkedinIn as Linkedin,
+  FaTwitter as Twitter
+} from 'react-icons/fa'
 import React from 'react'
 import styled from 'styled-components'
 import Theme, { px2rem, breakpoints, mqLess } from '../theme'
@@ -40,6 +44,7 @@ const Footer = () => (
       <div>
         <Link href="/">
           <Image
+            layout="fixed"
             width="193"
             height="40"
             src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/gt-logo-mono-on-black.svg"
@@ -48,12 +53,13 @@ const Footer = () => (
         </Link>
 
         <div className="yus">
-        <Image
-          width="48"
-          height="32"
-          src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
-          alt=""
-        />
+          <Image
+            layout="fixed"
+            width="48"
+            height="32"
+            src="https://content.gotripod.com/wp-content/themes/go-tripod/WPGulp/assets/img/yus-footer.svg"
+            alt=""
+          />
         </div>
       </div>
     </Top>
@@ -81,7 +87,7 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
           title="Follow Go Tripod on Twitter (opens in new window)">
-          <Twitter size={18} color={"white"} />
+          <Twitter size={18} color={'white'} />
         </a>
       </li>
       <li>
@@ -90,7 +96,7 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
           title="Like Go Tripod on Facebook (opens in new window)">
-          <Facebook size={18} color={"white"} />
+          <Facebook size={18} color={'white'} />
         </a>
       </li>
       <li>
@@ -99,14 +105,15 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
           title="Follow Go Tripod on LinkedIn (opens in new window)">
-          <Linkedin size={18} color={"white"} />
+          <Linkedin size={18} color={'white'} />
         </a>
       </li>
     </Social>
 
     <Rights>
-      © {(new Date()).getFullYear()} Go Tripod. All rights reserved. Registered in the UK company number 6912029. VAT No.
-      972 5228 06. Get with our <SLink href="/privacy-policy/">Privacy&nbsp;Policy</SLink>.
+      © {new Date().getFullYear()} Go Tripod. All rights reserved. Registered in the UK company
+      number 6912029. VAT No. 972 5228 06. Get with our{' '}
+      <SLink href="/privacy-policy/">Privacy&nbsp;Policy</SLink>.
     </Rights>
   </Foot>
 )
@@ -154,7 +161,6 @@ const ContactDetails = styled.div`
     text-align: right;
     font-size: ${px2rem(30)};
     font-weight: bold;
-
   }
 
   .email {
