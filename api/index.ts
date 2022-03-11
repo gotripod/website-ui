@@ -292,7 +292,8 @@ const getPostsPage = async (
       title: he.decode(post.title.rendered),
       content: post.content.rendered,
       date: post.date,
-      slug: post.slug
+      slug: post.slug,
+      link: post.link
     })),
     totalCount: Number(response.headers.get('x-wp-total')),
     pageCount: Number(response.headers.get('x-wp-totalpages'))

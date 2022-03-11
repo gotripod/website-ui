@@ -19,14 +19,13 @@ const Item = ({ post }: Props): ReactElement => {
 
         <Title>{post.title}</Title>
 
-        <BlueLink href={post.slug}>Read More</BlueLink>
+        <BlueLink href={post.link}>Read More</BlueLink>
       </Article>
     </Li>
   )
 }
 
 export default Item
-
 
 const Li = styled.li`
   flex-basis: 33.3333333333%;
