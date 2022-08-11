@@ -27,8 +27,8 @@ const Header = React.memo(() => {
           <LargeNav />
           {router.pathname == '/' && (
             <>
-              <h1>Looking for software development in Cornwall?</h1>
-              <h2> We&apos;ll make it as easy as one, two, three.</h2>
+              <h1>Let&apos;s talk about software...</h1>
+              <h2>And then, let's build it.</h2>
             </>
           )}
         </div>
