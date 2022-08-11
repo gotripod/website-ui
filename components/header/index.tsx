@@ -28,7 +28,7 @@ const Header = React.memo(() => {
           {router.pathname == '/' && (
             <>
               <h1>Let&apos;s talk about software...</h1>
-              <h2>And then, let's build it.</h2>
+              <h2>And then, let&apos;s build it.</h2>
             </>
           )}
         </div>
